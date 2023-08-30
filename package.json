@@ -1,0 +1,45 @@
+{
+  "name": "prxmpt",
+  "version": "0.1.0",
+  "description": "Prompt with JSX",
+  "license": "MIT",
+  "private": true,
+  "author": "Connor White",
+  "type": "module",
+  "main": ".auto/build/index.js",
+  "types": ".auto/build/index.d.ts",
+  "files": [
+    ".auto/build/**/!(tsconfig.tsbuildinfo)"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "auto build",
+    "lint": "auto lint",
+    "prepack": "yarn build",
+    "release": "auto release",
+    "start": "node --loader tsx source/index.ts",
+    "test": "auto test",
+    "test-d": "auto test types",
+    "typecheck": "auto typecheck"
+  },
+  "dependencies": {
+    "as-typed-array": "^3.0.1",
+    "types-json": "^4.0.1",
+    "yaml": "^2.3.2"
+  },
+  "devDependencies": {
+    "@autosoft/tsconfig": "^1.0.1",
+    "tsx": "^3.12.7"
+  },
+  "eslintConfig": {
+    "extends": "@autosoft/eslint-config"
+  },
+  "jest": {
+    "preset": "@autosoft/jest-preset"
+  },
+  "npmpackagejsonlint": {
+    "extends": "npm-package-json-lint-config-auto"
+  }
+}
