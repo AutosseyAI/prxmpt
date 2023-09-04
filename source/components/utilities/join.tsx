@@ -8,10 +8,12 @@ export interface JoinProps {
 export const join: Prxmpt.PC<JoinProps> = (props) => {
   const arr: Prxmpt.Children[] = [];
   asArray(props.children).forEach((child) => {
-    if(arr.length > 0 && props.with) {
-      arr.push(props.with);
+    if(child !== undefined) {
+      if(arr.length > 0 && props.with) {
+        arr.push(props.with);
+      }
+      arr.push(child);
     }
-    arr.push(child);
   });
   return <Prxmpt.Fragment>{arr}</Prxmpt.Fragment>;
 };
