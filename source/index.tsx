@@ -50,6 +50,7 @@ import {
   split,
   square,
   tab,
+  title,
   trim,
   truncate,
   ul,
@@ -114,6 +115,7 @@ const types = {
   split,
   square,
   tab,
+  title,
   trim,
   truncate,
   ul,
@@ -187,6 +189,7 @@ export namespace JSX {
     split: PropsOf<typeof split>;
     square: PropsOf<typeof square>;
     tab: PropsOf<typeof tab>;
+    title: PropsOf<typeof title>;
     trim: PropsOf<typeof trim>;
     truncate: PropsOf<typeof truncate>;
     ul: PropsOf<typeof ul>;
