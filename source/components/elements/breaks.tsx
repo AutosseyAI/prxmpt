@@ -1,12 +1,19 @@
-import * as Prxmpt from "../";
+import * as Prxmpt from "../../index.js";
 
-export const br: Prxmpt.EC = () => {
-  return "\n";
+export interface BRProps {
+  /**
+   * @default 1
+   */
+  count?: number;
+}
+
+export const br: Prxmpt.EC<BRProps> = ({ count }) => {
+  return "\n".repeat(count ?? 1);
 };
 
-type HRChar = "-" | "_" | "=" | "*";
+export type HRChar = "-" | "_" | "=" | "*";
 
-type HRProps = {
+export interface HRProps {
   /**
    * @default 3
    */

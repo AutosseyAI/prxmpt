@@ -1,19 +1,19 @@
-import * as Prxmpt from "../index";
+import * as Prxmpt from "../../index.js";
 
-type Counter = (string: string) => number;
+export type Counter = (string: string) => number;
 
-type TruncateProps = {
+export interface TruncateProps {
   max: number;
   counter?: Counter;
   /**
-   * @default " "
+   * @default <space />
    */
-  split?: string;
+  split?: Prxmpt.PromptElement;
   /**
-   * @default "..."
+   * @default <ellipsis />
    */
-  suffix?: string;
-}
+  suffix?: Prxmpt.PromptElement;
+};
 
 function charCounter(str: string) {
   return str.length;
@@ -22,8 +22,8 @@ function charCounter(str: string) {
 export const truncate: Prxmpt.PC<TruncateProps> = (props) => {
   const string = Prxmpt.Fragment(props);
   const counter = props.counter ?? charCounter;
-  const split = props.split ?? " ";
-  const suffix = props.suffix ?? "...";
+  const split = props.split ?? <space />;
+  const suffix = props.suffix ?? <ellipsis />;
 
   const count = counter(string);
   if(count <= props.max) {
