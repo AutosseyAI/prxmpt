@@ -218,11 +218,17 @@ export interface PromptComponent<P = {}> {
   (props: BaseProps & P): JSX.Element | JSX.Element[];
 }
 
+export interface OptionalChildrenComponent<P = {}> {
+  (props: Partial<BaseProps> & P): JSX.Element | JSX.Element[];
+}
+
 export interface EmptyComponent<P = {}> {
   (props: P): JSX.Element;
 }
 
 export type PC<P = {}> = PromptComponent<P>;
+
+export type OC<P = {}> = OptionalChildrenComponent<P>;
 
 export type EC<P = {}> = EmptyComponent<P>;
 
