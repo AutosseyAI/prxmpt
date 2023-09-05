@@ -1,10 +1,10 @@
 import * as Prxmpt from "../../../index.js";
 
-export interface TagAttributes {
+export interface AttributesProps {
   attributes?: Record<string, string | number | boolean | undefined>;
 }
 
-export interface TagProps extends Prxmpt.BlockProps, TagAttributes {
+export interface TagProps extends Prxmpt.BlockProps, AttributesProps {
   name: string;
   /**
    * @default false
@@ -12,15 +12,15 @@ export interface TagProps extends Prxmpt.BlockProps, TagAttributes {
   noIndent?: boolean;
 };
 
-export interface HTMLProps extends TagAttributes {
+export interface HTMLProps extends AttributesProps {
   /**
    * @default false
    */
   html?: boolean;
 }
 
-export const tag: Prxmpt.OC<TagProps> = (props) => {
-  const attributes = Object.entries(props.attributes ?? {})
+const Attributes: Prxmpt.EC<AttributesProps> = (props) => {
+  return Object.entries(props.attributes ?? {})
     .filter(([key, value]) => value !== undefined)
     .reduce((retval, [key, value]) => {
       if(value !== false) {
@@ -32,6 +32,9 @@ export const tag: Prxmpt.OC<TagProps> = (props) => {
         return retval;
       }
     }, "");
+};
+
+export const tag: Prxmpt.OC<TagProps> = (props) => {
   if(props.children !== undefined && (!Array.isArray(props.children) || props.children.length > 0)) {
     const text = Prxmpt.render(props.children);
     const block = text.includes("\n");
@@ -41,22 +44,25 @@ export const tag: Prxmpt.OC<TagProps> = (props) => {
         block={!props.inline}
         prefix={
           <span>
-            <angle>{props.name}{attributes}</angle>
+            <angle>{props.name}<Attributes attributes={props.attributes} /></angle>
             <br hide={!block} />
           </span>
         }
         suffix={
-          <span>
-            <angle>/{props.name}</angle>
-            <br hide={!block} />
-          </span>
+          <angle>/{props.name}</angle>
         }>
         <indent unless={!block || props.noIndent} inline={!block}>{text}</indent>
       </bracket>
     );
   } else {
     return (
-      <angle hide={props.hide} block={!props.inline}>{props.name}{attributes} /</angle>
+      <angle
+        hide={props.hide}
+        block={!props.inline}>
+        {props.name}
+        <Attributes attributes={props.attributes} />
+        {" /"}
+      </angle>
     );
   }
 }

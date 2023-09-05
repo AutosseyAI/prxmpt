@@ -2,8 +2,8 @@ import * as Prxmpt from "../../../index.js";
 
 // Zero Characters
 
-export const empty: Prxmpt.EC = () => {
-  return "";
+export const empty: Prxmpt.EC<Prxmpt.HideProps> = (props) => {
+  return <span hide={props.hide}>{""}</span>
 };
 
 // Single Characters

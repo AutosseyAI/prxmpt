@@ -9,7 +9,7 @@ export interface SplitProps {
   /**
    * @default false
    */
-  ignoreTrailing?: boolean;
+  includeTrailing?: boolean;
 };
 
 export const split: Prxmpt.PC<SplitProps> = (props) => {
@@ -18,7 +18,7 @@ export const split: Prxmpt.PC<SplitProps> = (props) => {
   if(props.ignoreLeading && array[0] === "") {
     array.shift();
   }
-  if(props.ignoreTrailing && array[array.length - 1] === "") {
+  if(!props.includeTrailing && array[array.length - 1] === "") {
     array.pop();
   }
   return array;
