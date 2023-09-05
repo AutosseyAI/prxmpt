@@ -47,6 +47,6 @@ export const s: Prxmpt.PC<StrikethroughProps> = (props) => {
   if(props.html) {
     return <tag name="s" hide={props.hide} attributes={props.attributes}>{props.children}</tag>
   } else {
-    return <wrap with="~">{props.children}</wrap>;
+    return <wrap with="~~">{props.children}</wrap>;
   };
 };
