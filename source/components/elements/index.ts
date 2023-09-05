@@ -4,6 +4,7 @@ export * from "./breaks.js";
 export * from "./block.js";
 export * from "./char.js";
 export * from "./colon.js";
+export * from "./comment.js";
 export * from "./headings.js";
 export * from "./image.js";
 export * from "./lists.js";

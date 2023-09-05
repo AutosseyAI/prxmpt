@@ -13,6 +13,7 @@ import {
   cb,
   code,
   colon,
+  comment,
   curly,
   dash,
   div,
@@ -80,6 +81,7 @@ const types = {
   cb,
   code,
   colon,
+  comment,
   curly,
   dash,
   div,
@@ -156,6 +158,7 @@ export namespace JSX {
     cb: PropsOf<typeof cb>;
     code: PropsOf<typeof code>;
     colon: PropsOf<typeof colon>;
+    comment: PropsOf<typeof comment>;
     curly: PropsOf<typeof curly>;
     dash: PropsOf<typeof dash>;
     div: PropsOf<typeof div>;
