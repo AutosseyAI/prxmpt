@@ -1,10 +1,16 @@
 import * as Prxmpt from "../../index.js";
+// Definition List
+import { Case } from "../casing/index.js";
+
+// Ordered List
 
 export const ol: Prxmpt.PC = (props) => {
   return (
     <list map={(line, index) => `${index+1}. ${line}`}>{props.children}</list>
   );
 };
+
+// Unordered List
 
 export type ULChar = "-" | "*" | "+";
 
@@ -20,6 +26,8 @@ export const ul: Prxmpt.PC<ULProps> = (props) => {
     <list map={(line) => `${props.char ?? "-"} ${line}`}>{props.children}</list>
   );
 };
+
+// Checkboxes
 
 export type CBItem = {
   /**
@@ -43,5 +51,20 @@ export const cb: Prxmpt.EC<CBProps> = (props) => {
   })
   return (
     <ul>{children}</ul>
+  );
+}
+
+export interface DLProps {
+  case?: Case;
+  space?: number;
+  items: Record<string, Prxmpt.Children>;
+};
+
+export const dl: Prxmpt.EC<DLProps> = (props) => {
+  const children = Object.entries(props.items).map(([key, value]) => {
+    return <colon title={<casing case={props.case}>{key}</casing>}>{value}</colon>
+  });
+  return (
+    <lines height={props.space !== undefined ? props.space + 1 : undefined}>{children}</lines>
   );
 }
