@@ -1,8 +1,9 @@
 import * as Prxmpt from "../../index.js";
+import { SpanProps } from "./text.js";
 
 // Quotes
 
-export interface QuoteEscapeProps {
+export interface QuoteEscapeProps extends SpanProps {
   /**
    * @default false
    */
@@ -12,17 +13,19 @@ export interface QuoteEscapeProps {
 export const sq: Prxmpt.PC<QuoteEscapeProps> = (props) => {
   const text = Prxmpt.render(props.children);
   const escaped = props.noEscape ? text : text.replace(/'/g, `\\'`);
-  return <wrap with="'">{escaped}</wrap>;
+  return <wrap with="'" hide={props.hide}>{escaped}</wrap>;
 };
 
 export const dq: Prxmpt.PC<QuoteEscapeProps> = (props) => {
   const text = Prxmpt.render(props.children);
   const escaped = props.noEscape ? text : text.replace(/"/g, `\\"`);
-  return <wrap with='"'>{escaped}</wrap>;
+  return <wrap with='"' hide={props.hide}>{escaped}</wrap>;
 };
 
-export const code: Prxmpt.PC = (props) => {
-  return <wrap with="`">{props.children}</wrap>;
+export const code: Prxmpt.PC<QuoteEscapeProps> = (props) => {
+  const text = Prxmpt.render(props.children);
+  const escaped = props.noEscape ? text : text.replace(/`/g, "\\`");
+  return <wrap with="`" hide={props.hide}>{escaped}</wrap>;
 };
 
 // Triple Quotes
@@ -35,7 +38,7 @@ const quoteTypes = {
 
 export type QuoteType = keyof typeof quoteTypes;
 
-export interface TripleQuoteProps {
+export interface TripleQuoteProps extends SpanProps {
   /**
    * @default "double"
    */
@@ -51,6 +54,10 @@ export interface TripleQuoteProps {
   /**
    * @default false
    */
+  leadingNewline?: boolean;
+  /**
+   * @default false
+   */
   trailingNewline?: boolean;
 }
 
@@ -58,8 +65,21 @@ export const tq: Prxmpt.PC<TripleQuoteProps> = (props) => {
   const quotes = quoteTypes[props.type ?? "double"].repeat(3);
   return (
     <bracket
-      prefix={`${quotes}${props.noStartingNewline ? "" : "\n"}`}
-      suffix={`${props.noEndingNewline ? "" : "\n"}${quotes}${props.trailingNewline ? "\n" : ""}`}>
+      hide={props.hide}
+      prefix={
+        <span>
+          <br hide={props.leadingNewline !== true} />
+          {quotes}
+          <br hide={props.noStartingNewline} />
+        </span>
+      }
+      suffix={
+        <span>
+          <br hide={props.noEndingNewline} />
+          {quotes}
+          <br hide={props.trailingNewline !== true} />
+        </span>
+      }>
       {props.children}
     </bracket>
   );

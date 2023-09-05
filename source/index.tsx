@@ -22,12 +22,14 @@ import {
   day,
   div,
   dl,
+  double,
   dq,
   dtq,
   elapsed,
   ellipsis,
   empty,
   fraction,
+  h,
   h1,
   h2,
   h3,
@@ -56,6 +58,7 @@ import {
   parens,
   pre,
   q,
+  repeat,
   s,
   second,
   sections,
@@ -67,10 +70,12 @@ import {
   square,
   stq,
   tab,
+  tag,
   time,
   title,
   tq,
   trim,
+  triple,
   truncate,
   ul,
   underscore,
@@ -78,7 +83,6 @@ import {
   upper,
   verb,
   wrap,
-  xml,
   yaml,
   year
 } from "./components/index.js";
@@ -107,12 +111,14 @@ const types = {
   day,
   div,
   dl,
+  double,
   dtq,
   dq,
   elapsed,
   ellipsis,
   empty,
   fraction,
+  h,
   h1,
   h2,
   h3,
@@ -141,6 +147,7 @@ const types = {
   q,
   parens,
   pre,
+  repeat,
   s,
   second,
   sections,
@@ -152,10 +159,12 @@ const types = {
   square,
   stq,
   tab,
+  tag,
   time,
   title,
   tq,
   trim,
+  triple,
   truncate,
   ul,
   underscore,
@@ -163,7 +172,6 @@ const types = {
   upper,
   verb,
   wrap,
-  xml,
   yaml,
   year
 } as const;
@@ -201,12 +209,14 @@ export namespace JSX {
     day: PropsOf<typeof day>;
     div: PropsOf<typeof div>;
     dl: PropsOf<typeof dl>;
+    double: PropsOf<typeof double>;
     dq: PropsOf<typeof dq>;
     dtq: PropsOf<typeof dtq>;
     elapsed: PropsOf<typeof elapsed>;
     ellipsis: PropsOf<typeof ellipsis>;
     empty: PropsOf<typeof empty>;
     fraction: PropsOf<typeof fraction>;
+    h: PropsOf<typeof h>;
     h1: PropsOf<typeof h1>;
     h2: PropsOf<typeof h2>;
     h3: PropsOf<typeof h3>;
@@ -235,6 +245,7 @@ export namespace JSX {
     parens: PropsOf<typeof parens>;
     pre: PropsOf<typeof pre>;
     q: PropsOf<typeof q>;
+    repeat: PropsOf<typeof repeat>;
     s: PropsOf<typeof s>;
     second: PropsOf<typeof second>;
     sections: PropsOf<typeof sections>;
@@ -246,8 +257,10 @@ export namespace JSX {
     square: PropsOf<typeof square>;
     stq: PropsOf<typeof stq>;
     tab: PropsOf<typeof tab>;
+    tag: PropsOf<typeof tag>;
     time: PropsOf<typeof time>;
     title: PropsOf<typeof title>;
+    triple: PropsOf<typeof triple>;
     tq: PropsOf<typeof tq>;
     trim: PropsOf<typeof trim>;
     truncate: PropsOf<typeof truncate>;
@@ -257,7 +270,6 @@ export namespace JSX {
     union: PropsOf<typeof union>;
     verb: PropsOf<typeof verb>;
     wrap: PropsOf<typeof wrap>;
-    xml: PropsOf<typeof xml>;
     yaml: PropsOf<typeof yaml>;
     year: PropsOf<typeof year>;
   }

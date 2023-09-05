@@ -1,20 +1,25 @@
 import * as Prxmpt from "../../index.js";
+import { HTMLProps } from "./brackets.js";
+import { SpanProps } from "./text.js";
 
-export interface AnchorProps {
+export interface AnchorProps extends SpanProps, HTMLProps {
   href: string;
   title?: string;
-  /**
-   * @default false
-   */
-  html?: boolean;
 };
 
 export const a: Prxmpt.PC<AnchorProps> = (props) => {
   if(props.html) {
-    return <xml name="a" attributes={{ title: props.title }}>{props.children}</xml>;
+    return (
+      <tag
+        name="a"
+        hide={props.hide}
+        attributes={{ title: props.title, ...props.attributes }}>
+        {props.children}
+      </tag>
+    );
   } else {
     return (
-      <span>
+      <span hide={props.hide}>
         <square>{props.children}</square>
         <parens>
           {props.href}

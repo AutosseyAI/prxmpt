@@ -22,8 +22,8 @@ function charCounter(str: string) {
 export const truncate: Prxmpt.PC<TruncateProps> = (props) => {
   const string = Prxmpt.Fragment(props);
   const counter = props.counter ?? charCounter;
-  const split = props.split ?? <space />;
-  const suffix = props.suffix ?? <ellipsis />;
+  const split = Prxmpt.render(props.split) ?? <space />;
+  const suffix = Prxmpt.render(props.suffix) ?? <ellipsis />;
 
   const count = counter(string);
   if(count <= props.max) {

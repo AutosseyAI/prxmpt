@@ -43,7 +43,7 @@ export interface CBProps {
 
 export const cb: Prxmpt.EC<CBProps> = (props) => {
   const children = props.items.map((item) => {
-    if(typeof item === "string" || Array.isArray(item)) {
+    if(typeof item === "string" || typeof item === "number" || Array.isArray(item)) {
       return `[ ] ${Prxmpt.render(item)}`;
     } else {
       return `[${item?.checked ? "x" : " "}] ${Prxmpt.render(item?.content)}`;

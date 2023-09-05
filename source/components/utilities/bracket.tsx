@@ -1,10 +1,17 @@
 import * as Prxmpt from "../../index.js";
+import { SpanProps } from "../elements/text.js";
 
-export interface BracketProps {
+export interface BracketProps extends SpanProps {
   prefix: Prxmpt.Children;
   suffix: Prxmpt.Children;
 };
 
 export const bracket: Prxmpt.PC<BracketProps> = (props) => {
-  return <span>{props.prefix}{props.children}{props.suffix}</span>
+  return (
+    <span hide={props.hide}>
+      {props.prefix}
+      {props.children}
+      {props.suffix}
+    </span>
+  );
 };

@@ -2,6 +2,7 @@ export * from "./bracket.js";
 export * from "./join.js";
 export * from "./list.js";
 export * from "./map.js";
+export * from "./repeat.js";
 export * from "./split.js";
 export * from "./trim.js";
 export * from "./truncate.js";

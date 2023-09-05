@@ -1,27 +1,35 @@
 import * as Prxmpt from "../../index.js";
+import { HTMLProps } from "./brackets.js";
+import { SpanProps } from "./text.js";
 
 // Lines
 
-export interface LinesProps {
+export interface LinesProps extends SpanProps {
   height?: number;
 }
 
 export const lines: Prxmpt.PC<LinesProps> = (props) => {
   return (
-    <join with={<br count={props.height} />}>
+    <join with={<br count={props.height} />} hide={props.hide}>
       {props.children}
     </join>
   );
 };
 
-export const blockquote: Prxmpt.PC = (props) => {
-  return (
-    <lines>
-      <map to={(line) => `> ${line}`}>
-        <split on={`\n`}>{props.children}</split>
-      </map>
-    </lines>
-  );
+export interface BlockquoteProps extends SpanProps, HTMLProps {}
+
+export const blockquote: Prxmpt.PC<BlockquoteProps> = (props) => {
+  if(props.html) {
+    return <tag name="blockquote" hide={props.hide} attributes={props.attributes}>{props.children}</tag>
+  } else {
+    return (
+      <lines hide={props.hide}>
+        <map to={(line) => `> ${line}`}>
+          <split on={`\n`}>{props.children}</split>
+        </map>
+      </lines>
+    );
+  }
 };
 
 export interface TabProps {
@@ -48,7 +56,7 @@ export const tab: Prxmpt.PC<TabProps> = (props) => {
 
 // Brackets
 
-export interface PreProps {
+export interface PreProps extends SpanProps, HTMLProps {
   lang?: string;
   title?: string;
   /**
@@ -58,16 +66,20 @@ export interface PreProps {
 };
 
 export const pre: Prxmpt.PC<PreProps> = (props) => {
-  const body = (
-    <btq noStartingNewline trailingNewline={!props.noTrailingNewline}>
-      {props.lang}<br />
-      {props.children}
-    </btq>
-  );
-  return props.title ? <colon title={props.title}>{body}</colon> : body;
+  if(props.html) {
+    return <tag name="pre" hide={props.hide} attributes={props.attributes}>{props.children}</tag>
+  } else {
+    const body = (
+      <btq noStartingNewline trailingNewline={!props.noTrailingNewline} hide={props.hide}>
+        {props.lang}<br />
+        {props.children}
+      </btq>
+    );
+    return props.title ? <colon title={props.title}>{body}</colon> : body;
+  }
 };
 
-export interface DivProps {
+export interface DivProps extends SpanProps, HTMLProps {
   title?: string;
   /**
    * @default false
@@ -76,17 +88,22 @@ export interface DivProps {
 };
 
 export const div: Prxmpt.PC<DivProps> = (props) => {
-  const body = (
-    <bracket
-      prefix={`---\n`}
-      suffix={`\n---${props.noTrailingNewline ? "" : "\n"}`}>
-      {props.children}
-    </bracket>
-  );
-  return props.title ? <colon title={props.title}>{body}</colon> : body;
+  if(props.html) {
+    return <tag name="div" hide={props.hide} attributes={props.attributes}>{props.children}</tag>
+  } else {
+    const body = (
+      <bracket
+        hide={props.hide}
+        prefix={`---\n`}
+        suffix={`\n---${props.noTrailingNewline ? "" : "\n"}`}>
+        {props.children}
+      </bracket>
+    );
+    return props.title ? <colon title={props.title}>{body}</colon> : body;
+  }
 };
 
-export interface SectionsProps {
+export interface SectionsProps extends SpanProps {
   /**
    * @default "---"
    */
@@ -100,13 +117,14 @@ export interface SectionsProps {
 export const sections: Prxmpt.PC<SectionsProps> = (props) => {
   const divider = props.divider ?? "---";
   const body = (
-    <join with={<span><br />{divider}<br /></span>}>
+    <join with={<span><br />{divider}<br /></span>} hide={props.hide}>
       {props.children}
     </join>
   );
   if(props.surround) {
     return (
       <bracket
+        hide={props.hide}
         prefix={<span>{divider}<br /></span>}
         suffix={<span><br />{divider}</span>}>
         {body}

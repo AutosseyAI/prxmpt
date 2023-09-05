@@ -1,21 +1,23 @@
 import * as Prxmpt from "../../index.js";
+import { SpanProps } from "./text.js";
 
-export type CommentType = "slash" | "dash" | "hash";
+const commentTypes = {
+  "slash": ["// ", ""],
+  "dash": ["-- ", ""],
+  "hash": ["# ", ""],
+  "html": ["<!--", "-->"],
+} as const;
 
-export interface CommentProps {
+export type CommentType = keyof typeof commentTypes;
+
+export interface CommentProps extends SpanProps {
   /**
    * @default "slash"
    */
   type?: CommentType
 };
 
-const commentTypes: Record<CommentType, string> = {
-  "slash": "//",
-  "dash": "--",
-  "hash": "#"
-};
-
 export const comment: Prxmpt.PC<CommentProps> = (props) => {
-  const prefix = commentTypes[props.type ?? "slash"];
-  return <span>{prefix} {props.children}</span>;
+  const [prefix, suffix] = commentTypes[props.type ?? "slash"];
+  return <bracket prefix={prefix} suffix={suffix}>{props.children}</bracket>;
 };
