@@ -59,11 +59,10 @@ export interface PreProps {
 
 export const pre: Prxmpt.PC<PreProps> = (props) => {
   const body = (
-    <bracket
-      prefix={`\`\`\`${props.lang ?? ""}\n`}
-      suffix={`\n\`\`\`${props.noTrailingNewline ? "" : "\n"}`}>
+    <btq noStartingNewline trailingNewline={!props.noTrailingNewline}>
+      {props.lang}<br />
       {props.children}
-    </bracket>
+    </btq>
   );
   return props.title ? <colon title={props.title}>{body}</colon> : body;
 };
@@ -79,11 +78,41 @@ export interface DivProps {
 export const div: Prxmpt.PC<DivProps> = (props) => {
   const body = (
     <bracket
-      prefix={`"""\n`}
-      suffix={`\n"""${props.noTrailingNewline ? "" : "\n"}`}>
+      prefix={`---\n`}
+      suffix={`\n---${props.noTrailingNewline ? "" : "\n"}`}>
       {props.children}
     </bracket>
   );
   return props.title ? <colon title={props.title}>{body}</colon> : body;
 };
 
+export interface SectionsProps {
+  /**
+   * @default "---"
+   */
+  divider?: string;
+  /**
+   * @default false
+   */
+  surround?: boolean;
+}
+
+export const sections: Prxmpt.PC<SectionsProps> = (props) => {
+  const divider = props.divider ?? "---";
+  const body = (
+    <join with={<span><br />{divider}<br /></span>}>
+      {props.children}
+    </join>
+  );
+  if(props.surround) {
+    return (
+      <bracket
+        prefix={<span>{divider}<br /></span>}
+        suffix={<span><br />{divider}</span>}>
+        {body}
+      </bracket>
+    );
+  } else {
+    return body;
+  }
+};

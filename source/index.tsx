@@ -8,6 +8,7 @@ import {
   blockquote,
   br,
   bracket,
+  btq,
   capital,
   casing,
   cb,
@@ -16,9 +17,14 @@ import {
   comment,
   curly,
   dash,
+  date,
+  datetime,
+  day,
   div,
   dl,
   dq,
+  dtq,
+  elapsed,
   ellipsis,
   empty,
   fraction,
@@ -28,6 +34,7 @@ import {
   h4,
   h5,
   h6,
+  hour,
   hr,
   i,
   img,
@@ -37,6 +44,9 @@ import {
   list,
   lower,
   map,
+  millisecond,
+  minute,
+  month,
   na,
   noun,
   num,
@@ -45,15 +55,21 @@ import {
   p,
   parens,
   pre,
+  q,
   s,
+  second,
+  sections,
   sentence,
   space,
   span,
   split,
   sq,
   square,
+  stq,
   tab,
+  time,
   title,
+  tq,
   trim,
   truncate,
   ul,
@@ -63,7 +79,8 @@ import {
   verb,
   wrap,
   xml,
-  yaml
+  yaml,
+  year
 } from "./components/index.js";
 
 const types = {
@@ -76,6 +93,7 @@ const types = {
   blockquote,
   br,
   bracket,
+  btq,
   capital,
   casing,
   cb,
@@ -84,9 +102,14 @@ const types = {
   comment,
   curly,
   dash,
+  date,
+  datetime,
+  day,
   div,
   dl,
+  dtq,
   dq,
+  elapsed,
   ellipsis,
   empty,
   fraction,
@@ -96,6 +119,7 @@ const types = {
   h4,
   h5,
   h6,
+  hour,
   hr,
   i,
   img,
@@ -105,23 +129,32 @@ const types = {
   list,
   lower,
   map,
+  millisecond,
+  minute,
+  month,
   na,
   noun,
   num,
   ol,
   or,
   p,
+  q,
   parens,
   pre,
   s,
+  second,
+  sections,
   sentence,
-  sq,
   space,
   span,
   split,
+  sq,
   square,
+  stq,
   tab,
+  time,
   title,
+  tq,
   trim,
   truncate,
   ul,
@@ -131,10 +164,11 @@ const types = {
   verb,
   wrap,
   xml,
-  yaml
+  yaml,
+  year
 } as const;
 
-export type Node = string;
+export type Node = string | number;
 
 export type PromptElement = Node;
 
@@ -153,6 +187,7 @@ export namespace JSX {
     blockquote: PropsOf<typeof blockquote>;
     br: PropsOf<typeof br>;
     bracket: PropsOf<typeof bracket>;
+    btq: PropsOf<typeof btq>;
     capital: PropsOf<typeof capital>;
     casing: PropsOf<typeof casing>;
     cb: PropsOf<typeof cb>;
@@ -161,9 +196,14 @@ export namespace JSX {
     comment: PropsOf<typeof comment>;
     curly: PropsOf<typeof curly>;
     dash: PropsOf<typeof dash>;
+    date: PropsOf<typeof date>;
+    datetime: PropsOf<typeof datetime>;
+    day: PropsOf<typeof day>;
     div: PropsOf<typeof div>;
     dl: PropsOf<typeof dl>;
     dq: PropsOf<typeof dq>;
+    dtq: PropsOf<typeof dtq>;
+    elapsed: PropsOf<typeof elapsed>;
     ellipsis: PropsOf<typeof ellipsis>;
     empty: PropsOf<typeof empty>;
     fraction: PropsOf<typeof fraction>;
@@ -174,6 +214,7 @@ export namespace JSX {
     h5: PropsOf<typeof h5>;
     h6: PropsOf<typeof h6>;
     hr: PropsOf<typeof hr>;
+    hour: PropsOf<typeof hour>;
     i: PropsOf<typeof i>;
     img: PropsOf<typeof img>;
     join: PropsOf<typeof join>;
@@ -184,21 +225,30 @@ export namespace JSX {
     ol: PropsOf<typeof ol>;
     or: PropsOf<typeof or>;
     map: PropsOf<typeof map>;
+    millisecond: PropsOf<typeof millisecond>;
+    minute: PropsOf<typeof minute>;
+    month: PropsOf<typeof month>;
     na: PropsOf<typeof na>;
     noun: PropsOf<typeof noun>;
     num: PropsOf<typeof num>;
     p: PropsOf<typeof p>;
     parens: PropsOf<typeof parens>;
     pre: PropsOf<typeof pre>;
+    q: PropsOf<typeof q>;
     s: PropsOf<typeof s>;
+    second: PropsOf<typeof second>;
+    sections: PropsOf<typeof sections>;
     sentence: PropsOf<typeof sentence>;
     space: PropsOf<typeof space>;
     span: PropsOf<typeof span>;
     split: PropsOf<typeof split>;
     sq: PropsOf<typeof sq>;
     square: PropsOf<typeof square>;
+    stq: PropsOf<typeof stq>;
     tab: PropsOf<typeof tab>;
+    time: PropsOf<typeof time>;
     title: PropsOf<typeof title>;
+    tq: PropsOf<typeof tq>;
     trim: PropsOf<typeof trim>;
     truncate: PropsOf<typeof truncate>;
     ul: PropsOf<typeof ul>;
@@ -209,6 +259,7 @@ export namespace JSX {
     wrap: PropsOf<typeof wrap>;
     xml: PropsOf<typeof xml>;
     yaml: PropsOf<typeof yaml>;
+    year: PropsOf<typeof year>;
   }
   export type Element = PromptElement;
   export interface ElementAttributesProperty {
@@ -245,7 +296,7 @@ export function render(node: Children) {
   if(Array.isArray(node)) {
     return node.flat().join("");
   } else {
-    return node ?? "";
+    return (node ?? "").toString();
   }
 }
 

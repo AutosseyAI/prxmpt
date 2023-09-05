@@ -1,6 +1,7 @@
 export * from "./adjective.js";
 export * from "./and.js";
 export * from "./andor.js";
+export * from "./date.js";
 export * from "./fraction.js";
 export * from "./noun.js";
 export * from "./number.js";
