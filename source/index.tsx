@@ -9,13 +9,15 @@ import {
   br,
   bracket,
   capital,
+  casing,
   cb,
   code,
   colon,
   curly,
   dash,
   div,
-  doublequote,
+  dl,
+  dq,
   ellipsis,
   empty,
   fraction,
@@ -44,10 +46,10 @@ import {
   pre,
   s,
   sentence,
-  singlequote,
   space,
   span,
   split,
+  sq,
   square,
   tab,
   title,
@@ -74,13 +76,15 @@ const types = {
   br,
   bracket,
   capital,
+  casing,
   cb,
   code,
   colon,
   curly,
   dash,
   div,
-  doublequote,
+  dl,
+  dq,
   ellipsis,
   empty,
   fraction,
@@ -109,7 +113,7 @@ const types = {
   pre,
   s,
   sentence,
-  singlequote,
+  sq,
   space,
   span,
   split,
@@ -148,13 +152,15 @@ export namespace JSX {
     br: PropsOf<typeof br>;
     bracket: PropsOf<typeof bracket>;
     capital: PropsOf<typeof capital>;
+    casing: PropsOf<typeof casing>;
     cb: PropsOf<typeof cb>;
     code: PropsOf<typeof code>;
     colon: PropsOf<typeof colon>;
     curly: PropsOf<typeof curly>;
     dash: PropsOf<typeof dash>;
     div: PropsOf<typeof div>;
-    doublequote: PropsOf<typeof doublequote>;
+    dl: PropsOf<typeof dl>;
+    dq: PropsOf<typeof dq>;
     ellipsis: PropsOf<typeof ellipsis>;
     empty: PropsOf<typeof empty>;
     fraction: PropsOf<typeof fraction>;
@@ -183,10 +189,10 @@ export namespace JSX {
     pre: PropsOf<typeof pre>;
     s: PropsOf<typeof s>;
     sentence: PropsOf<typeof sentence>;
-    singlequote: PropsOf<typeof singlequote>;
     space: PropsOf<typeof space>;
     span: PropsOf<typeof span>;
     split: PropsOf<typeof split>;
+    sq: PropsOf<typeof sq>;
     square: PropsOf<typeof square>;
     tab: PropsOf<typeof tab>;
     title: PropsOf<typeof title>;

@@ -1,10 +1,10 @@
 import * as Prxmpt from "../../index.js";
 
-export const singlequote: Prxmpt.PC = (props) => {
+export const sq: Prxmpt.PC = (props) => {
   return <wrap with="'">{props.children}</wrap>;
 };
 
-export const doublequote: Prxmpt.PC = (props) => {
+export const dq: Prxmpt.PC = (props) => {
   return <wrap with='"'>{props.children}</wrap>;
 };
 
