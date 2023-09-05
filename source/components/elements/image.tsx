@@ -4,11 +4,19 @@ import { SpanProps } from "./text.js";
 
 export interface ImageProps extends SpanProps, HTMLProps {
   href: string;
+  title?: string;
 };
 
 export const img: Prxmpt.PC<ImageProps> = (props) => {
   if(props.html) {
-    return <tag name="img" hide={props.hide} attributes={props.attributes} />;
+    return (
+      <tag
+        name="img"
+        hide={props.hide}
+        attributes={{ title: props.title, ...props.attributes }}>
+        {props.children}
+      </tag>
+    );
   } else {
     return (
       <span hide={props.hide}>
