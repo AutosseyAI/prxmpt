@@ -13,7 +13,10 @@ export const img: Prxmpt.PC<ImageProps> = (props) => {
     return (
       <span hide={props.hide}>
         !<square>{props.children}</square>
-        <parens>{props.href}</parens>
+        <parens>
+          {props.href}
+          <span hide={!props.title}><space /><dq>{props.title}</dq></span>
+        </parens>
       </span>
     );
   }

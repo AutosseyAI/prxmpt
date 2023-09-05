@@ -23,7 +23,7 @@ export const a: Prxmpt.PC<AnchorProps> = (props) => {
         <square>{props.children}</square>
         <parens>
           {props.href}
-          {props.title ? <span><space /><dq>{props.title}</dq></span> : ""}
+          <span hide={!props.title}><space /><dq>{props.title}</dq></span>
         </parens>
       </span>
     );
