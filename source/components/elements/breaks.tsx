@@ -1,9 +1,6 @@
 import * as Prxmpt from "../../index.js";
-import { RepeatProps } from "../utilities/repeat.js";
-import { HTMLProps } from "./brackets.js";
-import { SpanProps } from "./text.js";
 
-export interface BRProps extends RepeatProps, HTMLProps {}
+export interface BRProps extends Prxmpt.RepeatProps, Prxmpt.HTMLProps, Prxmpt.HideProps {}
 
 export const br: Prxmpt.EC<BRProps> = (props) => {
   return (
@@ -15,7 +12,7 @@ export const br: Prxmpt.EC<BRProps> = (props) => {
 
 export type HRChar = "-" | "_" | "=" | "*";
 
-export interface HRProps extends SpanProps, HTMLProps {
+export interface HRProps extends Prxmpt.HideProps, Prxmpt.HTMLProps {
   /**
    * @default 3
    */

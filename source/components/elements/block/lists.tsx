@@ -1,12 +1,12 @@
-import * as Prxmpt from "../../index.js";
+import * as Prxmpt from "../../../index.js";
 // Definition List
-import { Case } from "../casing/index.js";
+import { Case } from "../../casing/index.js";
 
 // Ordered List
 
-export const ol: Prxmpt.PC = (props) => {
+export const ol: Prxmpt.PC<Prxmpt.BlockProps> = (props) => {
   return (
-    <list map={(line, index) => `${index+1}. ${line}`}>{props.children}</list>
+    <list map={(line, index) => `${index+1}. ${line}`} inline={props.inline}>{props.children}</list>
   );
 };
 
@@ -14,7 +14,7 @@ export const ol: Prxmpt.PC = (props) => {
 
 export type ULChar = "-" | "*" | "+";
 
-export interface ULProps {
+export interface ULProps extends Prxmpt.BlockProps {
   /**
    * @default "-"
    */
@@ -23,7 +23,7 @@ export interface ULProps {
 
 export const ul: Prxmpt.PC<ULProps> = (props) => {
   return (
-    <list map={(line) => `${props.char ?? "-"} ${line}`}>{props.children}</list>
+    <list map={(line) => `${props.char ?? "-"} ${line}`} inline={props.inline}>{props.children}</list>
   );
 };
 
@@ -37,24 +37,24 @@ export type CBItem = {
   content: Prxmpt.Children;
 }
 
-export interface CBProps {
+export interface CBProps extends Prxmpt.BlockProps {
   items: (CBItem | Prxmpt.Children)[];
 }
 
 export const cb: Prxmpt.EC<CBProps> = (props) => {
   const children = props.items.map((item) => {
-    if(typeof item === "string" || typeof item === "number" || Array.isArray(item)) {
+    if(Prxmpt.isChildren(item)) {
       return `[ ] ${Prxmpt.render(item)}`;
     } else {
       return `[${item?.checked ? "x" : " "}] ${Prxmpt.render(item?.content)}`;
     }
   })
   return (
-    <ul>{children}</ul>
+    <ul hide={props.hide} inline={props.inline}>{children}</ul>
   );
 }
 
-export interface DLProps {
+export interface DLProps extends Prxmpt.BlockProps {
   case?: Case;
   space?: number;
   items: Record<string, Prxmpt.Children>;
@@ -62,9 +62,14 @@ export interface DLProps {
 
 export const dl: Prxmpt.EC<DLProps> = (props) => {
   const children = Object.entries(props.items).map(([key, value]) => {
-    return <colon title={<casing case={props.case}>{key}</casing>}>{value}</colon>
+    return <colon inline title={<casing case={props.case}>{key}</casing>}>{value}</colon>
   });
   return (
-    <lines height={props.space !== undefined ? props.space + 1 : undefined}>{children}</lines>
+    <lines
+      height={props.space !== undefined ? props.space + 1 : undefined}
+      hide={props.hide}
+      inline={props.inline}>
+      {children}
+    </lines>
   );
 }

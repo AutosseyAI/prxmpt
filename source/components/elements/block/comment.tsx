@@ -1,5 +1,4 @@
-import * as Prxmpt from "../../index.js";
-import { SpanProps } from "./text.js";
+import * as Prxmpt from "../../../index.js";
 
 const commentTypes = {
   "slash": ["// ", ""],
@@ -10,7 +9,7 @@ const commentTypes = {
 
 export type CommentType = keyof typeof commentTypes;
 
-export interface CommentProps extends SpanProps {
+export interface CommentProps extends Prxmpt.BlockProps {
   /**
    * @default "slash"
    */
@@ -19,5 +18,13 @@ export interface CommentProps extends SpanProps {
 
 export const comment: Prxmpt.PC<CommentProps> = (props) => {
   const [prefix, suffix] = commentTypes[props.type ?? "slash"];
-  return <bracket prefix={prefix} suffix={suffix}>{props.children}</bracket>;
+  return (
+    <bracket
+      hide={props.hide}
+      prefix={prefix}
+      suffix={suffix}
+      block={!props.inline}>
+      {props.children}
+    </bracket>
+  );
 };

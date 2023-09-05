@@ -1,17 +1,17 @@
 import * as Prxmpt from "../../index.js";
-import { SpanProps } from "./text.js";
 
-export interface ColonProps extends SpanProps {
+export interface ColonProps extends Prxmpt.InlineProps, Prxmpt.BlockProps {
   title: Prxmpt.Children;
 };
 
 export const colon: Prxmpt.OC<ColonProps> = (props) => {
   const children = props.children ? Prxmpt.render(props.children) : "";
+  const block = children.includes("\n");
   const spacer = children
-    ? children.includes("\n") ? "\n" : " "
+    ? block ? "\n" : " "
     : "";
   return (
-    <span hide={props.hide}>
+    <span hide={props.hide} block={(block && !props.inline) || props.block}>
       {props.title}:{spacer}{props.children}
     </span>
   );

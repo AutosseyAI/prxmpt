@@ -1,8 +1,6 @@
-import * as Prxmpt from "../../index.js";
-import { HTMLProps } from "./brackets.js";
-import { SpanProps } from "./text.js";
+import * as Prxmpt from "../../../index.js";
 
-export interface ImageProps extends SpanProps, HTMLProps {
+export interface ImageProps extends Prxmpt.InlineProps, Prxmpt.HTMLProps {
   href: string;
   title?: string;
 };
@@ -12,14 +10,12 @@ export const img: Prxmpt.PC<ImageProps> = (props) => {
     return (
       <tag
         name="img"
-        hide={props.hide}
-        attributes={{ title: props.title, ...props.attributes }}>
-        {props.children}
-      </tag>
+        attributes={{ title: props.title, ...props.attributes }}
+        {...props} />
     );
   } else {
     return (
-      <span hide={props.hide}>
+      <span hide={props.hide} block={props.block}>
         !<square>{props.children}</square>
         <parens>
           {props.href}

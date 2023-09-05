@@ -1,8 +1,6 @@
-import * as Prxmpt from "../../index.js";
-import { HTMLProps } from "./brackets.js";
-import { SpanProps } from "./text.js";
+import * as Prxmpt from "../../../index.js";
 
-export interface AnchorProps extends SpanProps, HTMLProps {
+export interface AnchorProps extends Prxmpt.InlineProps, Prxmpt.HTMLProps {
   href: string;
   title?: string;
 };
@@ -12,14 +10,12 @@ export const a: Prxmpt.PC<AnchorProps> = (props) => {
     return (
       <tag
         name="a"
-        hide={props.hide}
-        attributes={{ title: props.title, ...props.attributes }}>
-        {props.children}
-      </tag>
+        attributes={{ title: props.title, ...props.attributes }}
+        {...props} />
     );
   } else {
     return (
-      <span hide={props.hide}>
+      <span hide={props.hide} block={props.block}>
         <square>{props.children}</square>
         <parens>
           {props.href}

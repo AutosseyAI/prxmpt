@@ -20,6 +20,7 @@ import {
   date,
   datetime,
   day,
+  details,
   div,
   dl,
   double,
@@ -40,6 +41,7 @@ import {
   hr,
   i,
   img,
+  indent,
   join,
   json,
   lines,
@@ -109,6 +111,7 @@ const types = {
   date,
   datetime,
   day,
+  details,
   div,
   dl,
   double,
@@ -129,6 +132,7 @@ const types = {
   hr,
   i,
   img,
+  indent,
   join,
   json,
   lines,
@@ -176,13 +180,59 @@ const types = {
   year
 } as const;
 
-export type Node = string | number;
+/**
+ * `Node` represents values that can be returned from a component.
+ */
+export type Node = JSX.Element | JSX.Element[] | undefined;
 
-export type PromptElement = Node;
+export type Component = (props: any) => Node;
 
-export type PropsOf<T extends (...args: any) => PromptElement | PromptElement[]> = Parameters<T>[0];
+/**
+ * Extracts the props type from a component.
+ */
+export type PropsOf<T extends Component> = Parameters<T>[0];
 
-export type Children = Node | Children[] | undefined;
+/**
+ * `Children` represents the values that can be passed as children to a component.
+ */
+export type Children = Children[] | string | number | boolean | null | undefined;
+
+export interface BaseProps {
+  children: Children;
+};
+
+/**
+ * A component that requires children.
+ */
+export interface FunctionComponent<P = {}> {
+  (props: BaseProps & P): Node;
+}
+/**
+ * A component that requires children.
+ */
+export type PC<P = {}> = FunctionComponent<P>;
+
+/**
+ * A component with optional children.
+ */
+export interface OptionalChildrenComponent<P = {}> {
+  (props: Partial<BaseProps> & P): Node;
+}
+/**
+ * A component with optional children.
+ */
+export type OC<P = {}> = OptionalChildrenComponent<P>;
+
+/**
+ * A component that does have children.
+ */
+export interface EmptyComponent<P = {}> {
+  (props: P): JSX.Element;
+}
+/**
+ * A component that does have children.
+ */
+export type EC<P = {}> = EmptyComponent<P>;
 
 export namespace JSX {
   export interface IntrinsicElements {
@@ -207,6 +257,7 @@ export namespace JSX {
     date: PropsOf<typeof date>;
     datetime: PropsOf<typeof datetime>;
     day: PropsOf<typeof day>;
+    details: PropsOf<typeof details>;
     div: PropsOf<typeof div>;
     dl: PropsOf<typeof dl>;
     double: PropsOf<typeof double>;
@@ -227,6 +278,7 @@ export namespace JSX {
     hour: PropsOf<typeof hour>;
     i: PropsOf<typeof i>;
     img: PropsOf<typeof img>;
+    indent: PropsOf<typeof indent>;
     join: PropsOf<typeof join>;
     json: PropsOf<typeof json>;
     lines: PropsOf<typeof lines>;
@@ -273,42 +325,31 @@ export namespace JSX {
     yaml: PropsOf<typeof yaml>;
     year: PropsOf<typeof year>;
   }
-  export type Element = PromptElement;
+  export type Element = string;
   export interface ElementAttributesProperty {
-    props: BaseProps; // specify the property name to use
+    props: any; // specify the property name to use
   }
   export interface ElementChildrenAttribute {
     children: Children; // specify children name to use
   }
 }
 
-type BaseProps = {
-  children: Children;
-};
-
-export interface PromptComponent<P = {}> {
-  (props: BaseProps & P): JSX.Element | JSX.Element[];
+export function isChildren(value: any): value is Children {
+  return (
+    typeof value === "string" ||
+    typeof value === "number" ||
+    typeof value === "boolean" ||
+    value === null ||
+    value === undefined ||
+    (Array.isArray(value) && value.every(isChildren))
+  );
 }
 
-export interface OptionalChildrenComponent<P = {}> {
-  (props: Partial<BaseProps> & P): JSX.Element | JSX.Element[];
-}
-
-export interface EmptyComponent<P = {}> {
-  (props: P): JSX.Element;
-}
-
-export type PC<P = {}> = PromptComponent<P>;
-
-export type OC<P = {}> = OptionalChildrenComponent<P>;
-
-export type EC<P = {}> = EmptyComponent<P>;
-
-export function render(node: Children) {
-  if(Array.isArray(node)) {
-    return node.flat().join("");
+export function render(children: Children) {
+  if(Array.isArray(children)) {
+    return children.flat().join("");
   } else {
-    return (node ?? "").toString();
+    return (children ?? "").toString();
   }
 }
 
@@ -320,7 +361,7 @@ export function createElement(
   type: keyof typeof types | Function,
   props: PropsOf<typeof types[keyof typeof types]>,
   ...children: Children[]
-): PromptElement | PromptElement[] {
+): Node {
   if(typeof type === "function") {
 		return type({ children: children.flat(), ...props });
 	} else {
@@ -338,3 +379,5 @@ const Prxmpt = {
 };
 
 export default Prxmpt;
+
+export * from "./components/index.js";

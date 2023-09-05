@@ -1,9 +1,8 @@
 import asArray from "as-typed-array";
 import * as Prxmpt from "../../index.js";
-import { SpanProps } from "../elements/text.js";
 
-export interface JoinProps extends SpanProps {
-  with?: Prxmpt.PromptElement;
+export interface JoinProps extends Prxmpt.InlineProps {
+  with?: string;
 };
 
 export const join: Prxmpt.PC<JoinProps> = (props) => {
@@ -16,5 +15,5 @@ export const join: Prxmpt.PC<JoinProps> = (props) => {
       arr.push(child);
     }
   });
-  return <span hide={props.hide}>{arr}</span>;
+  return <span hide={props.hide} block={props.block}>{arr}</span>;
 };

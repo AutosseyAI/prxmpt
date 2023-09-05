@@ -1,7 +1,6 @@
-import * as Prxmpt from "../../index.js";
-import { SpanProps } from "./text.js";
+import * as Prxmpt from "../../../index.js";
 
-export interface HeadingProps extends SpanProps {
+export interface HeadingProps extends Prxmpt.BlockProps {
   /**
    * @default false
    */
@@ -14,11 +13,11 @@ export interface HProps extends HeadingProps {
 
 export const h: Prxmpt.PC<HProps> = (props) => {
   return props.html
-    ? <tag name={`h${props.n}`} hide={props.hide}>{props.children}</tag>
+    ? <tag name={`h${props.n}`} hide={props.hide} inline={props.inline}>{props.children}</tag>
     : (
-      <span hide={props.hide}>
+      <p hide={props.hide} inline={props.inline}>
         <repeat count={props.n}>#</repeat><space />{props.children}
-      </span>
+      </p>
     );
 }
 
