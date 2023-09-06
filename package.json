@@ -1,9 +1,9 @@
 {
   "name": "prxmpt",
   "version": "0.1.0",
-  "description": "Prompt with JSX",
+  "description": "Prompt Crafting with JSX",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "author": "Connor White",
   "type": "module",
   "main": ".auto/build/index.js",
