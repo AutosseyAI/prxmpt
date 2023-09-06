@@ -1,9 +1,9 @@
-import { JSONValue } from "types-json";
+import { NestedOptionalJSONValue } from "types-json";
 import * as YAML from "yaml";
 import * as Prxmpt from "../../index.js";
 
-export interface YAMLProps {
-  data: JSONValue;
+export interface YAMLProps extends Prxmpt.BlockProps {
+  data: NestedOptionalJSONValue;
   /**
    * @default false
    */
@@ -15,9 +15,10 @@ export interface YAMLProps {
 };
 
 export const yaml: Prxmpt.EC<YAMLProps> = (props) => {
-  return YAML.stringify(props.data, {
+  const string = YAML.stringify(props.data, {
     directives: props.noStartMarker ? false : true, // Default: include "---" prefix
     indentSeq: props.sequenceIndent ? true : false, // Default: disable sequence indentation
     lineWidth: 0 // Disable automatic line wrapping
   });
+  return props.inline ? string.trimEnd() : string;
 };
