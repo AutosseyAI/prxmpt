@@ -66,6 +66,7 @@ import {
   sections,
   sentence,
   space,
+  spaced,
   span,
   split,
   sq,
@@ -157,6 +158,7 @@ const types = {
   sections,
   sentence,
   space,
+  spaced,
   span,
   split,
   sq,
@@ -303,6 +305,7 @@ export namespace JSX {
     sections: PropsOf<typeof sections>;
     sentence: PropsOf<typeof sentence>;
     space: PropsOf<typeof space>;
+    spaced: PropsOf<typeof spaced>;
     span: PropsOf<typeof span>;
     split: PropsOf<typeof split>;
     sq: PropsOf<typeof sq>;

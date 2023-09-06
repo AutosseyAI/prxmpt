@@ -3,6 +3,7 @@ export * from "./brackets.js";
 export * from "./char.js";
 export * from "./image.js";
 export * from "./quotes.js";
+export * from "./spaced.js";
 export * from "./span.js";
 export * from "./styles.js";
 export * from "./union.js";
