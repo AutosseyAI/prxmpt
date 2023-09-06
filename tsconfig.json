@@ -1,18 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@autosoft/tsconfig",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": ".auto/build",
-    "isolatedModules": false,
-    "jsx": "react",
-    "jsxFactory": "Prxmpt.createElement",
-    "jsxFragmentFactory": "Prxmpt.Fragment",
-    "rootDirs": [
-      "source"
-    ]
-  },
-  "files": [
-    "source/index.tsx"
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "source/**/*.ts",
+    "source/**/*.tsx",
+    "test/**/*.tsx"
   ]
 }

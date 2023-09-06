@@ -4,6 +4,7 @@ import {
   and,
   andor,
   angle,
+  attributes,
   b,
   blockquote,
   br,
@@ -11,9 +12,11 @@ import {
   btq,
   capital,
   casing,
-  cb,
+  cl,
   code,
-  colon,
+  comma,
+  commaed,
+  commas,
   comment,
   curly,
   dash,
@@ -30,6 +33,7 @@ import {
   ellipsis,
   empty,
   fraction,
+  frame,
   h,
   h1,
   h2,
@@ -44,6 +48,8 @@ import {
   indent,
   join,
   json,
+  kv,
+  lined,
   lines,
   list,
   lower,
@@ -52,26 +58,32 @@ import {
   minute,
   month,
   na,
+  nor,
   noun,
   num,
   ol,
   or,
   p,
+  paragraphs,
   parens,
   pre,
+  prefix,
   q,
   repeat,
   s,
   second,
-  sections,
+  sectioned,
   sentence,
+  set,
   space,
   spaced,
+  spaces,
   span,
   split,
   sq,
   square,
   stq,
+  suffix,
   tab,
   tag,
   time,
@@ -85,7 +97,6 @@ import {
   union,
   upper,
   verb,
-  wrap,
   yaml,
   year
 } from "./components/index.js";
@@ -96,6 +107,7 @@ const types = {
   and,
   andor,
   angle,
+  attributes,
   b,
   blockquote,
   br,
@@ -103,9 +115,11 @@ const types = {
   btq,
   capital,
   casing,
-  cb,
+  cl,
   code,
-  colon,
+  comma,
+  commaed,
+  commas,
   comment,
   curly,
   dash,
@@ -122,6 +136,7 @@ const types = {
   ellipsis,
   empty,
   fraction,
+  frame,
   h,
   h1,
   h2,
@@ -136,6 +151,8 @@ const types = {
   indent,
   join,
   json,
+  kv,
+  lined,
   lines,
   list,
   lower,
@@ -144,23 +161,29 @@ const types = {
   minute,
   month,
   na,
+  nor,
   noun,
   num,
   ol,
   or,
   p,
-  q,
+  paragraphs,
   parens,
   pre,
+  prefix,
+  q,
   repeat,
   s,
+  set,
   second,
-  sections,
+  sectioned,
   sentence,
   space,
   spaced,
+  spaces,
   span,
   split,
+  suffix,
   sq,
   square,
   stq,
@@ -177,64 +200,59 @@ const types = {
   union,
   upper,
   verb,
-  wrap,
   yaml,
   year
 } as const;
 
+type Option<T> = T | undefined;
+
 /**
- * `Node` represents values that can be returned from a component.
+ * Represents values that can be returned from a `Component`.
  */
-export type Node = JSX.Element | JSX.Element[] | undefined;
-
-export type Component = (props: any) => Node;
+export type Node = JSX.Element | JSX.Element[];
 
 /**
- * Extracts the props type from a component.
+ * A function that takes an argument `props`, and returns a `Node` or `undefined.
+ */
+export type Component = (props: any) => Option<Node>;
+
+/**
+ * Extracts the type of a `Component`'s `props` parameter.
  */
 export type PropsOf<T extends Component> = Parameters<T>[0];
 
 /**
- * `Children` represents the values that can be passed as children to a component.
+ * - Represents values that can be passed as children to a `Component`.
+ * - Represents values that can be rendered by `Prxmpt.render`.
  */
-export type Children = Children[] | string | number | boolean | null | undefined;
+export type Children = Option<Children[] | string | number | boolean | null>;
 
 export interface BaseProps {
   children: Children;
 };
 
 /**
- * A component that requires children.
+ * **Function Component**
+ * 
+ * A `Component` that does not have a `children` property by default.
  */
-export interface FunctionComponent<P = {}> {
-  (props: BaseProps & P): Node;
+export interface FC<P = {}> {
+  (props: P): Option<Node>;
 }
-/**
- * A component that requires children.
- */
-export type PC<P = {}> = FunctionComponent<P>;
 
 /**
- * A component with optional children.
+ * **Parent Component**
+ * 
+ * A `Component` with a required `children` property.
  */
-export interface OptionalChildrenComponent<P = {}> {
-  (props: Partial<BaseProps> & P): Node;
-}
-/**
- * A component with optional children.
- */
-export type OC<P = {}> = OptionalChildrenComponent<P>;
+export interface PC<P = {}> extends FC<P & BaseProps> {};
 
 /**
- * A component that does have children.
+ * **Optional Children Component**
+ * 
+ * A `Component` with an optional `children` property.
  */
-export interface EmptyComponent<P = {}> {
-  (props: P): JSX.Element;
-}
-/**
- * A component that does have children.
- */
-export type EC<P = {}> = EmptyComponent<P>;
+export interface OC<P = {}> extends FC<Partial<BaseProps> & P> {};
 
 export namespace JSX {
   export interface IntrinsicElements {
@@ -243,6 +261,7 @@ export namespace JSX {
     and: PropsOf<typeof and>;
     andor: PropsOf<typeof andor>;
     angle: PropsOf<typeof angle>;
+    attributes: PropsOf<typeof attributes>;
     b: PropsOf<typeof b>;
     blockquote: PropsOf<typeof blockquote>;
     br: PropsOf<typeof br>;
@@ -250,9 +269,11 @@ export namespace JSX {
     btq: PropsOf<typeof btq>;
     capital: PropsOf<typeof capital>;
     casing: PropsOf<typeof casing>;
-    cb: PropsOf<typeof cb>;
+    cl: PropsOf<typeof cl>;
     code: PropsOf<typeof code>;
-    colon: PropsOf<typeof colon>;
+    comma: PropsOf<typeof comma>;
+    commaed: PropsOf<typeof commaed>,
+    commas: PropsOf<typeof commas>,
     comment: PropsOf<typeof comment>;
     curly: PropsOf<typeof curly>;
     dash: PropsOf<typeof dash>;
@@ -269,6 +290,7 @@ export namespace JSX {
     ellipsis: PropsOf<typeof ellipsis>;
     empty: PropsOf<typeof empty>;
     fraction: PropsOf<typeof fraction>;
+    frame: PropsOf<typeof frame>;
     h: PropsOf<typeof h>;
     h1: PropsOf<typeof h1>;
     h2: PropsOf<typeof h2>;
@@ -283,6 +305,8 @@ export namespace JSX {
     indent: PropsOf<typeof indent>;
     join: PropsOf<typeof join>;
     json: PropsOf<typeof json>;
+    kv: PropsOf<typeof kv>;
+    lined: PropsOf<typeof lined>;
     lines: PropsOf<typeof lines>;
     list: PropsOf<typeof list>;
     lower: PropsOf<typeof lower>;
@@ -293,24 +317,30 @@ export namespace JSX {
     minute: PropsOf<typeof minute>;
     month: PropsOf<typeof month>;
     na: PropsOf<typeof na>;
+    nor: PropsOf<typeof nor>;
     noun: PropsOf<typeof noun>;
     num: PropsOf<typeof num>;
     p: PropsOf<typeof p>;
+    paragraphs: PropsOf<typeof paragraphs>;
     parens: PropsOf<typeof parens>;
     pre: PropsOf<typeof pre>;
+    prefix: PropsOf<typeof prefix>;
     q: PropsOf<typeof q>;
     repeat: PropsOf<typeof repeat>;
     s: PropsOf<typeof s>;
     second: PropsOf<typeof second>;
-    sections: PropsOf<typeof sections>;
+    sectioned: PropsOf<typeof sectioned>;
     sentence: PropsOf<typeof sentence>;
+    set: PropsOf<typeof set>;
     space: PropsOf<typeof space>;
     spaced: PropsOf<typeof spaced>;
+    spaces: PropsOf<typeof spaces>;
     span: PropsOf<typeof span>;
     split: PropsOf<typeof split>;
     sq: PropsOf<typeof sq>;
     square: PropsOf<typeof square>;
     stq: PropsOf<typeof stq>;
+    suffix: PropsOf<typeof suffix>;
     tab: PropsOf<typeof tab>;
     tag: PropsOf<typeof tag>;
     time: PropsOf<typeof time>;
@@ -324,7 +354,6 @@ export namespace JSX {
     underscore: PropsOf<typeof underscore>;
     union: PropsOf<typeof union>;
     verb: PropsOf<typeof verb>;
-    wrap: PropsOf<typeof wrap>;
     yaml: PropsOf<typeof yaml>;
     year: PropsOf<typeof year>;
   }
@@ -337,6 +366,9 @@ export namespace JSX {
   }
 }
 
+/**
+ * Returns `true` if the provided value is of type `Children`.
+ */
 export function isChildren(value: any): value is Children {
   return (
     typeof value === "string" ||
@@ -348,6 +380,10 @@ export function isChildren(value: any): value is Children {
   );
 }
 
+/**
+ * Returns a string representation of the provided `children`.
+ * If the children resolve to `undefined`, an empty string is returned.
+ */
 export function render(children: Children) {
   if(Array.isArray(children)) {
     return children.flat().join("");
@@ -356,24 +392,25 @@ export function render(children: Children) {
   }
 }
 
-export function Fragment(props: { children: Children }): string {
+export function Fragment(props: BaseProps): string {
   return render(props.children);
 }
 
 export function createElement(
-  type: keyof typeof types | Function,
+  type: keyof typeof types | Component,
   props: PropsOf<typeof types[keyof typeof types]>,
   ...children: Children[]
 ): Node {
+  const fullProps = { children: children.flat(), ...props };
   if(typeof type === "function") {
-		return type({ children: children.flat(), ...props });
+		return type(fullProps) ?? "";
 	} else {
-    const component = types[type];
+    const component = types[type] as Component | undefined;
     if(component) {
-      return (component as any)({ children: children.flat(), ...props });
+      return component(fullProps) ?? "";
     }
   }
-	return type;
+	return "";
 }
 
 const Prxmpt = {

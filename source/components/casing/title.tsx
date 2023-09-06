@@ -4,7 +4,7 @@ import * as Prxmpt from "../../index.js";
 export const title: Prxmpt.PC = (props) => {
   return (
     <map
-      to={(node) => {
+      each={(node) => {
         const doc = compromise(Prxmpt.render(node));
         return doc.toTitleCase().text();
       }}>

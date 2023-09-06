@@ -17,7 +17,7 @@ export const casing: Prxmpt.PC<CasingProps> = (props) => {
     case "upper":
       return <upper>{props.children}</upper>;
     default:
-      return <>{props.children}</>;
+      return <span>{props.children}</span>;
   };
 };
 
@@ -25,3 +25,4 @@ export * from "./capital.js";
 export * from "./lower.js";
 export * from "./title.js";
 export * from "./upper.js";
+
