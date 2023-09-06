@@ -2,7 +2,7 @@ import * as Prxmpt from "prxmpt";
 
 export default function Example() {
   return (
-    <lines height={2}>
+    <lined height={2}>
       <h1>Prxmpt</h1>
       <h2>Casing</h2>
       <h3>Capital</h3>
@@ -33,11 +33,11 @@ export default function Example() {
         This is a div.
       </div>
       <h4>Sections</h4>
-      <sections surround>
+      <sectioned frame>
         <span>Section 1</span>
         <dtq>Section 2</dtq>
         <span>Section 3</span>
-      </sections>
+      </sectioned>
       <h3>Brackets</h3>
       <parens>Parenthesis</parens>
       <square>Square Brackets</square>
@@ -58,8 +58,8 @@ export default function Example() {
       <h4>Multiple Characters</h4>
       <span>Ellipsis: <ellipsis /></span>
       <span>NA: <na /></span>
-      <h3>Colon</h3>
-      <colon title="Title">Body</colon>
+      <h3>Key Value Pairs</h3>
+      <kv key="Key">Value</kv>
       <h3>Comment</h3>
       <comment type="slash">Comment</comment>
       <comment type="dash">Comment</comment>
@@ -70,18 +70,18 @@ export default function Example() {
       <h3>Image</h3>
       <img href="/path/to/image.png">Image</img>
       <h3>Lists</h3>
-      <colon title="Ordered List">
+      <kv key="Ordered List">
         <ol children={["One", "Two", "Three"]} />
-      </colon>
-      <colon title="Unordered List">
+      </kv>
+      <kv key="Unordered List">
         <ul children={["A", "B", "C"]} />
-      </colon>
-      <colon title="Checkbox List">
-        <cb items={["One", { content: "Two", checked: true }, { content: "Three", checked: false }]} />
-      </colon>
+      </kv>
+      <kv key="Checkbox List">
+        <cl items={["One", { content: "Two", checked: true }, { content: "Three", checked: false }]} />
+      </kv>
       <dl
         space={1}
-        case="upper"
+        termCase="upper"
         items={{
           one: "1",
           two: "2",
@@ -150,13 +150,13 @@ export default function Example() {
       <date />
       <time />
       <datetime />
-      <colon title="year"><year /></colon>
-      <colon title="month"><month /></colon>
-      <colon title="day"><day /></colon>
-      <colon title="hour"><hour /></colon>
-      <colon title="min"><minute /></colon>
-      <colon title="s"><second /></colon>
-      <colon title="ms"><millisecond /></colon>
+      <kv key="year"><year /></kv>
+      <kv key="month"><month /></kv>
+      <kv key="day"><day /></kv>
+      <kv key="hour"><hour /></kv>
+      <kv key="min"><minute /></kv>
+      <kv key="s"><second /></kv>
+      <kv key="ms"><millisecond /></kv>
       <elapsed since={new Date("September 2021")} />
       <h3>Fractions</h3>
       <fraction format="fraction">1/2</fraction>
@@ -174,10 +174,10 @@ export default function Example() {
       <h3>Join</h3>
       <join with="-" children={["A", "B", "C"]} />
       <h3>List</h3>
-      <list map={(item) => `${item}+`} children={["A", "B", "C"]} />
+      <list each={(item) => `${item}+`} children={["A", "B", "C"]} />
       <h3>Split</h3>
       <list>
-        <map to={(item) => `${item}+`}>
+        <map each={(item) => `${item}+`}>
           <split on=" " children="A B C" />
         </map>
       </list>
@@ -185,8 +185,8 @@ export default function Example() {
       <trim>   s p a c e   </trim>
       <h3>Truncate</h3>
       <truncate max={12}>A really long sentence</truncate>
-      <h3>Wrap</h3>
-      <wrap with="!">wrapped</wrap>
-    </lines>
+      <h3>Frame</h3>
+      <frame with="!">wrapped</frame>
+    </lined>
   );
 }

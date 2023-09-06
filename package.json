@@ -24,7 +24,7 @@
     "test": "find test -name '*.test.tsx' | xargs node --no-warnings --loader ts-node/esm --test",
     "typecheck": "tsc --noEmit --project tsconfig.build.json",
     "watch:source": "swc source --config-file .swcrc --copy-files --out-dir .auto/build --watch",
-    "watch:types": "tsc --emitDeclarationOnly --watch",
+    "watch:types": "tsc --emitDeclarationOnly --watch --project tsconfig.build.json",
     "prepack": "yarn build"
   },
   "dependencies": {
