@@ -14,6 +14,9 @@
   "engines": {
     "node": ">=18.0.0"
   },
+  "bin": {
+    "prx": "./.auto/build/bin/index.js"
+  },
   "scripts": {
     "build": "swc source --config-file .swcrc --copy-files --delete-dir-on-start --out-dir .auto/build && tsc --emitDeclarationOnly",
     "watch": "swc source --config-file .swcrc --copy-files --out-dir .auto/build --watch",
