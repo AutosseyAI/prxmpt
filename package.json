@@ -18,7 +18,7 @@
     "prx": "./.auto/build/bin/index.js"
   },
   "scripts": {
-    "build": "build:source && yarn build:types",
+    "build": "yarn build:source && yarn build:types",
     "build:source": "swc source --config-file .swcrc --copy-files --delete-dir-on-start --out-dir .auto/build",
     "build:types": "tsc --emitDeclarationOnly --project tsconfig.build.json",
     "test": "find test -name '*.test.tsx' | xargs node --no-warnings --loader ts-node/esm --test",
