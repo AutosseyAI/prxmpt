@@ -50,7 +50,7 @@ export const tq: Prxmpt.PC<TripleQuoteProps> = (props) => {
 
 export interface DoubleTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {};
 
-export const dtq: Prxmpt.PC<DoubleTripleQuoteProps> = (props) => {
+export const tdq: Prxmpt.PC<DoubleTripleQuoteProps> = (props) => {
   return (
     <tq type="double" {...props} />
   );
@@ -58,7 +58,7 @@ export const dtq: Prxmpt.PC<DoubleTripleQuoteProps> = (props) => {
 
 export interface SingleTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {};
 
-export const stq: Prxmpt.PC<SingleTripleQuoteProps> = (props) => {
+export const tsq: Prxmpt.PC<SingleTripleQuoteProps> = (props) => {
   return (
     <tq type="single" {...props} />
   );
@@ -66,7 +66,7 @@ export const stq: Prxmpt.PC<SingleTripleQuoteProps> = (props) => {
 
 export interface BacktickTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {};
 
-export const btq: Prxmpt.PC<BacktickTripleQuoteProps> = (props) => {
+export const tbq: Prxmpt.PC<BacktickTripleQuoteProps> = (props) => {
   return (
     <tq type="backtick" {...props} />
   );

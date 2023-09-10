@@ -9,7 +9,6 @@ import {
   blockquote,
   br,
   bracket,
-  btq,
   capital,
   casing,
   cl,
@@ -28,7 +27,6 @@ import {
   dl,
   double,
   dq,
-  dtq,
   elapsed,
   ellipsis,
   empty,
@@ -82,16 +80,18 @@ import {
   split,
   sq,
   square,
-  stq,
   suffix,
   tab,
   tag,
+  tbq,
+  tdq,
   time,
   title,
   tq,
   trim,
   triple,
   truncate,
+  tsq,
   ul,
   underscore,
   union,
@@ -112,7 +112,6 @@ const types = {
   blockquote,
   br,
   bracket,
-  btq,
   capital,
   casing,
   cl,
@@ -130,7 +129,6 @@ const types = {
   div,
   dl,
   double,
-  dtq,
   dq,
   elapsed,
   ellipsis,
@@ -186,15 +184,17 @@ const types = {
   suffix,
   sq,
   square,
-  stq,
   tab,
   tag,
+  tbq,
+  tdq,
   time,
   title,
   tq,
   trim,
   triple,
   truncate,
+  tsq,
   ul,
   underscore,
   union,
@@ -266,7 +266,6 @@ export namespace JSX {
     blockquote: PropsOf<typeof blockquote>;
     br: PropsOf<typeof br>;
     bracket: PropsOf<typeof bracket>;
-    btq: PropsOf<typeof btq>;
     capital: PropsOf<typeof capital>;
     casing: PropsOf<typeof casing>;
     cl: PropsOf<typeof cl>;
@@ -285,7 +284,6 @@ export namespace JSX {
     dl: PropsOf<typeof dl>;
     double: PropsOf<typeof double>;
     dq: PropsOf<typeof dq>;
-    dtq: PropsOf<typeof dtq>;
     elapsed: PropsOf<typeof elapsed>;
     ellipsis: PropsOf<typeof ellipsis>;
     empty: PropsOf<typeof empty>;
@@ -339,16 +337,18 @@ export namespace JSX {
     split: PropsOf<typeof split>;
     sq: PropsOf<typeof sq>;
     square: PropsOf<typeof square>;
-    stq: PropsOf<typeof stq>;
     suffix: PropsOf<typeof suffix>;
     tab: PropsOf<typeof tab>;
     tag: PropsOf<typeof tag>;
+    tbq: PropsOf<typeof tbq>;
+    tdq: PropsOf<typeof tdq>;
     time: PropsOf<typeof time>;
     title: PropsOf<typeof title>;
     triple: PropsOf<typeof triple>;
     tq: PropsOf<typeof tq>;
     trim: PropsOf<typeof trim>;
     truncate: PropsOf<typeof truncate>;
+    tsq: PropsOf<typeof tsq>;
     ul: PropsOf<typeof ul>;
     upper: PropsOf<typeof upper>;
     underscore: PropsOf<typeof underscore>;
