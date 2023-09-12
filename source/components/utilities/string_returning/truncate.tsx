@@ -1,6 +1,5 @@
 import * as Prxmpt from "../../../index.js";
-
-export type Counter = (string: string) => number;
+import { charCounter, Counter } from "../shared.js";
 
 export interface TruncateProps {
   /**
@@ -25,16 +24,12 @@ export interface TruncateProps {
   suffix?: Prxmpt.Children;
 };
 
-function charCounter(str: string) {
-  return str.length;
-}
-
 /**
  * Truncate a string to a maximum number of "units".
  * Optionally append a suffix.
  */
 export const truncate: Prxmpt.PC<TruncateProps> = (props) => {
-  const string = Prxmpt.Fragment(props);
+  const string = Prxmpt.render(props.children);
   const counter = props.counter ?? charCounter;
   const split = props.split ? Prxmpt.render(props.split) : <space />;
   const suffix = props.suffix ? Prxmpt.render(props.suffix) : <ellipsis />;

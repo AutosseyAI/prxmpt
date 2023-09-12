@@ -9,6 +9,7 @@ import {
   blockquote,
   br,
   bracket,
+  cap,
   capital,
   casing,
   cl,
@@ -112,6 +113,7 @@ const types = {
   blockquote,
   br,
   bracket,
+  cap,
   capital,
   casing,
   cl,
@@ -266,6 +268,7 @@ export namespace JSX {
     blockquote: PropsOf<typeof blockquote>;
     br: PropsOf<typeof br>;
     bracket: PropsOf<typeof bracket>;
+    cap: PropsOf<typeof cap>;
     capital: PropsOf<typeof capital>;
     casing: PropsOf<typeof casing>;
     cl: PropsOf<typeof cl>;

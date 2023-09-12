@@ -14,3 +14,6 @@ export * from "../joins/block/list.js";
 // Array Returning
 export * from "./array_returning/map.js";
 export * from "./array_returning/split.js";
+export * from "./array_returning/cap.js";
+
+export * from "./shared.js";
