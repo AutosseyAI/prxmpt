@@ -1,4 +1,36 @@
+import asArray from "as-typed-array";
 import * as Prxmpt from "../../../index.js";
+
+export interface MarkedListProps extends Prxmpt.BlockProps {
+  /**
+   * Only include markers if the list contains more than one item.
+   * @default false
+   */
+  onlyMarkIfList?: boolean;
+};
+
+function markedList(
+  props: Prxmpt.BaseProps & MarkedListProps,
+  marker: (index: number) => string
+) {
+  const items = asArray(props.children)
+    .map((item) => Prxmpt.render(item))
+    .filter((item) => item !== undefined);
+  const hideMarkers = props.onlyMarkIfList && items.length < 2;
+  return (
+    <list
+      hide={props.hide}
+      each={(line, index) => (
+        <spaced>
+          <span hide={hideMarkers}>{marker(index)}</span>
+          {line}
+        </spaced>
+      )}
+      inline={props.inline}>
+      {props.children}
+    </list>
+  );
+}
 
 // Ordered List
 
@@ -10,21 +42,19 @@ import * as Prxmpt from "../../../index.js";
  * 3. Item 3
  * ```
  */
-export const ol: Prxmpt.PC<Prxmpt.BlockProps> = (props) => {
-  return (
-    <list each={(line, index) => `${index+1}. ${line}`} inline={props.inline}>{props.children}</list>
-  );
+export const ol: Prxmpt.PC<MarkedListProps> = (props) => {
+  return markedList(props, (index) => `${index+1}.`);
 };
 
 // Unordered List
 
-export type ULChar = "-" | "*" | "+";
+export type ULMarker = "-" | "*" | "+";
 
-export interface ULProps extends Prxmpt.BlockProps {
+export interface ULProps extends  MarkedListProps {
   /**
    * @default "-"
    */
-  char?: ULChar;
+  marker?: ULMarker;
 }
 
 /**
@@ -36,9 +66,7 @@ export interface ULProps extends Prxmpt.BlockProps {
  * ```
  */
 export const ul: Prxmpt.PC<ULProps> = (props) => {
-  return (
-    <list each={(line) => `${props.char ?? "-"} ${line}`} inline={props.inline}>{props.children}</list>
-  );
+  return markedList(props, () => props.marker ?? "-");
 };
 
 // Checkbox List
