@@ -403,17 +403,17 @@ export function createElement(
   type: keyof typeof types | Component,
   props: PropsOf<typeof types[keyof typeof types]>,
   ...children: Children[]
-): Node {
+): Option<Node> {
   const fullProps = { children: children.flat(), ...props };
   if(typeof type === "function") {
-		return type(fullProps) ?? "";
+		return type(fullProps);
 	} else {
     const component = types[type] as Component | undefined;
     if(component) {
-      return component(fullProps) ?? "";
+      return component(fullProps);
     }
   }
-	return "";
+	return undefined;
 }
 
 const Prxmpt = {

@@ -6,14 +6,14 @@ export interface JoinProps extends Prxmpt.InlineProps {
 };
 
 export const join: Prxmpt.PC<JoinProps> = (props) => {
-  const arr: Prxmpt.Children[] = [];
-  asArray(props.children).forEach((child) => {
-    if(child !== undefined) {
+  const children = asArray(props.children)
+    .filter((child) => child !== undefined)
+    .reduce((arr: Prxmpt.Children[], child) => {
       if(arr.length > 0 && props.with) {
         arr.push(props.with);
       }
       arr.push(child);
-    }
-  });
-  return <span hide={props.hide} block={props.block}>{arr}</span>;
+      return arr;
+    }, [] as Prxmpt.Children[]);
+  return <span hide={props.hide} block={props.block}>{children}</span>;
 };
