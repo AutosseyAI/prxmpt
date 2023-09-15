@@ -94,9 +94,9 @@ export interface CBProps extends Prxmpt.BlockProps {
 export const cl: Prxmpt.FC<CBProps> = (props) => {
   const children = props.items.map((item) => {
     if(Prxmpt.isChildren(item)) {
-      return `- [ ] ${Prxmpt.render(item)}`;
+      return `[ ] ${Prxmpt.render(item)}`;
     } else {
-      return `- [${item?.checked ? "x" : " "}] ${Prxmpt.render(item?.content)}`;
+      return `[${item?.checked ? "x" : " "}] ${Prxmpt.render(item?.content)}`;
     }
   })
   return (
