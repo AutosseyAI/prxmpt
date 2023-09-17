@@ -179,7 +179,7 @@ export type PropsOf<T extends Component> = Parameters<T>[0];
  */
 export type Children = Option<Children[] | string | number | boolean | null>;
 
-export interface BaseProps {
+export interface ChildProps {
   children: Children;
 };
 
@@ -197,14 +197,14 @@ export interface FC<P = {}> {
  * 
  * A `Component` with a required `children` property.
  */
-export interface PC<P = {}> extends FC<P & BaseProps> {};
+export interface PC<P = {}> extends FC<P & ChildProps> {};
 
 /**
  * **Optional Children Component**
  * 
  * A `Component` with an optional `children` property.
  */
-export interface OC<P = {}> extends FC<Partial<BaseProps> & P> {};
+export interface OC<P = {}> extends FC<Partial<ChildProps> & P> {};
 
 /**
  * https://www.typescriptlang.org/docs/handbook/jsx.html
@@ -314,7 +314,7 @@ export function isChildren(value: any): value is Children {
   );
 }
 
-export function hasChildren(props: Partial<BaseProps>) {
+export function hasChildren(props: Partial<ChildProps>) {
   return props.children !== undefined &&
   props.children !== null &&
     (!Array.isArray(props.children) || props.children.length > 0);
@@ -355,7 +355,7 @@ export function commas(children: Children) {
   return split(children, ",");
 }
 
-export function Fragment(props: BaseProps): string {
+export function Fragment(props: ChildProps): string {
   return render(props.children);
 }
 

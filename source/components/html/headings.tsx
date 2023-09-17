@@ -11,7 +11,7 @@ export interface HProps extends HeadingProps {
   n: 1 | 2 | 3 | 4 | 5 | 6;
 };
 
-function h(props: Prxmpt.BaseProps & HProps) {
+function h(props: Prxmpt.ChildProps & HProps) {
   return props.html
     ? <tag name={`h${props.n}`} {...props} />
     : (

@@ -8,7 +8,7 @@ export interface MarkedListProps extends Prxmpt.TextProps {
   onlyMarkIfList?: boolean;
 };
 
-function markedList(props: Prxmpt.BaseProps & MarkedListProps, marker: (index: number) => string) {
+function markedList(props: Prxmpt.ChildProps & MarkedListProps, marker: (index: number) => string) {
   return (
     <text {...props}>
       <text

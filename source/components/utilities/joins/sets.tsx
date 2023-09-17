@@ -9,7 +9,7 @@ export interface SetProps extends Prxmpt.TextProps {
   noOxfordComma?: boolean;
 }
 
-function set(props: SetProps & Prxmpt.BaseProps) {
+function set(props: SetProps & Prxmpt.ChildProps) {
   const items = asArray(props.children).flat().filter(Boolean);
   if(items.length > 1) {
     const first = items.slice(0, -1);
