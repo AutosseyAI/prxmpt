@@ -21,7 +21,7 @@
     "build": "yarn build:source && yarn build:types",
     "build:source": "swc source --config-file .swcrc --copy-files --delete-dir-on-start --out-dir .auto/build",
     "build:types": "tsc --emitDeclarationOnly --project tsconfig.build.json",
-    "test": "find test -name '*.test.tsx' | xargs node --no-warnings --loader ts-node/esm --test",
+    "test": "./scripts/test.sh",
     "typecheck": "tsc --noEmit --project tsconfig.build.json",
     "watch:source": "swc source --config-file .swcrc --copy-files --out-dir .auto/build --watch",
     "watch:types": "tsc --emitDeclarationOnly --watch --project tsconfig.build.json",
@@ -29,9 +29,8 @@
   },
   "dependencies": {
     "as-typed-array": "^3.0.1",
-    "compromise": "^14.10.0",
     "enquirer": "^2.4.1",
-    "types-json": "^4.0.1",
+    "types-json": "4.0.1",
     "typescript-json-schema": "^0.61.0",
     "yaml": "^2.3.2"
   },

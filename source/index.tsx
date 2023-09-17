@@ -1,22 +1,18 @@
 import {
   a,
-  adjective,
   and,
   andor,
   angle,
-  attributes,
+  ask,
   b,
   blockquote,
+  bq,
   br,
-  bracket,
   cap,
-  capital,
-  casing,
   cl,
   code,
   comma,
   commaed,
-  commas,
   comment,
   curly,
   dash,
@@ -26,14 +22,12 @@ import {
   details,
   div,
   dl,
-  double,
   dq,
   elapsed,
   ellipsis,
   empty,
-  fraction,
+  exclaim,
   frame,
-  h,
   h1,
   h2,
   h3,
@@ -44,83 +38,60 @@ import {
   hr,
   i,
   img,
-  indent,
-  join,
   json,
   kv,
   lined,
-  lines,
-  list,
-  lower,
-  map,
   millisecond,
   minute,
   month,
   na,
   nor,
-  noun,
   num,
   ol,
   or,
   p,
-  paragraphs,
   parens,
   pre,
-  prefix,
   q,
-  repeat,
   s,
   second,
   sectioned,
-  sentence,
-  set,
   space,
   spaced,
-  spaces,
   span,
-  split,
   sq,
   square,
-  suffix,
+  state,
   tab,
   tag,
   tbq,
   tdq,
+  text,
   time,
-  title,
   tq,
-  trim,
-  triple,
-  truncate,
   tsq,
   ul,
   underscore,
   union,
-  upper,
-  verb,
   yaml,
   year
 } from "./components/index.js";
 
 const types = {
   a,
-  adjective,
   and,
   andor,
   angle,
-  attributes,
+  ask,
   b,
   blockquote,
+  bq,
   br,
-  bracket,
   cap,
-  capital,
-  casing,
   cl,
   code,
   comma,
   commaed,
-  commas,
   comment,
   curly,
   dash,
@@ -130,14 +101,12 @@ const types = {
   details,
   div,
   dl,
-  double,
   dq,
   elapsed,
   ellipsis,
   empty,
-  fraction,
+  exclaim,
   frame,
-  h,
   h1,
   h2,
   h3,
@@ -148,60 +117,41 @@ const types = {
   hr,
   i,
   img,
-  indent,
-  join,
   json,
   kv,
   lined,
-  lines,
-  list,
-  lower,
-  map,
   millisecond,
   minute,
   month,
   na,
   nor,
-  noun,
   num,
   ol,
   or,
   p,
-  paragraphs,
   parens,
   pre,
-  prefix,
   q,
-  repeat,
   s,
-  set,
   second,
   sectioned,
-  sentence,
   space,
   spaced,
-  spaces,
   span,
-  split,
-  suffix,
   sq,
   square,
+  state,
   tab,
   tag,
   tbq,
   tdq,
+  text,
   time,
-  title,
   tq,
-  trim,
-  triple,
-  truncate,
   tsq,
   ul,
   underscore,
   union,
-  upper,
-  verb,
   yaml,
   year
 } as const;
@@ -216,7 +166,7 @@ export type Node = JSX.Element | JSX.Element[];
 /**
  * A function that takes an argument `props`, and returns a `Node` or `undefined.
  */
-export type Component = (props: any) => Option<Node>;
+export type Component = (props: any) => JSX.Element;
 
 /**
  * Extracts the type of a `Component`'s `props` parameter.
@@ -239,7 +189,7 @@ export interface BaseProps {
  * A `Component` that does not have a `children` property by default.
  */
 export interface FC<P = {}> {
-  (props: P): Option<Node>;
+  (props: P): JSX.Element;
 }
 
 /**
@@ -256,26 +206,25 @@ export interface PC<P = {}> extends FC<P & BaseProps> {};
  */
 export interface OC<P = {}> extends FC<Partial<BaseProps> & P> {};
 
+/**
+ * https://www.typescriptlang.org/docs/handbook/jsx.html
+ */
 export namespace JSX {
   export interface IntrinsicElements {
     a: PropsOf<typeof a>;
-    adjective: PropsOf<typeof adjective>;
     and: PropsOf<typeof and>;
     andor: PropsOf<typeof andor>;
     angle: PropsOf<typeof angle>;
-    attributes: PropsOf<typeof attributes>;
+    ask: PropsOf<typeof ask>;
     b: PropsOf<typeof b>;
     blockquote: PropsOf<typeof blockquote>;
+    bq: PropsOf<typeof bq>;
     br: PropsOf<typeof br>;
-    bracket: PropsOf<typeof bracket>;
     cap: PropsOf<typeof cap>;
-    capital: PropsOf<typeof capital>;
-    casing: PropsOf<typeof casing>;
     cl: PropsOf<typeof cl>;
     code: PropsOf<typeof code>;
     comma: PropsOf<typeof comma>;
     commaed: PropsOf<typeof commaed>,
-    commas: PropsOf<typeof commas>,
     comment: PropsOf<typeof comment>;
     curly: PropsOf<typeof curly>;
     dash: PropsOf<typeof dash>;
@@ -285,14 +234,12 @@ export namespace JSX {
     details: PropsOf<typeof details>;
     div: PropsOf<typeof div>;
     dl: PropsOf<typeof dl>;
-    double: PropsOf<typeof double>;
     dq: PropsOf<typeof dq>;
     elapsed: PropsOf<typeof elapsed>;
     ellipsis: PropsOf<typeof ellipsis>;
     empty: PropsOf<typeof empty>;
-    fraction: PropsOf<typeof fraction>;
+    exclaim: PropsOf<typeof exclaim>;
     frame: PropsOf<typeof frame>;
-    h: PropsOf<typeof h>;
     h1: PropsOf<typeof h1>;
     h2: PropsOf<typeof h2>;
     h3: PropsOf<typeof h3>;
@@ -303,64 +250,48 @@ export namespace JSX {
     hour: PropsOf<typeof hour>;
     i: PropsOf<typeof i>;
     img: PropsOf<typeof img>;
-    indent: PropsOf<typeof indent>;
-    join: PropsOf<typeof join>;
     json: PropsOf<typeof json>;
     kv: PropsOf<typeof kv>;
     lined: PropsOf<typeof lined>;
-    lines: PropsOf<typeof lines>;
-    list: PropsOf<typeof list>;
-    lower: PropsOf<typeof lower>;
     ol: PropsOf<typeof ol>;
     or: PropsOf<typeof or>;
-    map: PropsOf<typeof map>;
     millisecond: PropsOf<typeof millisecond>;
     minute: PropsOf<typeof minute>;
     month: PropsOf<typeof month>;
     na: PropsOf<typeof na>;
     nor: PropsOf<typeof nor>;
-    noun: PropsOf<typeof noun>;
     num: PropsOf<typeof num>;
     p: PropsOf<typeof p>;
-    paragraphs: PropsOf<typeof paragraphs>;
     parens: PropsOf<typeof parens>;
     pre: PropsOf<typeof pre>;
-    prefix: PropsOf<typeof prefix>;
     q: PropsOf<typeof q>;
-    repeat: PropsOf<typeof repeat>;
     s: PropsOf<typeof s>;
     second: PropsOf<typeof second>;
     sectioned: PropsOf<typeof sectioned>;
-    sentence: PropsOf<typeof sentence>;
-    set: PropsOf<typeof set>;
     space: PropsOf<typeof space>;
     spaced: PropsOf<typeof spaced>;
-    spaces: PropsOf<typeof spaces>;
     span: PropsOf<typeof span>;
-    split: PropsOf<typeof split>;
     sq: PropsOf<typeof sq>;
     square: PropsOf<typeof square>;
-    suffix: PropsOf<typeof suffix>;
+    state: PropsOf<typeof state>;
     tab: PropsOf<typeof tab>;
     tag: PropsOf<typeof tag>;
     tbq: PropsOf<typeof tbq>;
     tdq: PropsOf<typeof tdq>;
+    text: PropsOf<typeof text>;
     time: PropsOf<typeof time>;
-    title: PropsOf<typeof title>;
-    triple: PropsOf<typeof triple>;
     tq: PropsOf<typeof tq>;
-    trim: PropsOf<typeof trim>;
-    truncate: PropsOf<typeof truncate>;
     tsq: PropsOf<typeof tsq>;
     ul: PropsOf<typeof ul>;
-    upper: PropsOf<typeof upper>;
     underscore: PropsOf<typeof underscore>;
     union: PropsOf<typeof union>;
-    verb: PropsOf<typeof verb>;
     yaml: PropsOf<typeof yaml>;
     year: PropsOf<typeof year>;
   }
-  export type Element = string;
+  /**
+   * The result of a JSX expression.
+   */
+  export type Element = Option<string>;
   export interface ElementAttributesProperty {
     props: any; // specify the property name to use
   }
@@ -383,28 +314,71 @@ export function isChildren(value: any): value is Children {
   );
 }
 
+export function hasChildren(props: Partial<BaseProps>) {
+  return props.children !== undefined &&
+  props.children !== null &&
+    (!Array.isArray(props.children) || props.children.length > 0);
+}
+
 /**
  * Returns a string representation of the provided `children`.
  * If the children resolve to `undefined`, an empty string is returned.
  */
 export function render(children: Children) {
   if(Array.isArray(children)) {
+    // `null` and `undefined` are filtered out by `.join("")`
     return children.flat().join("");
   } else {
     return (children ?? "").toString();
   }
 }
 
+export function split(children: Children, separator?: Children) {
+  if(separator !== undefined) {
+    const splitter = render(separator);
+    const string = render(children);
+    return string.split(splitter);
+  } else {
+    return [render(children)];
+  }
+}
+
+export function lines(children: Children) {
+  return split(children, "\n");
+}
+
+export function spaces(children: Children) {
+  return split(children, " ");
+}
+
+export function commas(children: Children) {
+  return split(children, ",");
+}
+
 export function Fragment(props: BaseProps): string {
   return render(props.children);
+}
+
+/**
+ * `props.children` is overwritten if children are provided.
+ */
+function mergeProps(props: PropsOf<typeof types[keyof typeof types]>, children: Children[]) {
+  if(children.length > 0) {
+    return {
+      ...props,
+      children: children.flat()
+    };
+  } else {
+    return props ?? {};
+  }
 }
 
 export function createElement(
   type: keyof typeof types | Component,
   props: PropsOf<typeof types[keyof typeof types]>,
   ...children: Children[]
-): Option<Node> {
-  const fullProps = { children: children.flat(), ...props };
+): JSX.Element {
+  const fullProps = mergeProps(props, children);
   if(typeof type === "function") {
 		return type(fullProps);
 	} else {

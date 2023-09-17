@@ -1,15 +1,18 @@
-// Inline
-export * from "./inline/anchor.js";
-export * from "./inline/image.js";
-export * from "./inline/span.js";
-export * from "./inline/styled.js";
+// HTML Tags
+export * from "./anchor.js";
+export * from "./blockquote.js";
+export * from "./breaks.js";
+export * from "./code.js";
+export * from "./details.js";
+export * from "./div.js";
+export * from "./headings.js";
+export * from "./image.js";
+export * from "./lists.js";
+export * from "./p.js";
+export * from "./pre.js";
+export * from "./q.js";
+export * from "./span.js";
+export * from "./styled.js";
 
-// Block
-export * from "./block/blockquote.js";
-export * from "./block/breaks.js";
-export * from "./block/details.js";
-export * from "./block/div.js";
-export * from "./block/headings.js";
-export * from "./block/lists.js";
-export * from "./block/paragraph.js";
-export * from "./block/pre.js";
+// Base Tag Element
+export * from "./tag.js";

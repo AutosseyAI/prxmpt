@@ -101,10 +101,10 @@ if(args[0] === undefined) {
     const module = await import(`${absolute}`);
     if(target) {
       const output = module[target](props ?? {});
-      console.log(output);
+      console.info(output);
     } else {
       const output = module.default(props ?? {});
-      console.log(output);
+      console.info(output);
     }
   }
 

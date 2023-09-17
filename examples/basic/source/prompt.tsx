@@ -6,13 +6,13 @@ export default function Example() {
       <h1>Prxmpt</h1>
       <h2>Casing</h2>
       <h3>Capital</h3>
-      <capital>capitalized string</capital>
+      <text casing="capital">capitalized string</text>
       <h3>Title</h3>
-      <title>This is a title</title>
+      <text casing="title">capitalized string</text>
       <h3>Upper</h3>
-      <upper>Uppercase</upper>
+      <text casing="upper">uppercase string</text>
       <h3>Lower</h3>
-      <lower>Lowercase</lower>
+      <text casing="lower">Lowercase String</text>
       <h2>Elements</h2>
       <h3>Anchor</h3>
       <a href="https://example.com" title="Example Title">Example</a>
@@ -20,23 +20,23 @@ export default function Example() {
       <h3>Block</h3>
       <blockquote>This is a blockquote</blockquote>
       <h3>Tab</h3>
-      <indent inline>
+      <text indent>
         <p>This is a tab.</p>
         <p>Two spaces are appended to each line.</p>
-      </indent>
+      </text>
       <h3>Pre</h3>
-      <pre title="myFile.md" lang="md" inline>
+      <pre title="myFile.md" lang="md">
         <p># Preformatted Block</p>
         <p>This is a preformatted block.</p>
       </pre>
-      <div title="myFile.md" inline>
+      <div title="myFile.md">
         This is a div.
       </div>
       <h4>Sections</h4>
       <sectioned frame>
-        <span>Section 1</span>
-        <dtq>Section 2</dtq>
-        <span>Section 3</span>
+        <text>Section 1</text>
+        <tdq>Section 2</tdq>
+        <text>Section 3</text>
       </sectioned>
       <h3>Brackets</h3>
       <parens>Parenthesis</parens>
@@ -46,27 +46,28 @@ export default function Example() {
       <tag name="tag">Tags</tag>
       <tag name="empty" />
       <h3>Breaks</h3>
-      <span>BR: <br /></span>
-      <span>HR: <hr /></span>
+      <kv key="<br />"><br /></kv>
+      <kv key="<hr />"><hr /></kv>
       <h3>Characters</h3>
       <h4>Zero Characters</h4>
-      <span>Empty:<empty /></span>
+      <kv key="Empty"><empty /></kv>
       <h4>Single Characters</h4>
-      <span>Space: <space /></span>
-      <span>Dash: <dash /></span>
-      <span>Underscore: <underscore /></span>
+      <kv key="Space"><space /></kv>
+      <kv key="Dash"><dash /></kv>
+      <kv key="Underscore"><underscore /></kv>
       <h4>Multiple Characters</h4>
-      <span>Ellipsis: <ellipsis /></span>
-      <span>NA: <na /></span>
+      <kv key="Ellipsis"><ellipsis /></kv>
+      <kv key="NA"><na /></kv>
       <h3>Key Value Pairs</h3>
       <kv key="Key">Value</kv>
       <h3>Comment</h3>
       <comment type="slash">Comment</comment>
       <comment type="dash">Comment</comment>
       <comment type="hash">Comment</comment>
+      <comment type="html">Comment</comment>
       <h3>Headings</h3>
       <h1>Heading 1</h1>
-      <h1 html>Heading 1</h1>
+      <h1 html>HTML Heading 1</h1>
       <h3>Image</h3>
       <img href="/path/to/image.png">Image</img>
       <h3>Lists</h3>
@@ -92,9 +93,9 @@ export default function Example() {
       <dq>Escaped "Double" Quote</dq>
       <sq noEscape>No Escape 'Single' Quote</sq>
       <dq noEscape>No Escape "Double" Quote</dq>
-      <stq>Single Triple Quote</stq>
-      <dtq>Double Triple Quote</dtq>
-      <btq>Backtick Triple Quote</btq>
+      <tsq>Single Triple Quote</tsq>
+      <tdq>Double Triple Quote</tdq>
+      <tbq>Backtick Triple Quote</tbq>
       <q>Single Line Quote</q>
       <q>Multi<br />Line<br />Quote</q>
       <code>Code</code>
@@ -104,7 +105,7 @@ export default function Example() {
       <s>Strikethrough</s>
       <h3>Union</h3>
       <union children={["A", "B", "C"]} />
-      <h2>Grammatical</h2>
+      <h2>Sets</h2>
       <h3>And</h3>
       <and children={["A"]} />
       <and children={["A", "B"]} />
@@ -113,39 +114,22 @@ export default function Example() {
       <andor children={["A"]} />
       <andor children={["A", "B"]} />
       <andor children={["A", "B", "C"]} />
+      <h3>Nor</h3>
+      <nor children={["A"]} />
+      <nor children={["A", "B"]} />
+      <nor children={["A", "B", "C"]} />
       <h3>Or</h3>
       <or children={["A"]} />
       <or children={["A", "B"]} />
       <or children={["A", "B", "C"]} />
-      <h3>Nouns</h3>
-      <noun plural>dog</noun>
-      <noun singular>dogs</noun>
-      <h3>Verbs</h3>
-      <verb form="past">jump</verb>
-      <verb form="present">jump</verb>
-      <verb form="future">jump</verb>
-      <verb form="infinitive">jump</verb>
-      <verb form="gerund">jump</verb>
-      <verb negative>is jumping</verb>
-      <verb positive>is not jumping</verb>
-      <h3>Adjective</h3>
-      <adjective form="comparative">quick</adjective>
-      <adjective form="superlative">quick</adjective>
-      <adjective form="adverb">quick</adjective>
-      <adjective form="noun">quick</adjective>
       <h3>Sentences</h3>
-      <sentence tense="past">He went to the store.</sentence>
-      <sentence tense="present">He went to the store.</sentence>
-      <sentence tense="future">He went to the store.</sentence>
-      <sentence tense="infinitive">He went to the store.</sentence>
-      <sentence negative>He went to the store.</sentence>
-      <sentence positive>He did not go to the store.</sentence>
+      <state>This is a sentence</state>
+      <ask>This is a sentence</ask>
+      <exclaim>This is a sentence</exclaim>
       <h3>Numbers</h3>
-      <num format="digit">twelve</num>
-      <num format="text">12</num>
-      <num kind="ordinal">12</num>
-      <num kind="cardinal" format="text">12th</num>
-      <num max={10} add={-3} kind="ordinal">12</num>
+      <num fixed={4}>1.23</num>
+      <num max={10}>12</num>
+      <num max={10} add={-3}>12</num>
       <h3>Dates</h3>
       <date />
       <time />
@@ -158,33 +142,16 @@ export default function Example() {
       <kv key="s"><second /></kv>
       <kv key="ms"><millisecond /></kv>
       <elapsed since={new Date("September 2021")} />
-      <h3>Fractions</h3>
-      <fraction format="fraction">1/2</fraction>
-      <fraction format="decimal">1/2</fraction>
-      <fraction format="percent">1/2</fraction>
-      <fraction format="ordinal">1/2</fraction>
       <h2>Serialization</h2>
       <h3>JSON</h3>
       <json data={{ a: 1, b: ["2", "3"]}} pretty />
       <h3>YAML</h3>
       <yaml data={{ a: 1, b: ["2", "3"]}} />
       <h2>Utilities</h2>
-      <h3>Bracket</h3>
-      <bracket prefix="prefix" suffix="suffix"> content </bracket>
-      <h3>Join</h3>
-      <join with="-" children={["A", "B", "C"]} />
-      <h3>List</h3>
-      <list each={(item) => `${item}+`} children={["A", "B", "C"]} />
-      <h3>Split</h3>
-      <list>
-        <map each={(item) => `${item}+`}>
-          <split on=" " children="A B C" />
-        </map>
-      </list>
       <h3>Trim</h3>
-      <trim>   s p a c e   </trim>
+      <text trim>   s p a c e   </text>
       <h3>Truncate</h3>
-      <truncate max={12}>A really long sentence</truncate>
+      <cap max={12} ellipsis="...">A really long sentence</cap>
       <h3>Frame</h3>
       <frame with="!">wrapped</frame>
     </lined>
