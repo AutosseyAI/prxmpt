@@ -17,7 +17,6 @@ import {
   date,
   datetime,
   day,
-  details,
   div,
   dl,
   dq,
@@ -95,7 +94,6 @@ const types = {
   date,
   datetime,
   day,
-  details,
   div,
   dl,
   dq,
@@ -227,7 +225,6 @@ export namespace JSX {
     date: PropsOf<typeof date>;
     datetime: PropsOf<typeof datetime>;
     day: PropsOf<typeof day>;
-    details: PropsOf<typeof details>;
     div: PropsOf<typeof div>;
     dl: PropsOf<typeof dl>;
     dq: PropsOf<typeof dq>;

@@ -3,7 +3,6 @@ export * from "./anchor.js";
 export * from "./blockquote.js";
 export * from "./breaks.js";
 export * from "./code.js";
-export * from "./details.js";
 export * from "./div.js";
 export * from "./headings.js";
 export * from "./image.js";
