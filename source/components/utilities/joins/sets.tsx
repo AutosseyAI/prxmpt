@@ -17,7 +17,7 @@ function set(props: SetProps & Prxmpt.ChildProps) {
     return (
       <text {...props}>
         <text join={", "}>{first}</text>
-        <comma hide={props.noOxfordComma || items.length < 3} /> {props.conjunction} {last}
+        <text hide={props.noOxfordComma || items.length < 3}>,</text> {props.conjunction} {last}
       </text>
     );
   } else {
