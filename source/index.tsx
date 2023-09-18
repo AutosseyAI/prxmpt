@@ -11,11 +11,9 @@ import {
   cap,
   cl,
   code,
-  comma,
   commaed,
   comment,
   curly,
-  dash,
   date,
   datetime,
   day,
@@ -72,7 +70,6 @@ import {
   trim,
   tsq,
   ul,
-  underscore,
   union,
   yaml,
   year
@@ -91,11 +88,9 @@ const types = {
   cap,
   cl,
   code,
-  comma,
   commaed,
   comment,
   curly,
-  dash,
   date,
   datetime,
   day,
@@ -152,7 +147,6 @@ const types = {
   trim,
   tsq,
   ul,
-  underscore,
   union,
   yaml,
   year
@@ -225,11 +219,9 @@ export namespace JSX {
     cap: PropsOf<typeof cap>;
     cl: PropsOf<typeof cl>;
     code: PropsOf<typeof code>;
-    comma: PropsOf<typeof comma>;
     commaed: PropsOf<typeof commaed>,
     comment: PropsOf<typeof comment>;
     curly: PropsOf<typeof curly>;
-    dash: PropsOf<typeof dash>;
     date: PropsOf<typeof date>;
     datetime: PropsOf<typeof datetime>;
     day: PropsOf<typeof day>;
@@ -286,7 +278,6 @@ export namespace JSX {
     trim: PropsOf<typeof trim>;
     tsq: PropsOf<typeof tsq>;
     ul: PropsOf<typeof ul>;
-    underscore: PropsOf<typeof underscore>;
     union: PropsOf<typeof union>;
     yaml: PropsOf<typeof yaml>;
     year: PropsOf<typeof year>;

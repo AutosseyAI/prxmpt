@@ -12,18 +12,6 @@ export const space: Prxmpt.FC<Prxmpt.TextProps> = (props) => {
   return <text {...props}>{" "}</text>;
 };
 
-export const dash: Prxmpt.FC<Prxmpt.TextProps> = (props) => {
-  return <text {...props}>{"-"}</text>;
-};
-
-export const underscore: Prxmpt.FC<Prxmpt.TextProps> = (props) => {
-  return <text {...props}>{"_"}</text>;
-};
-
-export const comma: Prxmpt.FC<Prxmpt.TextProps> = (props) => {
-  return <text {...props}>{","}</text>;
-};
-
 // Multiple Characters
 
 export interface TabProps extends Prxmpt.TextProps {
