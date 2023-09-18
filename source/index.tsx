@@ -317,6 +317,9 @@ export function isChildren(value: any): value is Children {
   );
 }
 
+/**
+ * Returns `true` if the provided `props` have children to render.
+ */
 export function hasChildren(props: Partial<ChildProps>) {
   return props.children !== undefined &&
   props.children !== null &&
@@ -336,6 +339,10 @@ export function render(children: Children) {
   }
 }
 
+/**
+ * Split `children` on `separator`.
+ * If `separator` is `undefined`, no splitting occurs.
+ */
 export function split(children: Children, separator?: Children) {
   if(separator !== undefined) {
     const splitter = render(separator);
@@ -346,14 +353,23 @@ export function split(children: Children, separator?: Children) {
   }
 }
 
+/**
+ * Split `children` on newlines.
+ */
 export function lines(children: Children) {
   return split(children, "\n");
 }
 
+/**
+ * Split `children` on spaces.
+ */
 export function spaces(children: Children) {
   return split(children, " ");
 }
 
+/**
+ * Split `children` on commas.
+ */
 export function commas(children: Children) {
   return split(children, ",");
 }
@@ -363,7 +379,7 @@ export function Fragment(props: ChildProps): string {
 }
 
 /**
- * `props.children` is overwritten if children are provided.
+ * Note: `props.children` is overwritten if children are provided.
  */
 function mergeProps(props: PropsOf<typeof types[keyof typeof types]>, children: Children[]) {
   if(children.length > 0) {
