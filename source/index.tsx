@@ -50,6 +50,7 @@ import {
   p,
   parens,
   pre,
+  priority,
   q,
   s,
   second,
@@ -127,6 +128,7 @@ const types = {
   p,
   parens,
   pre,
+  priority,
   q,
   s,
   second,
@@ -258,6 +260,7 @@ export namespace JSX {
     p: PropsOf<typeof p>;
     parens: PropsOf<typeof parens>;
     pre: PropsOf<typeof pre>;
+    priority: PropsOf<typeof priority>;
     q: PropsOf<typeof q>;
     s: PropsOf<typeof s>;
     second: PropsOf<typeof second>;
@@ -356,6 +359,13 @@ export function lines(children: Children) {
  */
 export function spaces(children: Children) {
   return split(children, " ");
+}
+
+/**
+ * Split `children` on each character.
+ */
+export function chars(children: Children) {
+  return split(children, "");
 }
 
 /**

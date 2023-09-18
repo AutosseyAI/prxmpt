@@ -1,11 +1,6 @@
 import asArray from "as-typed-array";
 import * as Prxmpt from "../../index.js";
-
-export type Counter = (string: string) => number;
-
-export function charCounter(str: string) {
-  return str.length;
-}
+import { charCounter, Counter } from "./shared.js";
 
 export type CapStrategy = "ordered" | "ordered-no-skip" | "size-asc" | "size-desc";
 
@@ -42,18 +37,21 @@ export interface CapProps extends Prxmpt.TextProps {
 
 export const cap: Prxmpt.PC<CapProps> = (props) => {
   const counter = props.counter ?? charCounter;
+  const childrenArray = asArray(props.children);
   // Account for length of other text props
   const prefixCount = counter(Prxmpt.render(props.prefix));
   const suffixCount = counter(Prxmpt.render(props.suffix));
   const joinCount = counter(Prxmpt.render(props.join));
-  const ellipsisCount = (props.ellipsis ? counter(props.ellipsis) : 0) + joinCount;
+  const ellipsisCount = joinCount + (props.ellipsis ? counter(props.ellipsis) : 0);
+  const blockCount = props.block ? 1 : 0;
+  const reserved = prefixCount + suffixCount + blockCount;
   const repeat = props.repeat ?? 1;
   // TODO: account for indent
-  const max = Math.floor(((props.max ?? Infinity) - (prefixCount + suffixCount + joinCount)) / repeat);
+  const max = Math.floor(((props.max ?? Infinity) - reserved) / repeat);
   let didFilter = false;
   let total = 0;
   // Keep track of indices so we can reorder
-  const children = asArray(props.children)
+  const children = childrenArray
     .map((child, index) => ({
       text: Prxmpt.render(child),
       index,
@@ -76,7 +74,7 @@ export const cap: Prxmpt.PC<CapProps> = (props) => {
       const hasRoom = !isLast && hasRoomForEllipsis || isLast && hasRoomWithoutEllipsis;
       const isStopped = props.strategy === "ordered-no-skip" && didFilter;
       if(hasRoom && !isStopped) {
-        total += count;
+        total += count + joinCount;
         return true;
       } else {
         didFilter = true;
