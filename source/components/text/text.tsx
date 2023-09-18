@@ -114,9 +114,13 @@ export interface TextProps extends HideProps {
   suffix?: Prxmpt.Children;
   /**
    * Apply indentation to each line of the Element.
+   * 
    * If `true`, indentation is applied using 2 spaces.
+   * 
    * If a number is provided, that number of spaces is used.
+   * 
    * If `"\t"` is provided, a single tab character is used.
+   * 
    * @default false
    */
   indent?: boolean | number | "\t";
