@@ -11,7 +11,7 @@ export interface MarkedListProps extends Prxmpt.TextProps {
 function markedList(props: Prxmpt.ChildProps & MarkedListProps, marker: (index: number) => string) {
   return (
     <text {...props}>
-      <text
+      <lined
         map={(item, index, arr) => {
           const hideMarkers = props.onlyMarkIfList && arr.length < 2;
           return (
@@ -22,7 +22,7 @@ function markedList(props: Prxmpt.ChildProps & MarkedListProps, marker: (index: 
           );
         }}>
         {props.children}
-      </text>
+      </lined>
     </text>
   );
 }
