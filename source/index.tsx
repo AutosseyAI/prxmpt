@@ -350,6 +350,13 @@ export function split(children: Children, separator?: Children) {
 /**
  * Split `children` on newlines.
  */
+export function paragraphs(children: Children) {
+  return split(children, "\n\n");
+}
+
+/**
+ * Split `children` on newlines.
+ */
 export function lines(children: Children) {
   return split(children, "\n");
 }
