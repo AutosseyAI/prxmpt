@@ -1,6 +1,21 @@
 import asArray from "as-typed-array";
 import * as Prxmpt from "../../index.js";
 
+export type TrimSide = "start" | "end";
+
+function applyTrim(string: string, trim?: boolean | TrimSide) {
+  if(trim === true) {
+    return string.trim();
+  }
+  if(trim === "start") {
+    return string.trimStart();
+  }
+  if(trim === "end") {
+    return string.trimEnd();
+  }
+  return string;
+}
+
 export type Casing = "upper" | "lower" | "capital" | "title";
 
 function applyCasing(string: string, casing?: Casing) {
@@ -73,10 +88,15 @@ export interface TextProps extends HideProps {
    */
   repeat?: number;
   /**
-   * Trim whitespace from the beginning and end of the Element.
+   * `true`: Trim whitespace from the beginning and end of the Element.
+   * 
+   * `"start"`: Trim whitespace from the beginning of the Element.
+   * 
+   * `"end"`: Trim whitespace from the end of the Element.
+   * 
    * @default false
    */
-  trim?: boolean;
+  trim?: boolean | TrimSide;
   /**
    * Convert the Element to a given casing.
    * @default undefined
@@ -119,7 +139,7 @@ export const text: Prxmpt.PC<TextProps> = (props) => {
   const content = array
     .join(Prxmpt.render(props.join ?? ""))
     .repeat(props.repeat ?? 1);
-  const trimmed = props.trim ? content.trim() : content;
+  const trimmed = applyTrim(content, props.trim);
   const cased = applyCasing(trimmed, props.casing);
   const bracketed = `${props.prefix ?? ""}${cased}${props.suffix ?? ""}`;
   const indented = applyIndent(bracketed, props.indent);
