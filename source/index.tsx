@@ -69,6 +69,7 @@ import {
   text,
   time,
   tq,
+  trim,
   tsq,
   ul,
   underscore,
@@ -148,6 +149,7 @@ const types = {
   text,
   time,
   tq,
+  trim,
   tsq,
   ul,
   underscore,
@@ -281,6 +283,7 @@ export namespace JSX {
     text: PropsOf<typeof text>;
     time: PropsOf<typeof time>;
     tq: PropsOf<typeof tq>;
+    trim: PropsOf<typeof trim>;
     tsq: PropsOf<typeof tsq>;
     ul: PropsOf<typeof ul>;
     underscore: PropsOf<typeof underscore>;
