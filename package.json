@@ -30,9 +30,7 @@
   },
   "dependencies": {
     "as-typed-array": "^3.0.1",
-    "enquirer": "^2.4.1",
     "types-json": "4.0.1",
-    "typescript-json-schema": "^0.61.0",
     "yaml": "^2.3.2"
   },
   "devDependencies": {
