@@ -74,7 +74,7 @@ import {
   union,
   yaml,
   year
-} from "./components/index.js";
+} from "./elements/index.js";
 
 const types = {
   a,
@@ -422,4 +422,4 @@ const Prxmpt = {
 
 export default Prxmpt;
 
-export * from "./components/index.js";
+export * from "./elements/index.js";

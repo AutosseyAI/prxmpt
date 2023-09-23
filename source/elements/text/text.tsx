@@ -73,7 +73,7 @@ export interface TextProps extends HideProps {
    * A function that maps each child to a new Element.
    * @default (node) => Prxmpt.render(node)
    */
-  map?: (node: Prxmpt.Children, index: number, arr: Prxmpt.Children[]) => Prxmpt.JSX.Element;
+  map?: (node: Prxmpt.Children, index: number, arr: Prxmpt.Children[]) => Prxmpt.Element;
   /**
    * Reverse the order of the children.
    */
