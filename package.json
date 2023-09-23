@@ -8,6 +8,16 @@
   "type": "module",
   "main": ".auto/build/index.js",
   "types": ".auto/build/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./.auto/build/index.d.ts",
+      "import": "./.auto/build/index.js"
+    },
+    "./jsx-runtime": {
+      "types": "./.auto/build/jsx-runtime.d.ts",
+      "import": "./.auto/build/jsx-runtime.js"
+    }
+  },
   "files": [
     ".auto/build/**/!(tsconfig.tsbuildinfo|tsconfig.json)",
     "tsconfig.json"

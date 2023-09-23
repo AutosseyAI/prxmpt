@@ -4,6 +4,7 @@
   "compilerOptions": {
     "jsx": "react",
     "jsxFactory": "Prxmpt.createElement",
-    "jsxFragmentFactory": "Prxmpt.Fragment"
+    "jsxFragmentFactory": "Prxmpt.Fragment",
+    "types": []
   }
 }

@@ -9,6 +9,7 @@
     ]
   },
   "files": [
-    "source/index.tsx"
+    "source/index.tsx",
+    "source/jsx-runtime.ts"
   ]
 }

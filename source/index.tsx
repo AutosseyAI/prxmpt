@@ -75,8 +75,9 @@ import {
   yaml,
   year
 } from "./elements/index.js";
+import { chars, commas, lines, paragraphs, spaces, split } from "./splitters.js";
 
-const types = {
+const elements = {
   a,
   and,
   andor,
@@ -155,150 +156,175 @@ const types = {
 
 type Option<T> = T | undefined;
 
-/**
- * Represents values that can be returned from a `Component`.
- */
-export type Node = JSX.Element | JSX.Element[];
-
-/**
- * A function that takes an argument `props`, and returns a `Node` or `undefined.
- */
-export type Component = (props: any) => JSX.Element;
-
-/**
- * Extracts the type of a `Component`'s `props` parameter.
- */
-export type PropsOf<T extends Component> = Parameters<T>[0];
-
-/**
- * - Represents values that can be passed as children to a `Component`.
- * - Represents values that can be rendered by `Prxmpt.render`.
- */
-export type Children = Option<Children[] | string | number | boolean | null>;
-
-export interface ChildProps {
-  children: Children;
-}
-
-/**
- * **Function Component**
- * 
- * A `Component` that does not have a `children` property by default.
- */
-export interface FC<P = {}> {
-  (props: P): JSX.Element;
-}
-
-/**
- * **Parent Component**
- * 
- * A `Component` with a required `children` property.
- */
-export interface PC<P = {}> extends FC<P & ChildProps> { }
-
-/**
- * **Optional Children Component**
- * 
- * A `Component` with an optional `children` property.
- */
-export interface OC<P = {}> extends FC<Partial<ChildProps> & P> { }
-
-/**
- * https://www.typescriptlang.org/docs/handbook/jsx.html
- */
-export namespace JSX {
-  export interface IntrinsicElements {
-    a: PropsOf<typeof a>;
-    and: PropsOf<typeof and>;
-    andor: PropsOf<typeof andor>;
-    angle: PropsOf<typeof angle>;
-    ask: PropsOf<typeof ask>;
-    b: PropsOf<typeof b>;
-    blockquote: PropsOf<typeof blockquote>;
-    bq: PropsOf<typeof bq>;
-    br: PropsOf<typeof br>;
-    cap: PropsOf<typeof cap>;
-    cl: PropsOf<typeof cl>;
-    code: PropsOf<typeof code>;
-    commaed: PropsOf<typeof commaed>,
-    comment: PropsOf<typeof comment>;
-    curly: PropsOf<typeof curly>;
-    date: PropsOf<typeof date>;
-    datetime: PropsOf<typeof datetime>;
-    day: PropsOf<typeof day>;
-    div: PropsOf<typeof div>;
-    dl: PropsOf<typeof dl>;
-    dq: PropsOf<typeof dq>;
-    elapsed: PropsOf<typeof elapsed>;
-    ellipsis: PropsOf<typeof ellipsis>;
-    empty: PropsOf<typeof empty>;
-    exclaim: PropsOf<typeof exclaim>;
-    frame: PropsOf<typeof frame>;
-    h1: PropsOf<typeof h1>;
-    h2: PropsOf<typeof h2>;
-    h3: PropsOf<typeof h3>;
-    h4: PropsOf<typeof h4>;
-    h5: PropsOf<typeof h5>;
-    h6: PropsOf<typeof h6>;
-    hr: PropsOf<typeof hr>;
-    hour: PropsOf<typeof hour>;
-    i: PropsOf<typeof i>;
-    img: PropsOf<typeof img>;
-    json: PropsOf<typeof json>;
-    kv: PropsOf<typeof kv>;
-    lined: PropsOf<typeof lined>;
-    ol: PropsOf<typeof ol>;
-    or: PropsOf<typeof or>;
-    millisecond: PropsOf<typeof millisecond>;
-    minute: PropsOf<typeof minute>;
-    month: PropsOf<typeof month>;
-    na: PropsOf<typeof na>;
-    nor: PropsOf<typeof nor>;
-    num: PropsOf<typeof num>;
-    p: PropsOf<typeof p>;
-    parens: PropsOf<typeof parens>;
-    pre: PropsOf<typeof pre>;
-    priority: PropsOf<typeof priority>;
-    q: PropsOf<typeof q>;
-    s: PropsOf<typeof s>;
-    second: PropsOf<typeof second>;
-    sectioned: PropsOf<typeof sectioned>;
-    space: PropsOf<typeof space>;
-    spaced: PropsOf<typeof spaced>;
-    span: PropsOf<typeof span>;
-    sq: PropsOf<typeof sq>;
-    square: PropsOf<typeof square>;
-    state: PropsOf<typeof state>;
-    tab: PropsOf<typeof tab>;
-    tag: PropsOf<typeof tag>;
-    tbq: PropsOf<typeof tbq>;
-    tdq: PropsOf<typeof tdq>;
-    text: PropsOf<typeof text>;
-    time: PropsOf<typeof time>;
-    tq: PropsOf<typeof tq>;
-    trim: PropsOf<typeof trim>;
-    tsq: PropsOf<typeof tsq>;
-    ul: PropsOf<typeof ul>;
-    union: PropsOf<typeof union>;
-    yaml: PropsOf<typeof yaml>;
-    year: PropsOf<typeof year>;
-  }
-  /**
-   * The result of a JSX expression.
-   */
+namespace Prxmpt {
   export type Element = Option<string>;
-  export interface ElementAttributesProperty {
-    props: any; // specify the property name to use
+  /**
+   * The name of a built-in element.
+   */
+  export type ElementName = keyof typeof elements;
+  /**
+   * Represents values that can be returned from a `Component`.
+   */
+  export type Node = Element | Element[];
+
+  /**
+   * A function that takes an argument `props`, and returns a `Node` or `undefined.
+   */
+  export type Component = (props: any) => Element;
+
+  /**
+   * Extracts the type of a `Component`'s `props` parameter.
+   */
+  export type PropsOf<T extends Component> = Parameters<T>[0];
+
+  /**
+   * - Represents values that can be passed as children to a `Component`.
+   * - Represents values that can be rendered by `Prxmpt.render`.
+   */
+  export type Children = Option<Children[] | string | number | boolean | null>;
+
+  export interface ChildProps {
+    children: Children;
   }
-  export interface ElementChildrenAttribute {
-    children: Children; // specify children name to use
+
+  /**
+   * **Function Component**
+   *
+   * A `Component` that does not have a `children` property by default.
+   */
+  export interface FC<P = {}> {
+    (props: P): Element;
+  }
+
+  /**
+   * **Parent Component**
+   *
+   * A `Component` with a required `children` property.
+   */
+  export interface PC<P = {}> extends FC<P & ChildProps> {}
+
+  /**
+   * **Optional Children Component**
+   *
+   * A `Component` with an optional `children` property.
+   */
+  export interface OC<P = {}> extends FC<Partial<ChildProps> & P> {}
+}
+
+// Re-export types to support `import * as Prxmpt from "prxmpt";` syntax
+
+export type Element = Prxmpt.Element;
+export type ElementName = Prxmpt.ElementName;
+export type Node = Prxmpt.Node;
+export type Component = Prxmpt.Component;
+export type PropsOf<T extends Prxmpt.Component> = Prxmpt.PropsOf<T>;
+export type Children = Prxmpt.Children;
+export type ChildProps = Prxmpt.ChildProps;
+export type FC<P = {}> = Prxmpt.FC<P>;
+export type PC<P = {}> = Prxmpt.PC<P>;
+export type OC<P = {}> = Prxmpt.OC<P>;
+
+// JSX
+
+declare global {
+  /**
+   * https://www.typescriptlang.org/docs/handbook/jsx.html
+   */
+  export namespace JSX {
+    export interface IntrinsicElements {
+      a: Prxmpt.PropsOf<typeof a>;
+      and: Prxmpt.PropsOf<typeof and>;
+      andor: Prxmpt.PropsOf<typeof andor>;
+      angle: Prxmpt.PropsOf<typeof angle>;
+      ask: Prxmpt.PropsOf<typeof ask>;
+      b: Prxmpt.PropsOf<typeof b>;
+      blockquote: Prxmpt.PropsOf<typeof blockquote>;
+      bq: Prxmpt.PropsOf<typeof bq>;
+      br: Prxmpt.PropsOf<typeof br>;
+      cap: Prxmpt.PropsOf<typeof cap>;
+      cl: Prxmpt.PropsOf<typeof cl>;
+      code: Prxmpt.PropsOf<typeof code>;
+      commaed: Prxmpt.PropsOf<typeof commaed>,
+      comment: Prxmpt.PropsOf<typeof comment>;
+      curly: Prxmpt.PropsOf<typeof curly>;
+      date: Prxmpt.PropsOf<typeof date>;
+      datetime: Prxmpt.PropsOf<typeof datetime>;
+      day: Prxmpt.PropsOf<typeof day>;
+      div: Prxmpt.PropsOf<typeof div>;
+      dl: Prxmpt.PropsOf<typeof dl>;
+      dq: Prxmpt.PropsOf<typeof dq>;
+      elapsed: Prxmpt.PropsOf<typeof elapsed>;
+      ellipsis: Prxmpt.PropsOf<typeof ellipsis>;
+      empty: Prxmpt.PropsOf<typeof empty>;
+      exclaim: Prxmpt.PropsOf<typeof exclaim>;
+      frame: Prxmpt.PropsOf<typeof frame>;
+      h1: Prxmpt.PropsOf<typeof h1>;
+      h2: Prxmpt.PropsOf<typeof h2>;
+      h3: Prxmpt.PropsOf<typeof h3>;
+      h4: Prxmpt.PropsOf<typeof h4>;
+      h5: Prxmpt.PropsOf<typeof h5>;
+      h6: Prxmpt.PropsOf<typeof h6>;
+      hr: Prxmpt.PropsOf<typeof hr>;
+      hour: Prxmpt.PropsOf<typeof hour>;
+      i: Prxmpt.PropsOf<typeof i>;
+      img: Prxmpt.PropsOf<typeof img>;
+      json: Prxmpt.PropsOf<typeof json>;
+      kv: Prxmpt.PropsOf<typeof kv>;
+      lined: Prxmpt.PropsOf<typeof lined>;
+      ol: Prxmpt.PropsOf<typeof ol>;
+      or: Prxmpt.PropsOf<typeof or>;
+      millisecond: Prxmpt.PropsOf<typeof millisecond>;
+      minute: Prxmpt.PropsOf<typeof minute>;
+      month: Prxmpt.PropsOf<typeof month>;
+      na: Prxmpt.PropsOf<typeof na>;
+      nor: Prxmpt.PropsOf<typeof nor>;
+      num: Prxmpt.PropsOf<typeof num>;
+      p: Prxmpt.PropsOf<typeof p>;
+      parens: Prxmpt.PropsOf<typeof parens>;
+      pre: Prxmpt.PropsOf<typeof pre>;
+      priority: Prxmpt.PropsOf<typeof priority>;
+      q: Prxmpt.PropsOf<typeof q>;
+      s: Prxmpt.PropsOf<typeof s>;
+      second: Prxmpt.PropsOf<typeof second>;
+      sectioned: Prxmpt.PropsOf<typeof sectioned>;
+      space: Prxmpt.PropsOf<typeof space>;
+      spaced: Prxmpt.PropsOf<typeof spaced>;
+      span: Prxmpt.PropsOf<typeof span>;
+      sq: Prxmpt.PropsOf<typeof sq>;
+      square: Prxmpt.PropsOf<typeof square>;
+      state: Prxmpt.PropsOf<typeof state>;
+      tab: Prxmpt.PropsOf<typeof tab>;
+      tag: Prxmpt.PropsOf<typeof tag>;
+      tbq: Prxmpt.PropsOf<typeof tbq>;
+      tdq: Prxmpt.PropsOf<typeof tdq>;
+      text: Prxmpt.PropsOf<typeof text>;
+      time: Prxmpt.PropsOf<typeof time>;
+      tq: Prxmpt.PropsOf<typeof tq>;
+      trim: Prxmpt.PropsOf<typeof trim>;
+      tsq: Prxmpt.PropsOf<typeof tsq>;
+      ul: Prxmpt.PropsOf<typeof ul>;
+      union: Prxmpt.PropsOf<typeof union>;
+      yaml: Prxmpt.PropsOf<typeof yaml>;
+      year: Prxmpt.PropsOf<typeof year>;
+    }
+    /**
+     * The result of a JSX expression.
+     */
+    export type Element = Prxmpt.Element;
+    export interface ElementAttributesProperty {
+      props: any; // specify the property name to use
+    }
+    export interface ElementChildrenAttribute {
+      children: Prxmpt.Children; // specify children name to use
+    }
   }
 }
+
 
 /**
  * Returns `true` if the provided value is of type `Children`.
  */
-export function isChildren(value: any): value is Children {
+export function isChildren(value: any): value is Prxmpt.Children {
   return (
     typeof value === "string"
     || typeof value === "number"
@@ -312,7 +338,7 @@ export function isChildren(value: any): value is Children {
 /**
  * Returns `true` if the provided `props` have children to render.
  */
-export function hasChildren(props: Partial<ChildProps>) {
+export function hasChildren(props: Partial<Prxmpt.ChildProps>) {
   return props.children !== undefined
     && props.children !== null
     && (!Array.isArray(props.children) || props.children.length > 0);
@@ -322,7 +348,7 @@ export function hasChildren(props: Partial<ChildProps>) {
  * Returns a string representation of the provided `children`.
  * If the children resolve to `undefined`, an empty string is returned.
  */
-export function render(children: Children) {
+export function render(children: Prxmpt.Children) {
   if(Array.isArray(children)) {
     // `null` and `undefined` are filtered out by `.join("")`
     return children.flat().join("");
@@ -331,63 +357,14 @@ export function render(children: Children) {
   }
 }
 
-/**
- * Split `children` on `separator`.
- * If `separator` is `undefined`, no splitting occurs.
- */
-export function split(children: Children, separator?: Children) {
-  if(separator !== undefined) {
-    const splitter = render(separator);
-    const string = render(children);
-    return string.split(splitter);
-  } else {
-    return [render(children)];
-  }
-}
-
-/**
- * Split `children` on newlines.
- */
-export function paragraphs(children: Children) {
-  return split(children, "\n\n");
-}
-
-/**
- * Split `children` on newlines.
- */
-export function lines(children: Children) {
-  return split(children, "\n");
-}
-
-/**
- * Split `children` on spaces.
- */
-export function spaces(children: Children) {
-  return split(children, " ");
-}
-
-/**
- * Split `children` on each character.
- */
-export function chars(children: Children) {
-  return split(children, "");
-}
-
-/**
- * Split `children` on commas.
- */
-export function commas(children: Children) {
-  return split(children, ",");
-}
-
-export function Fragment(props: ChildProps): string {
+export function Fragment(props: Prxmpt.ChildProps): string {
   return render(props.children);
 }
 
 /**
  * Note: `props.children` is overwritten if children are provided.
  */
-function mergeProps(props: PropsOf<typeof types[keyof typeof types]>, children: Children[]) {
+function mergeProps(props: Prxmpt.PropsOf<typeof elements[Prxmpt.ElementName]>, children: Prxmpt.Children[]) {
   if(children.length > 0) {
     return {
       ...props,
@@ -399,15 +376,15 @@ function mergeProps(props: PropsOf<typeof types[keyof typeof types]>, children: 
 }
 
 export function createElement(
-  type: keyof typeof types | Component,
-  props: PropsOf<typeof types[keyof typeof types]>,
-  ...children: Children[]
-): JSX.Element {
+  type: Prxmpt.ElementName | Prxmpt.Component,
+  props: Prxmpt.PropsOf<typeof elements[Prxmpt.ElementName]>,
+  ...children: Prxmpt.Children[]
+): Prxmpt.Element {
   const fullProps = mergeProps(props, children);
   if(typeof type === "function") {
     return type(fullProps);
   } else {
-    const component = types[type] as Component | undefined;
+    const component = elements[type] as Prxmpt.Component | undefined;
     if(component) {
       return component(fullProps);
     }
@@ -417,9 +394,21 @@ export function createElement(
 
 const Prxmpt = {
   createElement,
-  Fragment
+  Fragment,
+  render,
+  // Splitters
+  split,
+  paragraphs,
+  lines,
+  spaces,
+  chars,
+  commas,
+  // Children
+  isChildren,
+  hasChildren
 };
 
 export default Prxmpt;
 
 export * from "./elements/index.js";
+export * from "./splitters.js";
