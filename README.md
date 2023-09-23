@@ -190,11 +190,6 @@ For examples of how to use specific elements, the [tests](https://github.com/Aut
 
 - [Text Elements](#text-elements)
     - [`<text>`](#text)
-  - [Casing](#casing)
-    - [`<upper>`](#upper)
-    - [`<lower>`](#lower)
-    - [`<capital>`](#capital)
-    - [`<title>`](#title)
   - [Brackets](#brackets)
     - [`<parens>` (Parenthesis)](#parens)
     - [`<square>` (Square Bracket)](#square)
@@ -274,6 +269,11 @@ For examples of how to use specific elements, the [tests](https://github.com/Aut
     - [`<json>`](#json)
     - [`<yaml>`](#yaml)
 - [Utility Elements](#utility-elements)
+  - [Casing](#casing)
+    - [`<upper>`](#upper)
+    - [`<lower>`](#lower)
+    - [`<capital>`](#capital)
+    - [`<title>`](#title)
   - [Joins](#joins)
     - [`<lined>`](#lined)
     - [`<spaced>`](#spaced)
@@ -447,48 +447,6 @@ indent?: boolean | number | "\t";
  * @default false
  */
 block?: boolean;
-```
-
-<h3 id="casing"><div align="right"><a href="#casing">🔝</a></div>Casing</h3>
-
-#### Upper
-
-_`<upper>`_
-
-```tsx
-// "HELLO, WORLD!"
-
-const string = <upper>Hello, World!</upper>;
-```
-
-#### Lower
-
-_`<lower>`_
-
-```tsx
-// "hello, world!"
-
-const string = <lower>Hello, World!</lower>;
-```
-
-#### Capital
-
-_`<capital>`_
-
-```tsx
-// "Hello, world!"
-
-const string = <capital>hello, world!</capital>;
-```
-
-#### Title
-
-_`<title>`_
-
-```tsx
-// "Hello, World!"
-
-const string = <title>hello, world!</title>;
 ```
 
 <h3 id="characters"><div align="right"><a href="#elements">🔝</a></div>Characters</h3>
@@ -1746,6 +1704,48 @@ const string = <yaml data={{ hello: "world" }} />;
 ```
 
 <h2 id="utility-elements"><div align="right"><a href="#elements">🔝</a></div>Utility Elements</h2>
+
+<h3 id="casing"><div align="right"><a href="#elements">🔝</a></div>Casing</h3>
+
+#### Upper
+
+_`<upper>`_
+
+```tsx
+// "HELLO, WORLD!"
+
+const string = <upper>Hello, World!</upper>;
+```
+
+#### Lower
+
+_`<lower>`_
+
+```tsx
+// "hello, world!"
+
+const string = <lower>Hello, World!</lower>;
+```
+
+#### Capital
+
+_`<capital>`_
+
+```tsx
+// "Hello, world!"
+
+const string = <capital>hello, world!</capital>;
+```
+
+#### Title
+
+_`<title>`_
+
+```tsx
+// "Hello, World!"
+
+const string = <title>hello, world!</title>;
+```
 
 <h3 id="joins"><div align="right"><a href="#elements">🔝</a></div>Joins</h3>
 
