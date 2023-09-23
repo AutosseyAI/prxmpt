@@ -1,0 +1,21 @@
+{
+  "name": "prxmpt-example-ts-node-classic",
+  "version": "1.0.0",
+  "description": "Prxmpt TS Node Classic Example",
+  "license": "MIT",
+  "private": true,
+  "author": "Connor White",
+  "type": "module",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "dev": "node --loader ts-node/esm --no-warnings source/index.ts"
+  },
+  "dependencies": {
+    "@autossey/prxmpt": "*"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

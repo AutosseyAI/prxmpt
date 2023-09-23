@@ -1,6 +1,5 @@
-import * as Prxmpt from "prxmpt";
 
-export default function Example() {
+export default function Prompt() {
   return (
     <lined height={2}>
       <h1>Prxmpt</h1>
@@ -53,8 +52,6 @@ export default function Example() {
       <kv key="Empty"><empty /></kv>
       <h4>Single Characters</h4>
       <kv key="Space"><space /></kv>
-      <kv key="Dash"><dash /></kv>
-      <kv key="Underscore"><underscore /></kv>
       <h4>Multiple Characters</h4>
       <kv key="Ellipsis"><ellipsis /></kv>
       <kv key="NA"><na /></kv>

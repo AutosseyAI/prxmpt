@@ -1,0 +1,21 @@
+{
+  "name": "prxmpt-example-tsc",
+  "version": "1.0.0",
+  "description": "Prxmpt TSC Example",
+  "license": "MIT",
+  "private": true,
+  "author": "Connor White",
+  "type": "module",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js"
+  },
+  "dependencies": {
+    "@autossey/prxmpt": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

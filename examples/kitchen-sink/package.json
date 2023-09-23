@@ -6,12 +6,15 @@
   "private": true,
   "author": "Connor White",
   "type": "module",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "scripts": {
     "dev": "node --loader ts-node/esm --no-warnings source/index.ts",
     "build": "swc source --config-file .swcrc --copy-files --delete-dir-on-start --out-dir build && tsc --emitDeclarationOnly",
     "start": "node build/index.js"
+  },
+  "dependencies": {
+    "@autossey/prxmpt": "*"
   },
   "devDependencies": {
     "swc": "^1.0.11",

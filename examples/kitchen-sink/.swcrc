@@ -5,18 +5,16 @@
       "syntax": "typescript",
       "tsx": true
     },
-    "target": "es2019",
+    "target": "es2022",
     "transform": {
       "react": {
-        "pragma": "Prxmpt.createElement",
-        "pragmaFrag": "Prxmpt.Fragment",
-        "throwIfNamespace": true,
-        "development": false,
-        "useBuiltins": false
+        "runtime": "automatic",
+        "importSource": "@autossey/prxmpt"
       }
     }
   },
   "module": {
+    "resolveFully": true,
     "type": "es6"
   }
 }

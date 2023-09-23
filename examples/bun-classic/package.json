@@ -1,0 +1,20 @@
+{
+  "name": "prxmpt-example-bun-classic",
+  "version": "1.0.0",
+  "description": "Prxmpt Bun Classic Example",
+  "license": "MIT",
+  "private": true,
+  "author": "Connor White",
+  "type": "module",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "start": "bun source/index.ts"
+  },
+  "dependencies": {
+    "@autossey/prxmpt": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

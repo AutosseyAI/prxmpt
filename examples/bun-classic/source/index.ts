@@ -1,4 +1,4 @@
-import Prompt from "./prompt.js";
+import Prompt from "./Prompt.js";
 
 const string = Prompt();
 
