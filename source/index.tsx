@@ -10,6 +10,7 @@ import {
   bq,
   br,
   cap,
+  capital,
   cl,
   code,
   comment,
@@ -39,6 +40,7 @@ import {
   json,
   kv,
   lined,
+  lower,
   millisecond,
   minute,
   month,
@@ -67,11 +69,13 @@ import {
   tdq,
   text,
   time,
+  title,
   tq,
   trim,
   tsq,
   ul,
   union,
+  upper,
   yaml,
   year
 } from "./elements/index.js";
@@ -88,6 +92,7 @@ const elements = {
   bq,
   br,
   cap,
+  capital,
   cl,
   code,
   csl,
@@ -117,6 +122,7 @@ const elements = {
   json,
   kv,
   lined,
+  lower,
   millisecond,
   minute,
   month,
@@ -145,11 +151,13 @@ const elements = {
   tdq,
   text,
   time,
+  title,
   tq,
   trim,
   tsq,
   ul,
   union,
+  upper,
   yaml,
   year
 } as const;
@@ -221,6 +229,7 @@ namespace Prxmpt {
     bq: PropsOf<typeof bq>;
     br: PropsOf<typeof br>;
     cap: PropsOf<typeof cap>;
+    capital: PropsOf<typeof capital>;
     cl: PropsOf<typeof cl>;
     code: PropsOf<typeof code>;
     csl: PropsOf<typeof csl>,
@@ -250,6 +259,7 @@ namespace Prxmpt {
     json: PropsOf<typeof json>;
     kv: PropsOf<typeof kv>;
     lined: PropsOf<typeof lined>;
+    lower: PropsOf<typeof lower>;
     ol: PropsOf<typeof ol>;
     or: PropsOf<typeof or>;
     millisecond: PropsOf<typeof millisecond>;
@@ -278,11 +288,13 @@ namespace Prxmpt {
     tdq: PropsOf<typeof tdq>;
     text: PropsOf<typeof text>;
     time: PropsOf<typeof time>;
+    title: PropsOf<typeof title>;
     tq: PropsOf<typeof tq>;
     trim: PropsOf<typeof trim>;
     tsq: PropsOf<typeof tsq>;
     ul: PropsOf<typeof ul>;
     union: PropsOf<typeof union>;
+    upper: PropsOf<typeof upper>;
     yaml: PropsOf<typeof yaml>;
     year: PropsOf<typeof year>;
   }
