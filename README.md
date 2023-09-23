@@ -292,7 +292,7 @@ The following functions are also exported from Prxmpt:
 - [Children](#children)
   - [`hasChildren`](#haschildren)
   - [`isChildren`](#ischildren)
-- [Split](#split)
+- [Splitters](#splitters)
   - [`split`](#split)
   - [`paragraphs`](#paragraphs)
   - [`lines`](#lines)
