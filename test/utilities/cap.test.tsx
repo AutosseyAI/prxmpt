@@ -1,5 +1,4 @@
-import assert from "node:assert";
-import { describe, test } from "node:test";
+import { describe, expect, test } from "bun:test";
 import * as Prxmpt from "../../source/index.js";
 
 describe("max", () => {
@@ -13,7 +12,7 @@ describe("max", () => {
         <text>Test 5</text>
       </cap>
     );
-    assert.equal(text, "Test 1\nTest 2\nTest 3\nTest 4\nTest 5");
+    expect(text).toEqual("Test 1\nTest 2\nTest 3\nTest 4\nTest 5");
   });
   test("defined", () => {
     const text = (
@@ -25,7 +24,7 @@ describe("max", () => {
         <text>Test 5</text>
       </cap>
     );
-    assert.equal(text, "Test 1\nTest 2");
+    expect(text).toEqual("Test 1\nTest 2");
   });
   test("exact", () => {
     const text = (
@@ -37,7 +36,7 @@ describe("max", () => {
         <text>Test 5</text>
       </cap>
     );
-    assert.equal(text, "Test 1Test 2");
+    expect(text).toEqual("Test 1Test 2");
   });
   test("exact w/join", () => {
     const text = (
@@ -49,7 +48,7 @@ describe("max", () => {
         <text>Test 5</text>
       </cap>
     );
-    assert.equal(text, "Test 1");
+    expect(text).toEqual("Test 1");
   });
 });
 
@@ -64,7 +63,7 @@ describe("strategies", () => {
         <text>5</text>
       </cap>
     );
-    assert.equal(text, "1225");
+    expect(text).toEqual("1225");
   });
   test("ordered-no-skip", () => {
     const text = (
@@ -76,7 +75,7 @@ describe("strategies", () => {
         <text>5</text>
       </cap>
     );
-    assert.equal(text, "122");
+    expect(text).toEqual("122");
   });
   test("size-asc", () => {
     const text = (
@@ -88,7 +87,7 @@ describe("strategies", () => {
         <text>5</text>
       </cap>
     );
-    assert.equal(text, "13335");
+    expect(text).toEqual("13335");
   });
   test("size-desc", () => {
     const text = (
@@ -100,7 +99,7 @@ describe("strategies", () => {
         <text>5</text>
       </cap>
     );
-    assert.equal(text, "12222");
+    expect(text).toEqual("12222");
   });
 });
 
@@ -115,7 +114,7 @@ describe("ellipsis", () => {
         <text>55555</text>
       </cap>
     );
-    assert.equal(text, "122333444455555");
+    expect(text).toEqual("122333444455555");
   });
   test("max exact", () => {
     const text = (
@@ -127,7 +126,7 @@ describe("ellipsis", () => {
         <text>55555</text>
       </cap>
     );
-    assert.equal(text, "122333...");
+    expect(text).toEqual("122333...");
   });
   test("max exact", () => {
     const text = (
@@ -139,7 +138,7 @@ describe("ellipsis", () => {
         <text>55555</text>
       </cap>
     );
-    assert.equal(text, "122333...");
+    expect(text).toEqual("122333...");
   });
   test("add more after filter", () => {
     const text = (
@@ -151,6 +150,6 @@ describe("ellipsis", () => {
         <text>5</text>
       </cap>
     );
-    assert.equal(text, "1223335...");
+    expect(text).toEqual("1223335...");
   });
 });

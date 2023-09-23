@@ -1,9 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "./tsconfig.base.json",
-  "include": [
-    "source/**/*.ts",
-    "source/**/*.tsx",
-    "test/**/*.tsx"
-  ]
+  "compilerOptions": {
+    "jsx": "react",
+    "jsxFactory": "Prxmpt.createElement",
+    "jsxFragmentFactory": "Prxmpt.Fragment"
+  }
 }

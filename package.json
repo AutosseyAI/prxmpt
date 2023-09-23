@@ -9,7 +9,8 @@
   "main": ".auto/build/index.js",
   "types": ".auto/build/index.d.ts",
   "files": [
-    ".auto/build/**/!(tsconfig.tsbuildinfo)"
+    ".auto/build/**/!(tsconfig.tsbuildinfo|tsconfig.json)",
+    "tsconfig.json"
   ],
   "engines": {
     "node": ">=18.0.0"
@@ -21,7 +22,7 @@
     "build": "yarn build:source && yarn build:types",
     "build:source": "swc source --config-file .swcrc --copy-files --delete-dir-on-start --out-dir .auto/build",
     "build:types": "tsc --emitDeclarationOnly --project tsconfig.build.json",
-    "test": "./scripts/test.sh",
+    "test": "bun test",
     "typecheck": "tsc --noEmit --project tsconfig.build.json",
     "watch:source": "swc source --config-file .swcrc --copy-files --out-dir .auto/build --watch",
     "watch:types": "tsc --emitDeclarationOnly --watch --project tsconfig.build.json",
@@ -35,7 +36,8 @@
     "yaml": "^2.3.2"
   },
   "devDependencies": {
-    "@autosoft/tsconfig": "^1.0.1",
+    "@autossey/tsconfig": "^1.0.0",
+    "bun-types": "^1.0.2",
     "ts-node": "^10.9.1"
   },
   "eslintConfig": {

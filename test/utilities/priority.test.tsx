@@ -1,5 +1,4 @@
-import assert from "node:assert";
-import { describe, test } from "node:test";
+import { describe, expect, test } from "bun:test";
 import * as Prxmpt from "../../source/index.js";
 
 describe("basics", () => {
@@ -16,7 +15,7 @@ describe("basics", () => {
           content: "Test 3"
         }]} />
     );
-    assert.equal(text, "Test 1");
+    expect(text).toEqual("Test 1");
   });
   test("priority 1", () => {
     const text = (
@@ -32,7 +31,7 @@ describe("basics", () => {
           content: "Test 3"
         }]} />
     );
-    assert.equal(text, "Test 2");
+    expect(text).toEqual("Test 2");
   });
   test("negative priority", () => {
     const text = (
@@ -48,7 +47,7 @@ describe("basics", () => {
           content: "Test 3"
         }]} />
     );
-    assert.equal(text, "Test 1\nTest 3");
+    expect(text).toEqual("Test 1\nTest 3");
   });
 });
 
@@ -70,6 +69,6 @@ describe("cap", () => {
           content: "Test 3"
         }]} />
     );
-    assert.equal(text, "Test 1\nTes");
+    expect(text).toEqual("Test 1\nTes");
   });
 });

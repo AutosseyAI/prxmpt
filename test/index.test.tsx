@@ -1,38 +1,37 @@
-import assert from "node:assert";
-import { describe, test } from "node:test";
+import { describe, expect, test } from "bun:test";
 import * as Prxmpt from "../source/index.js";
 
 describe("render", () => {
   test("string", () => {
     const result = Prxmpt.render("Test");
-    assert.equal(result, "Test");
+    expect(result).toEqual("Test");
   });
   test("strings", () => {
     const result = Prxmpt.render(["Test", "Test"]);
-    assert.equal(result, "TestTest");
+    expect(result).toEqual("TestTest");
   });
   test("number", () => {
     const result = Prxmpt.render(1);
-    assert.equal(result, "1");
+    expect(result).toEqual("1");
   });
   test("true", () => {
     const result = Prxmpt.render(true);
-    assert.equal(result, "true");
+    expect(result).toEqual("true");
   });
   test("false", () => {
     const result = Prxmpt.render(false);
-    assert.equal(result, "false");
+    expect(result).toEqual("false");
   });
   test("null", () => {
     const result = Prxmpt.render(null);
-    assert.equal(result, "");
+    expect(result).toEqual("");
   });
   test("undefined", () => {
     const result = Prxmpt.render(undefined);
-    assert.equal(result, "");
+    expect(result).toEqual("");
   });
   test("mixed", () => {
     const result = Prxmpt.render(["Test", 1, true, null, undefined]);
-    assert.equal(result, "Test1true");
+    expect(result).toEqual("Test1true");
   });
 });
