@@ -6,12 +6,12 @@ This directory contains examples of using `Prxmpt` in various situations.
 
 **Classic Mode** - These examples use the `jsxFactory` and `jsxFragmentFactory` fields in `tsconfig.json`, and require importing `@autossey/prxmpt` in each file that uses `Prxmpt`.
 
-- [bun-classic](./bun-classic/)
-- [kitchen-sink](./kitchen-sink/)
-- [next](./next/)
-- [swc](./swc/)
-- [swc](./swc-classic/)
-- [ts-node](./ts-node/)
-- [ts-node-classic](./ts-node-classic/)
-- [tsc](./tsc/)
-- [tsc-classic](./tsc-classic/)
+- [bun (classic mode)](./examples/bun-classic/)
+- [kitchen sink](./examples/kitchen-sink/)
+- [next](./examples/next/)
+- [swc](./examples/swc/)
+- [swc (classic mode)](./examples/swc-classic/)
+- [ts-node](./examples/ts-node/)
+- [ts-node (classic mode)](./examples/ts-node-classic/)
+- [tsc](./examples/tsc/)
+- [tsc (classic mode)](./examples/tsc-classic/)

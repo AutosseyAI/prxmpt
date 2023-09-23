@@ -12,8 +12,8 @@ import {
   cap,
   cl,
   code,
-  commaed,
   comment,
+  csl,
   curly,
   date,
   datetime,
@@ -90,7 +90,7 @@ const elements = {
   cap,
   cl,
   code,
-  commaed,
+  csl,
   comment,
   curly,
   date,
@@ -223,7 +223,7 @@ namespace Prxmpt {
     cap: PropsOf<typeof cap>;
     cl: PropsOf<typeof cl>;
     code: PropsOf<typeof code>;
-    commaed: PropsOf<typeof commaed>,
+    csl: PropsOf<typeof csl>,
     comment: PropsOf<typeof comment>;
     curly: PropsOf<typeof curly>;
     date: PropsOf<typeof date>;

@@ -13,6 +13,9 @@ export type PriorityItem = {
    * @default 0
    */
   p?: number;
+  /**
+   * The content to render.
+   */
   content: ((capacity: number) => Prxmpt.Children) | Prxmpt.Children;
 };
 

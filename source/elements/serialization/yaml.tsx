@@ -3,6 +3,9 @@ import * as YAML from "yaml";
 import * as Prxmpt from "../../index.js";
 
 export interface YAMLProps extends Prxmpt.TextProps {
+  /**
+   * The data to stringify.
+   */
   data: NestedOptionalJSONValue;
   /**
    * @default false

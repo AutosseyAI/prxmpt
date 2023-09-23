@@ -5,6 +5,9 @@ import * as Prxmpt from "../../index.js";
 export type DateTimeFormat = "long" | "medium" | "short" | "full";
 
 export interface DateValuePropsProps {
+  /**
+   * @default Date.now()
+   */
   value?: Date | string | number;
 }
 

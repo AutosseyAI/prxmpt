@@ -2,6 +2,9 @@ import { NestedOptionalJSONValue } from "types-json";
 import * as Prxmpt from "../../index.js";
 
 export interface JSONProps extends Prxmpt.TextProps {
+  /**
+   * The data to stringify.
+   */
   data: NestedOptionalJSONValue;
   /**
    * @default false

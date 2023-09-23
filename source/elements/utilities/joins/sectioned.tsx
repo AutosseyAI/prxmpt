@@ -6,6 +6,7 @@ export interface SectionedProps extends Prxmpt.TextProps {
    */
   divider?: string;
   /**
+   * Whether add dividers before and after the body.
    * @default false
    */
   frame?: boolean;

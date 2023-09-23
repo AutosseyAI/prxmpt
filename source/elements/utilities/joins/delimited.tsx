@@ -15,7 +15,7 @@ export interface DelimitedProps extends Prxmpt.TextProps {
   noSpace?: boolean;
 }
 
-export const commaed: Prxmpt.PC<DelimitedProps> = (props) => {
+export const csl: Prxmpt.PC<DelimitedProps> = (props) => {
   const spacer = props.noSpace ? ",": ", ";
   return <text {...props} join={spacer} />;
 };

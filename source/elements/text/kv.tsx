@@ -1,6 +1,9 @@
 import * as Prxmpt from "../../index.js";
 
 export interface KVProps extends Prxmpt.TextProps {
+  /**
+   * A key to render.
+   */
   key: Prxmpt.Children;
   /**
    * Case to apply to the key.

@@ -71,6 +71,9 @@ export type CLItem = {
    * @default false
    */
   checked?: boolean;
+  /**
+   * Content to render after the checkbox.
+   */
   content: Prxmpt.Children;
 }
 
@@ -102,6 +105,9 @@ export const cl: Prxmpt.FC<CBProps> = (props) => {
 // Definition List
 
 export interface DLProps extends Prxmpt.TextProps {
+  /**
+   * The items to render.
+   */
   items: Record<string, Prxmpt.Children>;
   /**
    * Casing to apply to each key.

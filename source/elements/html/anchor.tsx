@@ -1,7 +1,13 @@
 import * as Prxmpt from "../../index.js";
 
 export interface AnchorProps extends Prxmpt.HTMLProps {
+  /**
+   * The URL of the link.
+   */
   href: string;
+  /**
+   * A title for the link.
+   */
   title?: string;
 };
 
