@@ -100,7 +100,7 @@ bun add @autossey/prxmpt
 
 </details>
 
-## Getting Started
+<h2 id="getting-started"><div align="right"><a href="#prxmpt">🔝</a></div>Getting Started</h2>
 
 <details open>
   <summary><b>Automatic Mode</b></summary>
