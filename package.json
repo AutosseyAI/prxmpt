@@ -1,5 +1,5 @@
 {
-  "name": "prxmpt",
+  "name": "@autossey/prxmpt",
   "version": "0.1.0",
   "description": "Prompt Crafting with JSX",
   "license": "MIT",
@@ -14,6 +14,10 @@
       "import": "./.auto/build/index.js"
     },
     "./jsx-runtime": {
+      "types": "./.auto/build/jsx-runtime.d.ts",
+      "import": "./.auto/build/jsx-runtime.js"
+    },
+    "./jsx-dev-runtime": {
       "types": "./.auto/build/jsx-runtime.d.ts",
       "import": "./.auto/build/jsx-runtime.js"
     }
@@ -32,7 +36,7 @@
     "build": "yarn build:source && yarn build:types",
     "build:source": "swc source --config-file .swcrc --copy-files --delete-dir-on-start --out-dir .auto/build",
     "build:types": "tsc --emitDeclarationOnly --project tsconfig.build.json",
-    "test": "bun test",
+    "test": "bun test --cwd test",
     "typecheck": "tsc --noEmit --project tsconfig.build.json",
     "watch:source": "swc source --config-file .swcrc --copy-files --out-dir .auto/build --watch",
     "watch:types": "tsc --emitDeclarationOnly --watch --project tsconfig.build.json",

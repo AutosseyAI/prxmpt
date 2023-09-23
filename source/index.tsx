@@ -209,6 +209,99 @@ namespace Prxmpt {
    * A `Component` with an optional `children` property.
    */
   export interface OC<P = {}> extends FC<Partial<ChildProps> & P> {}
+
+  export interface IntrinsicElements {
+    a: PropsOf<typeof a>;
+    and: PropsOf<typeof and>;
+    andor: PropsOf<typeof andor>;
+    angle: PropsOf<typeof angle>;
+    ask: PropsOf<typeof ask>;
+    b: PropsOf<typeof b>;
+    blockquote: PropsOf<typeof blockquote>;
+    bq: PropsOf<typeof bq>;
+    br: PropsOf<typeof br>;
+    cap: PropsOf<typeof cap>;
+    cl: PropsOf<typeof cl>;
+    code: PropsOf<typeof code>;
+    commaed: PropsOf<typeof commaed>,
+    comment: PropsOf<typeof comment>;
+    curly: PropsOf<typeof curly>;
+    date: PropsOf<typeof date>;
+    datetime: PropsOf<typeof datetime>;
+    day: PropsOf<typeof day>;
+    div: PropsOf<typeof div>;
+    dl: PropsOf<typeof dl>;
+    dq: PropsOf<typeof dq>;
+    elapsed: PropsOf<typeof elapsed>;
+    ellipsis: PropsOf<typeof ellipsis>;
+    empty: PropsOf<typeof empty>;
+    exclaim: PropsOf<typeof exclaim>;
+    frame: PropsOf<typeof frame>;
+    h1: PropsOf<typeof h1>;
+    h2: PropsOf<typeof h2>;
+    h3: PropsOf<typeof h3>;
+    h4: PropsOf<typeof h4>;
+    h5: PropsOf<typeof h5>;
+    h6: PropsOf<typeof h6>;
+    hr: PropsOf<typeof hr>;
+    hour: PropsOf<typeof hour>;
+    i: PropsOf<typeof i>;
+    img: PropsOf<typeof img>;
+    json: PropsOf<typeof json>;
+    kv: PropsOf<typeof kv>;
+    lined: PropsOf<typeof lined>;
+    ol: PropsOf<typeof ol>;
+    or: PropsOf<typeof or>;
+    millisecond: PropsOf<typeof millisecond>;
+    minute: PropsOf<typeof minute>;
+    month: PropsOf<typeof month>;
+    na: PropsOf<typeof na>;
+    nor: PropsOf<typeof nor>;
+    num: PropsOf<typeof num>;
+    p: PropsOf<typeof p>;
+    parens: PropsOf<typeof parens>;
+    pre: PropsOf<typeof pre>;
+    priority: PropsOf<typeof priority>;
+    q: PropsOf<typeof q>;
+    s: PropsOf<typeof s>;
+    second: PropsOf<typeof second>;
+    sectioned: PropsOf<typeof sectioned>;
+    space: PropsOf<typeof space>;
+    spaced: PropsOf<typeof spaced>;
+    span: PropsOf<typeof span>;
+    sq: PropsOf<typeof sq>;
+    square: PropsOf<typeof square>;
+    state: PropsOf<typeof state>;
+    tab: PropsOf<typeof tab>;
+    tag: PropsOf<typeof tag>;
+    tbq: PropsOf<typeof tbq>;
+    tdq: PropsOf<typeof tdq>;
+    text: PropsOf<typeof text>;
+    time: PropsOf<typeof time>;
+    tq: PropsOf<typeof tq>;
+    trim: PropsOf<typeof trim>;
+    tsq: PropsOf<typeof tsq>;
+    ul: PropsOf<typeof ul>;
+    union: PropsOf<typeof union>;
+    yaml: PropsOf<typeof yaml>;
+    year: PropsOf<typeof year>;
+  }
+
+  // JSX
+
+  export namespace JSX {
+    export interface IntrinsicElements extends Prxmpt.IntrinsicElements {}
+    /**
+     * The result of a JSX expression.
+     */
+    export type Element = Prxmpt.Element;
+    export interface ElementAttributesProperty {
+      props: any; // specify the property name to use
+    }
+    export interface ElementChildrenAttribute {
+      children: Prxmpt.Children; // specify children name to use
+    }
+  }
 }
 
 // Re-export types to support `import * as Prxmpt from "prxmpt";` syntax
@@ -231,82 +324,7 @@ declare global {
    * https://www.typescriptlang.org/docs/handbook/jsx.html
    */
   export namespace JSX {
-    export interface IntrinsicElements {
-      a: Prxmpt.PropsOf<typeof a>;
-      and: Prxmpt.PropsOf<typeof and>;
-      andor: Prxmpt.PropsOf<typeof andor>;
-      angle: Prxmpt.PropsOf<typeof angle>;
-      ask: Prxmpt.PropsOf<typeof ask>;
-      b: Prxmpt.PropsOf<typeof b>;
-      blockquote: Prxmpt.PropsOf<typeof blockquote>;
-      bq: Prxmpt.PropsOf<typeof bq>;
-      br: Prxmpt.PropsOf<typeof br>;
-      cap: Prxmpt.PropsOf<typeof cap>;
-      cl: Prxmpt.PropsOf<typeof cl>;
-      code: Prxmpt.PropsOf<typeof code>;
-      commaed: Prxmpt.PropsOf<typeof commaed>,
-      comment: Prxmpt.PropsOf<typeof comment>;
-      curly: Prxmpt.PropsOf<typeof curly>;
-      date: Prxmpt.PropsOf<typeof date>;
-      datetime: Prxmpt.PropsOf<typeof datetime>;
-      day: Prxmpt.PropsOf<typeof day>;
-      div: Prxmpt.PropsOf<typeof div>;
-      dl: Prxmpt.PropsOf<typeof dl>;
-      dq: Prxmpt.PropsOf<typeof dq>;
-      elapsed: Prxmpt.PropsOf<typeof elapsed>;
-      ellipsis: Prxmpt.PropsOf<typeof ellipsis>;
-      empty: Prxmpt.PropsOf<typeof empty>;
-      exclaim: Prxmpt.PropsOf<typeof exclaim>;
-      frame: Prxmpt.PropsOf<typeof frame>;
-      h1: Prxmpt.PropsOf<typeof h1>;
-      h2: Prxmpt.PropsOf<typeof h2>;
-      h3: Prxmpt.PropsOf<typeof h3>;
-      h4: Prxmpt.PropsOf<typeof h4>;
-      h5: Prxmpt.PropsOf<typeof h5>;
-      h6: Prxmpt.PropsOf<typeof h6>;
-      hr: Prxmpt.PropsOf<typeof hr>;
-      hour: Prxmpt.PropsOf<typeof hour>;
-      i: Prxmpt.PropsOf<typeof i>;
-      img: Prxmpt.PropsOf<typeof img>;
-      json: Prxmpt.PropsOf<typeof json>;
-      kv: Prxmpt.PropsOf<typeof kv>;
-      lined: Prxmpt.PropsOf<typeof lined>;
-      ol: Prxmpt.PropsOf<typeof ol>;
-      or: Prxmpt.PropsOf<typeof or>;
-      millisecond: Prxmpt.PropsOf<typeof millisecond>;
-      minute: Prxmpt.PropsOf<typeof minute>;
-      month: Prxmpt.PropsOf<typeof month>;
-      na: Prxmpt.PropsOf<typeof na>;
-      nor: Prxmpt.PropsOf<typeof nor>;
-      num: Prxmpt.PropsOf<typeof num>;
-      p: Prxmpt.PropsOf<typeof p>;
-      parens: Prxmpt.PropsOf<typeof parens>;
-      pre: Prxmpt.PropsOf<typeof pre>;
-      priority: Prxmpt.PropsOf<typeof priority>;
-      q: Prxmpt.PropsOf<typeof q>;
-      s: Prxmpt.PropsOf<typeof s>;
-      second: Prxmpt.PropsOf<typeof second>;
-      sectioned: Prxmpt.PropsOf<typeof sectioned>;
-      space: Prxmpt.PropsOf<typeof space>;
-      spaced: Prxmpt.PropsOf<typeof spaced>;
-      span: Prxmpt.PropsOf<typeof span>;
-      sq: Prxmpt.PropsOf<typeof sq>;
-      square: Prxmpt.PropsOf<typeof square>;
-      state: Prxmpt.PropsOf<typeof state>;
-      tab: Prxmpt.PropsOf<typeof tab>;
-      tag: Prxmpt.PropsOf<typeof tag>;
-      tbq: Prxmpt.PropsOf<typeof tbq>;
-      tdq: Prxmpt.PropsOf<typeof tdq>;
-      text: Prxmpt.PropsOf<typeof text>;
-      time: Prxmpt.PropsOf<typeof time>;
-      tq: Prxmpt.PropsOf<typeof tq>;
-      trim: Prxmpt.PropsOf<typeof trim>;
-      tsq: Prxmpt.PropsOf<typeof tsq>;
-      ul: Prxmpt.PropsOf<typeof ul>;
-      union: Prxmpt.PropsOf<typeof union>;
-      yaml: Prxmpt.PropsOf<typeof yaml>;
-      year: Prxmpt.PropsOf<typeof year>;
-    }
+    export interface IntrinsicElements extends Prxmpt.IntrinsicElements {}
     /**
      * The result of a JSX expression.
      */
@@ -338,8 +356,9 @@ export function isChildren(value: any): value is Prxmpt.Children {
 /**
  * Returns `true` if the provided `props` have children to render.
  */
-export function hasChildren(props: Partial<Prxmpt.ChildProps>) {
-  return props.children !== undefined
+export function hasChildren(props: Partial<Prxmpt.ChildProps> | null): props is ChildProps {
+  return props !== null
+    && props.children !== undefined
     && props.children !== null
     && (!Array.isArray(props.children) || props.children.length > 0);
 }
@@ -364,7 +383,7 @@ export function Fragment(props: Prxmpt.ChildProps): string {
 /**
  * Note: `props.children` is overwritten if children are provided.
  */
-function mergeProps(props: Prxmpt.PropsOf<typeof elements[Prxmpt.ElementName]>, children: Prxmpt.Children[]) {
+function mergeProps(props: PropsOf<typeof elements[Prxmpt.ElementName]> | null, children: Prxmpt.Children[]) {
   if(children.length > 0) {
     return {
       ...props,
@@ -377,7 +396,7 @@ function mergeProps(props: Prxmpt.PropsOf<typeof elements[Prxmpt.ElementName]>, 
 
 export function createElement(
   type: Prxmpt.ElementName | Prxmpt.Component,
-  props: Prxmpt.PropsOf<typeof elements[Prxmpt.ElementName]>,
+  props: PropsOf<typeof elements[Prxmpt.ElementName]> | null,
   ...children: Prxmpt.Children[]
 ): Prxmpt.Element {
   const fullProps = mergeProps(props, children);
