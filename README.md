@@ -280,6 +280,11 @@ For examples of how to use specific elements, the [tests](https://github.com/Aut
     - [`<csl>` (Comma Separated List)](#csl)
     - [`<union>`](#union)
     - [`<sectioned>`](#sectioned)
+  - [Sets](#sets)
+    - [`<and>`](#and)
+    - [`<andor>`](#andor)
+    - [`<or>`](#or)
+    - [`<nor>`](#nor)
   - [Ends](#ends)
     - [`<trim>`](#trim)
     - [`<frame>`](#frame)
@@ -1868,6 +1873,68 @@ const string = (
     <text>Hello</text>
     <text>World!</text>
   </sectioned>
+);
+```
+
+<h3 id="sets"><div align="right"><a href="#elements">🔝</a></div>Sets</h3>
+
+#### And
+_`<and>`_
+
+```tsx
+// "a, b, and c"
+
+const string = (
+  <and>
+    <text>a</text>
+    <text>b</text>
+    <text>c</text>
+  </and>
+);
+```
+
+#### And / Or
+_`<andor>`_
+
+```tsx
+// "a, b, and/or c"
+
+const string = (
+  <andor>
+    <text>a</text>
+    <text>b</text>
+    <text>c</text>
+  </andor>
+);
+```
+
+#### Or
+_`<or>`_
+
+```tsx
+// "a, b, or c"
+
+const string = (
+  <or>
+    <text>a</text>
+    <text>b</text>
+    <text>c</text>
+  </or>
+);
+```
+
+#### Nor
+_`<nor>`_
+
+```tsx
+// "a, b, nor c"
+
+const string = (
+  <nor>
+    <text>a</text>
+    <text>b</text>
+    <text>c</text>
+  </nor>
 );
 ```
 
