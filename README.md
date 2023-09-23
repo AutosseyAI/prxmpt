@@ -285,7 +285,7 @@ For examples of how to use specific elements, the [tests](https://github.com/Aut
     - [`<andor>`](#andor)
     - [`<or>`](#or)
     - [`<nor>`](#nor)
-  - [Ends](#ends)
+  - [Affixes](#affixes)
     - [`<trim>`](#trim)
     - [`<frame>`](#frame)
   - [Limiters](#limiters)
