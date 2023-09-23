@@ -10,7 +10,7 @@
 
 <br />
 
-<blockquote align="center"><i>- Prompt Crafting with JSX -</i></blockquote>
+<blockquote align="center"><i>-- Prompt Crafting with JSX --</i></blockquote>
 
 <div align="center">
   <a href="https://www.npmjs.com/package/@autossey/prxmpt">npm</a>
