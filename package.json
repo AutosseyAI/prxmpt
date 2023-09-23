@@ -34,17 +34,12 @@
     "yaml": "^2.3.2"
   },
   "devDependencies": {
+    "@autossey/eslint-config": "^1.0.0",
     "@autossey/tsconfig": "^1.0.0",
     "bun-types": "^1.0.2",
     "ts-node": "^10.9.1"
   },
   "eslintConfig": {
-    "extends": "@autosoft/eslint-config"
-  },
-  "jest": {
-    "preset": "@autosoft/jest-preset"
-  },
-  "npmpackagejsonlint": {
-    "extends": "npm-package-json-lint-config-auto"
+    "extends": "@autossey/eslint-config"
   }
 }

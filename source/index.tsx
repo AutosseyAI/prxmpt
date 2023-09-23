@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import {
   a,
   and,
@@ -177,7 +178,7 @@ export type Children = Option<Children[] | string | number | boolean | null>;
 
 export interface ChildProps {
   children: Children;
-};
+}
 
 /**
  * **Function Component**
@@ -193,14 +194,14 @@ export interface FC<P = {}> {
  * 
  * A `Component` with a required `children` property.
  */
-export interface PC<P = {}> extends FC<P & ChildProps> {};
+export interface PC<P = {}> extends FC<P & ChildProps> { }
 
 /**
  * **Optional Children Component**
  * 
  * A `Component` with an optional `children` property.
  */
-export interface OC<P = {}> extends FC<Partial<ChildProps> & P> {};
+export interface OC<P = {}> extends FC<Partial<ChildProps> & P> { }
 
 /**
  * https://www.typescriptlang.org/docs/handbook/jsx.html
@@ -299,12 +300,12 @@ export namespace JSX {
  */
 export function isChildren(value: any): value is Children {
   return (
-    typeof value === "string" ||
-    typeof value === "number" ||
-    typeof value === "boolean" ||
-    value === null ||
-    value === undefined ||
-    (Array.isArray(value) && value.every(isChildren))
+    typeof value === "string"
+    || typeof value === "number"
+    || typeof value === "boolean"
+    || value === null
+    || value === undefined
+    || (Array.isArray(value) && value.every(isChildren))
   );
 }
 
@@ -312,9 +313,9 @@ export function isChildren(value: any): value is Children {
  * Returns `true` if the provided `props` have children to render.
  */
 export function hasChildren(props: Partial<ChildProps>) {
-  return props.children !== undefined &&
-  props.children !== null &&
-    (!Array.isArray(props.children) || props.children.length > 0);
+  return props.children !== undefined
+    && props.children !== null
+    && (!Array.isArray(props.children) || props.children.length > 0);
 }
 
 /**
@@ -404,14 +405,14 @@ export function createElement(
 ): JSX.Element {
   const fullProps = mergeProps(props, children);
   if(typeof type === "function") {
-		return type(fullProps);
-	} else {
+    return type(fullProps);
+  } else {
     const component = types[type] as Component | undefined;
     if(component) {
       return component(fullProps);
     }
   }
-	return undefined;
+  return undefined;
 }
 
 const Prxmpt = {

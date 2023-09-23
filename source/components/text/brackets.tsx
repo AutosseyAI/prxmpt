@@ -1,6 +1,6 @@
 import * as Prxmpt from "../../index.js";
 
-export interface BracketProps extends Prxmpt.TextProps {};
+export interface BracketProps extends Prxmpt.TextProps {}
 
 export const parens: Prxmpt.PC<Prxmpt.TextProps> = (props) => {
   return (
