@@ -171,19 +171,20 @@ export const MyComponent = () => (
 
 <h2 id="examples"><div align="right"><a href="#prxmpt">🔝</a></div>Examples</h2>
 
-Several examples are provided in the [examples](./examples) directory:
+Several examples are provided in the [examples](https://github.com/AutosseyAI/prxmpt/tree/main/examples) directory:
 
-- [bun (classic mode)](./examples/bun-classic/)
-- [kitchen sink](./examples/kitchen-sink/)
-- [next](./examples/next/)
-- [swc](./examples/swc/)
-- [swc (classic mode)](./examples/swc-classic/)
-- [ts-node](./examples/ts-node/)
-- [ts-node (classic mode)](./examples/ts-node-classic/)
-- [tsc](./examples/tsc/)
-- [tsc (classic mode)](./examples/tsc-classic/)
+- [kitchen sink](https://github.com/AutosseyAI/prxmpt/blob/main/examples/kitchen-sink/source/Prompt.tsx) (Showcases many elements)
+- [bun](https://github.com/AutosseyAI/prxmpt/tree/main/examples/bun/)
+- [bun (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/bun-classic/)
+- [Next.js](https://github.com/AutosseyAI/prxmpt/tree/main/examples/next/)
+- [swc](https://github.com/AutosseyAI/prxmpt/tree/main/examples/swc/)
+- [swc (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/swc-classic/)
+- [ts-node](https://github.com/AutosseyAI/prxmpt/tree/main/examples/ts-node/)
+- [ts-node (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/ts-node-classic/)
+- [tsc](https://github.com/AutosseyAI/prxmpt/tree/main/examples/tsc/)
+- [tsc (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/tsc-classic/)
 
-For examples of how to use specific elements, the [tests](./test/) showcase more usecases.
+For examples of how to use specific elements, the [tests](https://github.com/AutosseyAI/prxmpt/tree/main/test/) showcase more usecases.
 
 <h2 id="elements"><div align="right"><a href="#prxmpt">🔝</a></div>Elements</h2>
 

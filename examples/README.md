@@ -6,9 +6,10 @@ This directory contains examples of using `Prxmpt` in various situations.
 
 **Classic Mode** - These examples use the `jsxFactory` and `jsxFragmentFactory` fields in `tsconfig.json`, and require importing `@autossey/prxmpt` in each file that uses `Prxmpt`.
 
+- [kitchen sink](./examples/kitchen-sink/source/Prompt.tsx) (Showcases many elements)
+- [bun](./examples/bun/)
 - [bun (classic mode)](./examples/bun-classic/)
-- [kitchen sink](./examples/kitchen-sink/)
-- [next](./examples/next/)
+- [Next.js](./examples/next/)
 - [swc](./examples/swc/)
 - [swc (classic mode)](./examples/swc-classic/)
 - [ts-node](./examples/ts-node/)

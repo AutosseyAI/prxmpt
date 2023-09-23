@@ -9,7 +9,7 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "scripts": {
-    "start": "NODE_ENV=production bun source/index.ts"
+    "start": "bun source/index.ts"
   },
   "dependencies": {
     "@autossey/prxmpt": "*"
