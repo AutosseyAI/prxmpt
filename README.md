@@ -1745,6 +1745,24 @@ _`<title>`_
 const string = <title>hello, world!</title>;
 ```
 
+<h3 id="affixes"><div align="right"><a href="#elements">🔝</a></div>Affixes</h3>
+
+#### Trim
+
+```tsx
+// "Hello, World!"
+
+const string = <trim>Hello, World! </trim>;
+```
+
+#### Frame
+
+```tsx
+// "-- Hello, World! --"
+
+const string = <frame>Hello, World! </frame>;
+```
+
 <h3 id="joins"><div align="right"><a href="#elements">🔝</a></div>Joins</h3>
 
 #### Lined
@@ -1934,24 +1952,6 @@ const string = (
     <text>c</text>
   </nor>
 );
-```
-
-<h3 id="affixes"><div align="right"><a href="#elements">🔝</a></div>Affixes</h3>
-
-#### Trim
-
-```tsx
-// "Hello, World!"
-
-const string = <trim>Hello, World! </trim>;
-```
-
-#### Frame
-
-```tsx
-// "-- Hello, World! --"
-
-const string = <frame>Hello, World! </frame>;
 ```
 
 <h3 id="limits"><div align="right"><a href="#elements">🔝</a></div>Limits</h3>

@@ -1,4 +1,4 @@
-import * as Prxmpt from "../../index.js";
+import * as Prxmpt from "../../../index.js";
 
 export interface TrimProps extends Omit<Prxmpt.TextProps, "trim"> {};
 

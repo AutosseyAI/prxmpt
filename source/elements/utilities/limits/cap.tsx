@@ -1,5 +1,5 @@
 import asArray from "as-typed-array";
-import * as Prxmpt from "../../index.js";
+import * as Prxmpt from "../../../index.js";
 import { charCounter, Counter } from "./shared.js";
 
 export type CapStrategy = "ordered" | "ordered-no-skip" | "size-asc" | "size-desc";

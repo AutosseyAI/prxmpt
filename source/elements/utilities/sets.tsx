@@ -1,5 +1,5 @@
 import asArray from "as-typed-array";
-import * as Prxmpt from "../../../index.js";
+import * as Prxmpt from "../../index.js";
 
 export interface SetProps extends Prxmpt.TextProps {
   conjunction: string;

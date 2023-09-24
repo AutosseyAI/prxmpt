@@ -1,4 +1,4 @@
-import * as Prxmpt from "../../index.js";
+import * as Prxmpt from "../../../index.js";
 
 export interface FrameProps extends Prxmpt.TextProps {
   /**

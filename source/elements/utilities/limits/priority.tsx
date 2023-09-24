@@ -1,4 +1,4 @@
-import * as Prxmpt from "../../index.js";
+import * as Prxmpt from "../../../index.js";
 import { charCounter, Counter } from "./shared.js";
 
 type Defined<T> = T extends undefined ? never : T;
