@@ -23,7 +23,7 @@
 
 Prxmpt is _"Tailwind for Prompt Engineering"_. It provides a set of utilities for composing strings with JSX.
 
-Prxmpt is designed for shaping the input to LLMs. However, Prxmpt also includes both Markdown and HTML elements, making it perfect for formatting LLM outputs as well.
+Prxmpt is designed for shaping the input to LLMs, including powerful elements such as [priority](#priority) for managing tokens. However, Prxmpt also includes both Markdown and HTML elements, making it perfect for formatting LLM outputs as well.
 
 <h2 id="why-jsx"><div align="right"><a href="#prxmpt">🔝</a></div>Why JSX?</h2>
 
