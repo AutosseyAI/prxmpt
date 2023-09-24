@@ -1894,10 +1894,29 @@ const string = (
 
 <h3 id="sets"><div align="right"><a href="#elements">🔝</a></div>Sets</h3>
 
+Sets automatically adjust the separators used based on the number of children provided.
+
 #### And
 _`<and>`_
 
 ```tsx
+// "a"
+
+const string = (
+  <and>
+    <text>a</text>
+  </and>
+);
+
+// "a and b"
+
+const string = (
+  <and>
+    <text>a</text>
+    <text>b</text>
+  </and>
+);
+
 // "a, b, and c"
 
 const string = (
