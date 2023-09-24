@@ -124,15 +124,15 @@ export const millisecond: Prxmpt.FC<DateValuePropsProps> = (props) => {
 
 // Relative Date Components
 
-export interface ElapsedProps extends Prxmpt.TextProps {
+export interface DurationProps extends Prxmpt.TextProps {
   since: Date | string | number;
 }
 
-export const elapsed: Prxmpt.FC<ElapsedProps> = (props) => {
+export const duration: Prxmpt.FC<DurationProps> = (props) => {
   const since = new Date(props.since);
   const now = Date.now();
-  const elapsed = now - since.getTime();
-  const seconds = elapsed / 1000;
+  const duration = now - since.getTime();
+  const seconds = duration / 1000;
   const minutes = seconds / 60;
   const hours = minutes / 60;
   const days = hours / 24;
@@ -157,7 +157,7 @@ export const elapsed: Prxmpt.FC<ElapsedProps> = (props) => {
     const rounded = Math.round(seconds);
     return <text {...props}>{rounded} second<text hide={rounded === 1}>s</text></text>;
   } else {
-    const rounded = Math.round(elapsed);
+    const rounded = Math.round(duration);
     return <text {...props}>{rounded} millisecond<text hide={rounded === 1}>s</text></text>;
   }
 }

@@ -264,7 +264,7 @@ For examples of how to use specific elements, the [tests](https://github.com/Aut
     - [`<minute>`](#minute)
     - [`<second>`](#second)
     - [`<millisecond>`](#millisecond)
-    - [`<elapsed>`](#elapsed)
+    - [`<duration>`](#duration)
   - [Objects](#objects)
     - [`<json>`](#json)
     - [`<yaml>`](#yaml)
@@ -1624,7 +1624,7 @@ value?: Date | string | number;
 const string = <millisecond />
 ```
 
-#### Elapsed
+#### Duration
 
 ##### Props
 **since**
@@ -1637,7 +1637,7 @@ since: Date | string | number;
 ```tsx
 // "2 years"
 
-const string = <elapsed />
+const string = <duration since={"September 2021"} />
 ```
 
 <h3 id="objects"><div align="right"><a href="#elements">🔝</a></div>Objects</h3>

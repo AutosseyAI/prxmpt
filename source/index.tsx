@@ -22,7 +22,7 @@ import {
   div,
   dl,
   dq,
-  elapsed,
+  duration,
   ellipsis,
   empty,
   exclaim,
@@ -104,7 +104,7 @@ const elements = {
   div,
   dl,
   dq,
-  elapsed,
+  duration,
   ellipsis,
   empty,
   exclaim,
@@ -241,7 +241,7 @@ namespace Prxmpt {
     div: PropsOf<typeof div>;
     dl: PropsOf<typeof dl>;
     dq: PropsOf<typeof dq>;
-    elapsed: PropsOf<typeof elapsed>;
+    duration: PropsOf<typeof duration>;
     ellipsis: PropsOf<typeof ellipsis>;
     empty: PropsOf<typeof empty>;
     exclaim: PropsOf<typeof exclaim>;
