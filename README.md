@@ -587,7 +587,6 @@ const string = <sq>Hello, World!</sq>;
 _`<dq>`_
 
 ```tsx
-
 // '"Hello, World!"'
 
 const string = <dq>Hello, World!</dq>;
@@ -597,7 +596,6 @@ const string = <dq>Hello, World!</dq>;
 _`<bq>`_
 
 ```tsx
-
 // "`Hello, World!`"
 
 const string = <bq>Hello, World!</bq>;
