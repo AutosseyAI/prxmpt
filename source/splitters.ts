@@ -31,7 +31,7 @@ export function lines(children: Prxmpt.Children) {
 /**
  * Split `children` on spaces.
  */
-export function spaces(children: Prxmpt.Children) {
+export function words(children: Prxmpt.Children) {
   return split(children, " ");
 }
 

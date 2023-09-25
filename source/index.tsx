@@ -79,7 +79,7 @@ import {
   yaml,
   year
 } from "./elements/index.js";
-import { chars, commas, lines, paragraphs, spaces, split } from "./splitters.js";
+import { chars, commas, lines, paragraphs, split, words } from "./splitters.js";
 
 const elements = {
   a,
@@ -434,7 +434,7 @@ const Prxmpt = {
   split,
   paragraphs,
   lines,
-  spaces,
+  words,
   chars,
   commas
 };
