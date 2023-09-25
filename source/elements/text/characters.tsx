@@ -3,7 +3,7 @@ import * as Prxmpt from "../../index.js";
 // Zero Characters
 
 export const empty: Prxmpt.FC<Prxmpt.HideProps> = (props) => {
-  return <text {...props}>{""}</text>
+  return <text {...props}>{""}</text>;
 };
 
 // Single Characters

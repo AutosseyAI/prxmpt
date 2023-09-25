@@ -9,7 +9,7 @@ export interface AnchorProps extends Prxmpt.HTMLProps {
    * A title for the link.
    */
   title?: string;
-};
+}
 
 export const a: Prxmpt.PC<AnchorProps> = (props) => {
   if(props.html) {

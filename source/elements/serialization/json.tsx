@@ -1,4 +1,4 @@
-import { NestedOptionalJSONValue } from "types-json";
+import type { NestedOptionalJSONValue } from "types-json";
 import * as Prxmpt from "../../index.js";
 
 export interface JSONProps extends Prxmpt.TextProps {
@@ -10,7 +10,7 @@ export interface JSONProps extends Prxmpt.TextProps {
    * @default false
    */
   pretty?: boolean;
-};
+}
 
 export const json: Prxmpt.FC<JSONProps> = (props) => {
   return (

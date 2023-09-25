@@ -8,7 +8,7 @@ type Source = {
 
 function jsx(
   type: Parameters<typeof createElement>[0],
-  props: any,
+  props: Record<string, any>,
   key: string | number | boolean | undefined
 ) {
   if(key !== undefined) {
@@ -21,9 +21,10 @@ function jsx(
   }
 }
 
+// eslint-disable-next-line max-params
 function jsxDEV(
   type: Parameters<typeof createElement>[0],
-  props: any,
+  props: Record<string, any>,
   key: string | number | boolean | undefined,
   isStaticChildren: boolean,
   source: Source | undefined,
@@ -31,7 +32,6 @@ function jsxDEV(
 ) {
   return jsx(type, props, key);
 }
-
 
 export {
   jsx,

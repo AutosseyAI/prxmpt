@@ -1,10 +1,10 @@
 import * as Prxmpt from "../../index.js";
 
 const commentTypes = {
-  "slash": ["// ", ""],
-  "dash": ["-- ", ""],
-  "hash": ["# ", ""],
-  "html": ["<!--", "-->"],
+  slash: ["// ", ""],
+  dash: ["-- ", ""],
+  hash: ["# ", ""],
+  html: ["<!--", "-->"]
 } as const;
 
 export type CommentType = keyof typeof commentTypes;
@@ -14,7 +14,7 @@ export interface CommentProps extends Prxmpt.TextProps {
    * @default "slash"
    */
   type?: CommentType
-};
+}
 
 export const comment: Prxmpt.PC<CommentProps> = (props) => {
   const [prefix, suffix] = commentTypes[props.type ?? "slash"];

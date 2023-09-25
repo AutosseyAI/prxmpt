@@ -1,4 +1,5 @@
-import Prxmpt, { TextProps } from "../../index.js";
+import type { TextProps } from "../../index.js";
+import Prxmpt from "../../index.js";
 
 export const upper: Prxmpt.PC<TextProps> = (props) => {
   return (

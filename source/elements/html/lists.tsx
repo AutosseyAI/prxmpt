@@ -6,7 +6,7 @@ export interface MarkedListProps extends Prxmpt.TextProps {
    * @default false
    */
   onlyMarkIfList?: boolean;
-};
+}
 
 function markedList(props: Prxmpt.ChildProps & MarkedListProps, marker: (index: number) => string) {
   return (
@@ -45,7 +45,7 @@ export const ol: Prxmpt.PC<MarkedListProps> = (props) => {
 
 export type ULMarker = "-" | "*" | "+";
 
-export interface ULProps extends  MarkedListProps {
+export interface ULProps extends MarkedListProps {
   /**
    * @default "-"
    */
@@ -75,7 +75,7 @@ export type CLItem = {
    * Content to render after the checkbox.
    */
   content: Prxmpt.Children;
-}
+};
 
 export interface CBProps extends Prxmpt.TextProps {
   items: (CLItem | Prxmpt.Children)[];
@@ -96,11 +96,11 @@ export const cl: Prxmpt.FC<CBProps> = (props) => {
     } else {
       return `[${item?.checked ? "x" : " "}] ${Prxmpt.render(item?.content)}`;
     }
-  })
+  });
   return (
     <ul {...props}>{children}</ul>
   );
-}
+};
 
 // Definition List
 
@@ -124,7 +124,7 @@ export interface DLProps extends Prxmpt.TextProps {
    * @default undefined
    */
   wrap?: boolean;
-};
+}
 
 /**
  * **Definition List**
@@ -150,9 +150,9 @@ export const dl: Prxmpt.FC<DLProps> = (props) => {
   return (
     <text {...props}>
       <lined
-        height={(props.space !== undefined ? props.space : 0) + 1}>
+        height={(props.space ?? 0) + 1}>
         {children}
       </lined>
     </text>
   );
-}
+};

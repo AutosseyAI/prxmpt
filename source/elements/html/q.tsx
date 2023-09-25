@@ -5,7 +5,7 @@ export interface QuoteProps extends Prxmpt.QuoteEscapeProps, Prxmpt.HTMLProps {
    * @default "double"
    */
   type?: Prxmpt.QuoteType;
-};
+}
 
 /**
  * If the children contain a newline, render as a triple quote.
@@ -26,4 +26,4 @@ export const q: Prxmpt.PC<QuoteProps> = (props) => {
       return <dq {...props} />;
     }
   }
-}
+};

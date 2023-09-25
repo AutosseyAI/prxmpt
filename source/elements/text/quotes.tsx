@@ -3,9 +3,9 @@ import * as Prxmpt from "../../index.js";
 // Quote Types
 
 const quoteTypes = {
-  "single": "'",
-  "double": `"`,
-  "backtick": "`"
+  single: "'",
+  double: "\"",
+  backtick: "`"
 } as const;
 
 // Quotes
@@ -19,13 +19,13 @@ export interface QuoteEscapeProps extends Prxmpt.TextProps {
 
 export const sq: Prxmpt.PC<QuoteEscapeProps> = (props) => {
   const text = Prxmpt.render(props.children);
-  const escaped = props.noEscape ? text : text.replace(/'/g, `\\'`);
+  const escaped = props.noEscape ? text : text.replace(/'/g, "\\'");
   return <frame with={quoteTypes.single} {...props}>{escaped}</frame>;
 };
 
 export const dq: Prxmpt.PC<QuoteEscapeProps> = (props) => {
   const text = Prxmpt.render(props.children);
-  const escaped = props.noEscape ? text : text.replace(/"/g, `\\"`);
+  const escaped = props.noEscape ? text : text.replace(/"/g, "\\\"");
   return <frame with={quoteTypes.double} {...props}>{escaped}</frame>;
 };
 
@@ -78,26 +78,26 @@ export const tq: Prxmpt.PC<TripleQuoteProps> = (props) => {
   );
 };
 
-export interface DoubleTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {};
+export interface DoubleTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {}
 
 export const tdq: Prxmpt.PC<DoubleTripleQuoteProps> = (props) => {
   return (
     <tq {...props} type="double" />
   );
-}
+};
 
-export interface SingleTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {};
+export interface SingleTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {}
 
 export const tsq: Prxmpt.PC<SingleTripleQuoteProps> = (props) => {
   return (
     <tq {...props} type="single" />
   );
-}
+};
 
-export interface BacktickTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {};
+export interface BacktickTripleQuoteProps extends Omit<TripleQuoteProps, "type"> {}
 
 export const tbq: Prxmpt.PC<BacktickTripleQuoteProps> = (props) => {
   return (
     <tq {...props} type="backtick" />
   );
-}
+};

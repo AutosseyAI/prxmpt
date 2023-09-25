@@ -200,23 +200,21 @@ namespace Prxmpt {
    *
    * A `Component` that does not have a `children` property by default.
    */
-  export interface FC<P = {}> {
-    (props: P): Element;
-  }
+  export type FC<P = Record<string, never>> = (props: P) => Element;
 
   /**
    * **Parent Component**
    *
    * A `Component` with a required `children` property.
    */
-  export interface PC<P = {}> extends FC<P & ChildProps> {}
+  export interface PC<P = Record<string, never>> extends FC<P & ChildProps> {}
 
   /**
    * **Optional Children Component**
    *
    * A `Component` with an optional `children` property.
    */
-  export interface OC<P = {}> extends FC<Partial<ChildProps> & P> {}
+  export interface OC<P = Record<string, never>> extends FC<Partial<ChildProps> & P> {}
 
   export interface IntrinsicElements {
     a: PropsOf<typeof a>;
@@ -302,10 +300,12 @@ namespace Prxmpt {
   // JSX
 
   export namespace JSX {
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     export interface IntrinsicElements extends Prxmpt.IntrinsicElements {}
     /**
      * The result of a JSX expression.
      */
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     export type Element = Prxmpt.Element;
     export interface ElementAttributesProperty {
       props: any; // specify the property name to use
@@ -325,9 +325,9 @@ export type Component = Prxmpt.Component;
 export type PropsOf<T extends Prxmpt.Component> = Prxmpt.PropsOf<T>;
 export type Children = Prxmpt.Children;
 export type ChildProps = Prxmpt.ChildProps;
-export type FC<P = {}> = Prxmpt.FC<P>;
-export type PC<P = {}> = Prxmpt.PC<P>;
-export type OC<P = {}> = Prxmpt.OC<P>;
+export type FC<P = Record<string, never>> = Prxmpt.FC<P>;
+export type PC<P = Record<string, never>> = Prxmpt.PC<P>;
+export type OC<P = Record<string, never>> = Prxmpt.OC<P>;
 
 // JSX
 
@@ -369,8 +369,7 @@ export function isChildren(value: any): value is Prxmpt.Children {
  * Returns `true` if the provided `props` have children to render.
  */
 export function hasChildren(props: Partial<Prxmpt.ChildProps> | null): props is ChildProps {
-  return props !== null
-    && props.children !== undefined
+  return props?.children !== undefined
     && props.children !== null
     && (!Array.isArray(props.children) || props.children.length > 0);
 }
@@ -424,19 +423,20 @@ export function createElement(
 }
 
 const Prxmpt = {
-  createElement,
+  // Rendering
   Fragment,
+  createElement,
   render,
+  // Children
+  isChildren,
+  hasChildren,
   // Splitters
   split,
   paragraphs,
   lines,
   spaces,
   chars,
-  commas,
-  // Children
-  isChildren,
-  hasChildren
+  commas
 };
 
 export default Prxmpt;

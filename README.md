@@ -50,7 +50,7 @@ Compare this to an equivalent using template literals:
 const text = `This is the first line.${hideLine2 ? "\nHere's a second line." : ""}\n\nThen, we'll add a third line here.`;
 ```
 
-<h2 id="install"><div align="right"><a href="#prxmpt">🔝</a></div>Install</h2>
+<h2 id="installation"><div align="right"><a href="#prxmpt">🔝</a></div>Installation</h2>
 
 <details open>
   <summary>

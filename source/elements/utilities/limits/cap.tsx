@@ -1,6 +1,7 @@
 import asArray from "as-typed-array";
 import * as Prxmpt from "../../../index.js";
-import { charCounter, Counter } from "./shared.js";
+import type { Counter } from "./shared.js";
+import { charCounter } from "./shared.js";
 
 export type CapStrategy = "ordered" | "ordered-no-skip" | "size-asc" | "size-desc";
 
@@ -16,13 +17,18 @@ export interface CapProps extends Prxmpt.TextProps {
    */
   counter?: Counter;
   /**
-   * `"ordered"`: Children are prioritized by the order provided. Once the maximum is reached, continue to check if remaining children fit.
+   * `"ordered"`:
+   * Children are prioritized by the order provided.
+   * Once the maximum is reached, continue to check if remaining children fit.
    * 
-   * `"ordered-no-skip"`: Children are prioritized by order provided. Once the maximum is reached, stop adding children.
+   * `"ordered-no-skip"`:
+   * Children are prioritized by order provided. Once the maximum is reached, stop adding children.
    * 
-   * `"size-asc"`: Children are prioritized in size order, smallest to largest.
+   * `"size-asc"`:
+   * Children are prioritized in size order, smallest to largest.
    * 
-   * `"size-desc"`: Children are prioritized in size order, largest to smallest.
+   * `"size-desc"`:
+   * Children are prioritized in size order, largest to smallest.
    * 
    * @default "ordered"
    */
@@ -54,14 +60,14 @@ export const cap: Prxmpt.PC<CapProps> = (props) => {
   const children = childrenArray
     .map((child, index) => ({
       text: Prxmpt.render(child),
-      index,
+      index
     }));
   // Apply Sorting Strategy
   if(props.strategy === "size-asc" || props.strategy === "size-desc") {
     children.sort((a, b) => {
       return props.strategy === "size-asc"
         ? counter(a.text) - counter(b.text)
-        : counter(b.text) - counter(a.text)
+        : counter(b.text) - counter(a.text);
     });
   }
   // Filter Children
@@ -71,7 +77,7 @@ export const cap: Prxmpt.PC<CapProps> = (props) => {
       const isLast = index === arr.length-1;
       const hasRoomForEllipsis = total + count + ellipsisCount <= max;
       const hasRoomWithoutEllipsis = total + count <= max;
-      const hasRoom = !isLast && hasRoomForEllipsis || isLast && hasRoomWithoutEllipsis;
+      const hasRoom = (!isLast && hasRoomForEllipsis) || (isLast && hasRoomWithoutEllipsis);
       const isStopped = props.strategy === "ordered-no-skip" && didFilter;
       if(hasRoom && !isStopped) {
         total += count + joinCount;
@@ -87,7 +93,7 @@ export const cap: Prxmpt.PC<CapProps> = (props) => {
   }
   return (
     <text {...props}>
-      {filteredChildren.map(child => child.text)}
+      {filteredChildren.map((child) => child.text)}
       {didFilter ? props.ellipsis : undefined}
     </text>
   );

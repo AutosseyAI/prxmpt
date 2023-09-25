@@ -9,7 +9,7 @@ export interface ImageProps extends Prxmpt.HTMLProps {
    * A title for the image.
    */
   title?: string;
-};
+}
 
 export const img: Prxmpt.PC<ImageProps> = (props) => {
   if(props.html) {

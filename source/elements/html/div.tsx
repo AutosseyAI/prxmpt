@@ -2,11 +2,11 @@ import * as Prxmpt from "../../index.js";
 
 export interface DivProps extends Prxmpt.HTMLProps {
   title?: string;
-};
+}
 
 export const div: Prxmpt.PC<DivProps> = (props) => {
   if(props.html) {
-    return <tag name="div" {...props} />
+    return <tag name="div" {...props} />;
   } else {
     const body = (
       <text

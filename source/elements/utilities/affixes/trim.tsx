@@ -1,6 +1,6 @@
 import * as Prxmpt from "../../../index.js";
 
-export interface TrimProps extends Omit<Prxmpt.TextProps, "trim"> {};
+export interface TrimProps extends Omit<Prxmpt.TextProps, "trim"> {}
 
 export const trim: Prxmpt.PC<TrimProps> = (props) => {
   return (

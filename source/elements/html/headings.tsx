@@ -5,11 +5,11 @@ export interface HeadingProps extends Prxmpt.TextProps {
    * @default false
    */
   html?: boolean;
-};
+}
 
 export interface HProps extends HeadingProps {
   n: 1 | 2 | 3 | 4 | 5 | 6;
-};
+}
 
 function h(props: Prxmpt.ChildProps & HProps) {
   return props.html

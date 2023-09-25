@@ -21,14 +21,14 @@ export interface HRProps extends Prxmpt.HTMLProps {
    * @default "-"
    */
   char?: HRChar;
-};
+}
 
 export const hr: Prxmpt.FC<HRProps> = (props) => {
   if(props.html) {
     return <tag name="hr" {...props} />;
   } else {
     const width = props.width || 3;
-    const char = props.char || "-";
+    const char = props.char ?? "-";
     return (
       <text {...props}>
         <text repeat={width}>{char}</text>

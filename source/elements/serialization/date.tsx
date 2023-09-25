@@ -19,10 +19,10 @@ export interface DateProps extends DateValuePropsProps {
 }
 
 export const date: Prxmpt.FC<DateProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
+  const value = new Date(props.value ?? Date.now());
   const dateStyle = props.format ?? "long";
-  return date.toLocaleString("default", { dateStyle });
-}
+  return value.toLocaleString("default", { dateStyle });
+};
 
 export interface TimeProps extends DateValuePropsProps {
   /**
@@ -32,10 +32,10 @@ export interface TimeProps extends DateValuePropsProps {
 }
 
 export const time: Prxmpt.FC<TimeProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
+  const value = new Date(props.value ?? Date.now());
   const timeStyle = props.format ?? "short";
-  return date.toLocaleString("default", { timeStyle });
-}
+  return value.toLocaleString("default", { timeStyle });
+};
 
 export interface DateTimeProps extends DateValuePropsProps {
   /**
@@ -49,16 +49,16 @@ export interface DateTimeProps extends DateValuePropsProps {
 }
 
 export const datetime: Prxmpt.FC<DateTimeProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
+  const value = new Date(props.value ?? Date.now());
   const dateStyle = props.dateFormat ?? "long";
   const timeStyle = props.timeFormat ?? "short";
-  return date.toLocaleString("default", { dateStyle, timeStyle });
-}
+  return value.toLocaleString("default", { dateStyle, timeStyle });
+};
 
 export const year: Prxmpt.FC<DateValuePropsProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
-  return date.getFullYear().toString();
-}
+  const value = new Date(props.value ?? Date.now());
+  return value.getFullYear().toString();
+};
 
 export interface MonthProps extends DateValuePropsProps {
   /**
@@ -68,13 +68,13 @@ export interface MonthProps extends DateValuePropsProps {
 }
 
 export const month: Prxmpt.FC<MonthProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
-  if(props.format ?? "number" === "number") {
-    return date.getMonth().toString();
+  const value = new Date(props.value ?? Date.now());
+  if(props.format === undefined || props.format === "number") {
+    return value.getMonth().toString();
   } else {
-    return date.toLocaleString("default", { month: props.format });
+    return value.toLocaleString("default", { month: props.format });
   }
-}
+};
 
 export interface DayProps extends DateValuePropsProps {
   /**
@@ -84,13 +84,13 @@ export interface DayProps extends DateValuePropsProps {
 }
 
 export const day: Prxmpt.FC<DayProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
-  if(props.format ?? "number" === "number") {
-    return date.getDate().toString();
+  const value = new Date(props.value ?? Date.now());
+  if(props.format === undefined || props.format === "number") {
+    return value.getDate().toString();
   } else {
-    return date.toLocaleString("default", { weekday: props.format });
+    return value.toLocaleString("default", { weekday: props.format });
   }
-}
+};
 
 export interface HoursProps extends DateValuePropsProps {
   /**
@@ -100,27 +100,27 @@ export interface HoursProps extends DateValuePropsProps {
 }
 
 export const hour: Prxmpt.FC<HoursProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
-  const hours = date.getHours();
+  const value = new Date(props.value ?? Date.now());
+  const hours = value.getHours();
   return props.cycle !== "24" && hours > 12
     ? (hours - 12).toString()
     : hours.toString();
-}
+};
 
 export const minute: Prxmpt.FC<DateValuePropsProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
-  return date.getMinutes().toString();
-}
+  const value = new Date(props.value ?? Date.now());
+  return value.getMinutes().toString();
+};
 
 export const second: Prxmpt.FC<DateValuePropsProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
-  return date.getSeconds().toString();
-}
+  const value = new Date(props.value ?? Date.now());
+  return value.getSeconds().toString();
+};
 
 export const millisecond: Prxmpt.FC<DateValuePropsProps> = (props) => {
-  const date = new Date(props.value ?? Date.now());
-  return date.getMilliseconds().toString();
-}
+  const value = new Date(props.value ?? Date.now());
+  return value.getMilliseconds().toString();
+};
 
 // Relative Date Components
 
@@ -131,8 +131,8 @@ export interface DurationProps extends Prxmpt.TextProps {
 export const duration: Prxmpt.FC<DurationProps> = (props) => {
   const since = new Date(props.since);
   const now = Date.now();
-  const duration = now - since.getTime();
-  const seconds = duration / 1000;
+  const elapsed = now - since.getTime();
+  const seconds = elapsed / 1000;
   const minutes = seconds / 60;
   const hours = minutes / 60;
   const days = hours / 24;
@@ -157,7 +157,7 @@ export const duration: Prxmpt.FC<DurationProps> = (props) => {
     const rounded = Math.round(seconds);
     return <text {...props}>{rounded} second<text hide={rounded === 1}>s</text></text>;
   } else {
-    const rounded = Math.round(duration);
+    const rounded = Math.round(elapsed);
     return <text {...props}>{rounded} millisecond<text hide={rounded === 1}>s</text></text>;
   }
-}
+};

@@ -21,7 +21,7 @@ export interface KVProps extends Prxmpt.TextProps {
    * @default false
    */
   noSpace?: boolean;
-};
+}
 
 /**
  * **Key-Value Pair**
@@ -34,7 +34,7 @@ export const kv: Prxmpt.OC<KVProps> = (props) => {
   const wrap = props.wrap ?? children.includes("\n");
   const spacer = wrap
     ? "\n"
-    : props.noSpace ? "" : " "
+    : props.noSpace ? "" : " ";
   return (
     <text {...props}>
       <text casing={props.keyCase}>{props.key}</text>:{spacer}{props.children}

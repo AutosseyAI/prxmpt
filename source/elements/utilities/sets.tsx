@@ -23,7 +23,7 @@ function set(props: SetProps & Prxmpt.ChildProps) {
   } else {
     return Prxmpt.render(items);
   }
-};
+}
 
 export const and: Prxmpt.PC = (props) => {
   return set({ ...props, conjunction: "and" });

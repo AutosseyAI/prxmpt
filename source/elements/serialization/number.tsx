@@ -17,13 +17,13 @@ export interface NumProps {
    * Number of decimal places.
    */
   fixed?: number;
-};
+}
 
 export const num: Prxmpt.PC<NumProps> = (props) => {
-  let text = Prxmpt.render(props.children);
+  const text = Prxmpt.render(props.children);
   let value = Number(text);
   if(props.add !== undefined) {
-    value = value + props.add;
+    value += props.add;
   }
   if(props.min !== undefined) {
     value = Math.max(value, props.min);

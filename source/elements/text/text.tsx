@@ -132,8 +132,8 @@ export interface TextProps extends HideProps {
 }
 
 export const text: Prxmpt.PC<TextProps> = (props) => {
-  const filter = props.filter || ((node) => true);
-  const map = props.map || ((node) => Prxmpt.render(node));
+  const filter = props.filter ?? ((node) => true);
+  const map = props.map ?? ((node) => Prxmpt.render(node));
   const array = asArray(props.children)
     .filter((child, index, arr) => child !== undefined && filter(child, index, arr))
     .map((child, index, arr) => map(child, index, arr));
@@ -145,7 +145,9 @@ export const text: Prxmpt.PC<TextProps> = (props) => {
     .repeat(props.repeat ?? 1);
   const trimmed = applyTrim(content, props.trim);
   const cased = applyCasing(trimmed, props.casing);
-  const bracketed = `${props.prefix ?? ""}${cased}${props.suffix ?? ""}`;
+  const prefix = Prxmpt.render(props.prefix ?? "");
+  const suffix = Prxmpt.render(props.suffix ?? "");
+  const bracketed = `${prefix}${cased}${suffix}`;
   const indented = applyIndent(bracketed, props.indent);
   return props.hide
     ? undefined

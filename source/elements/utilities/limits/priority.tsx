@@ -1,5 +1,6 @@
 import * as Prxmpt from "../../../index.js";
-import { charCounter, Counter } from "./shared.js";
+import type { Counter } from "./shared.js";
+import { charCounter } from "./shared.js";
 
 type Defined<T> = T extends undefined ? never : T;
 
@@ -42,7 +43,7 @@ export interface PriorityProps extends Prxmpt.TextProps {
    * @default "priority"
    */
   strategy?: "priority" | "priority-no-skip";
-};
+}
 
 
 export const priority: Prxmpt.FC<PriorityProps> = (props) => {
