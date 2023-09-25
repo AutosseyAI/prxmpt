@@ -3,28 +3,28 @@ import Prxmpt from "../../source/index.js";
 
 describe("hide", () => {
   test("true", () => {
-    const text = <text hide>Test</text>;
-    expect(text).toEqual(undefined);
+    const string = <text hide>Test</text>;
+    expect(string).toEqual(undefined);
   });
   test("false", () => {
-    const text = <text hide={false}>Test</text>;
-    expect(text).toEqual("Test");
+    const string = <text hide={false}>Test</text>;
+    expect(string).toEqual("Test");
   });
   test("children", () => {
-    const text = (
+    const string = (
       <lined>
         <text hide>Test 1</text>
         <text>Test 2</text>
         <text hide>Test 3</text>
       </lined>
     );
-    expect(text).toEqual("Test 2");
+    expect(string).toEqual("Test 2");
   });
 });
 
 describe("filter", () => {
   test("simple", () => {
-    const text = (
+    const string = (
       <text
         filter={(child) => Prxmpt.render(child).includes("1")}>
         <text>Test 1</text>
@@ -32,13 +32,13 @@ describe("filter", () => {
         <text>Test 3</text>
       </text>
     );
-    expect(text).toEqual("Test 1");
+    expect(string).toEqual("Test 1");
   });
 });
 
 describe("map", () => {
   test("simple", () => {
-    const text = (
+    const string = (
       <text
         map={(child) => Prxmpt.render(child).slice(0, -2)}>
         <text>Test 1</text>
@@ -46,7 +46,7 @@ describe("map", () => {
         <text>Test 3</text>
       </text>
     );
-    expect(text).toEqual("TestTestTest");
+    expect(string).toEqual("TestTestTest");
   });
 });
 
@@ -57,96 +57,127 @@ describe("reverse", () => {
       <text>Test 2</text>,
       <text>Test 3</text>
     ];
-    const text = (
+    const string = (
       <text children={children} reverse />
     );
-    expect(text).toEqual("Test 3Test 2Test 1");
+    expect(string).toEqual("Test 3Test 2Test 1");
     expect(children[0]).toEqual("Test 1");
   });
 });
 
 describe("join", () => {
   test("newline", () => {
-    const text = (
+    const string = (
       <lined>
         <text>Test 1</text>
         <text>Test 2</text>
         <text>Test 3</text>
       </lined>
     );
-    expect(text).toEqual("Test 1\nTest 2\nTest 3");
+    expect(string).toEqual("Test 1\nTest 2\nTest 3");
   });
 });
 
 describe("repeat", () => {
   test("newline", () => {
-    const text = (
+    const string = (
       <text repeat={3}>Test</text>
     );
-    expect(text).toEqual("TestTestTest");
+    expect(string).toEqual("TestTestTest");
+  });
+});
+
+describe("trim", () => {
+  test("true", () => {
+    const string = (
+      <text trim> Test </text>
+    );
+    expect(string).toEqual("Test");
+  });
+  test("start", () => {
+    const string = (
+      <text trim="start"> Test </text>
+    );
+    expect(string).toEqual("Test ");
+  });
+  test("end", () => {
+    const string = (
+      <text trim="end"> Test </text>
+    );
+    expect(string).toEqual(" Test");
   });
 });
 
 describe("case", () => {
   test("upper", () => {
-    const text = <text casing="upper">Test</text>;
-    expect(text).toEqual("TEST");
+    const string = <text casing="upper">Test</text>;
+    expect(string).toEqual("TEST");
   });
   test("lower", () => {
-    const text = <text casing="lower">Test</text>;
-    expect(text).toEqual("test");
+    const string = <text casing="lower">Test</text>;
+    expect(string).toEqual("test");
   });
   test("capital", () => {
-    const text = <text casing="capital">test test test</text>;
-    expect(text).toEqual("Test test test");
+    const string = <text casing="capital">test test test</text>;
+    expect(string).toEqual("Test test test");
   });
   test("title", () => {
-    const text = <text casing="title">test test test</text>;
-    expect(text).toEqual("Test Test Test");
+    const string = <text casing="title">test test test</text>;
+    expect(string).toEqual("Test Test Test");
   });
 });
 
 describe("prefix", () => {
   test("simple", () => {
-    const text = <text prefix="Prefix">Test</text>;
-    expect(text).toEqual("PrefixTest");
+    const string = <text prefix="Prefix">Test</text>;
+    expect(string).toEqual("PrefixTest");
   });
 });
 
 describe("suffix", () => {
   test("simple", () => {
-    const text = <text suffix="Suffix">Test</text>;
-    expect(text).toEqual("TestSuffix");
+    const string = <text suffix="Suffix">Test</text>;
+    expect(string).toEqual("TestSuffix");
   });
 });
 
 describe("indent", () => {
   test("true", () => {
-    const text = <text indent>Test</text>;
-    expect(text).toEqual("  Test");
+    const string = <text indent>Test</text>;
+    expect(string).toEqual("  Test");
   });
   test("false", () => {
-    const text = <text indent={false}>Test</text>;
-    expect(text).toEqual("Test");
+    const string = <text indent={false}>Test</text>;
+    expect(string).toEqual("Test");
   });
   test("number", () => {
-    const text = <text indent={4}>Test</text>;
-    expect(text).toEqual("    Test");
+    const string = <text indent={4}>Test</text>;
+    expect(string).toEqual("    Test");
   });
   test("tab", () => {
-    const text = <text indent={"\t"}>Test</text>;
-    expect(text).toEqual("\tTest");
+    const string = <text indent={"\t"}>Test</text>;
+    expect(string).toEqual("\tTest");
+  });
+  test("with empty lines", () => {
+    const string = (
+      <lined indent>
+        <text>Line 1</text>
+        <empty />
+        <text>Line 2</text>
+      </lined>
+    );
+    expect(string).toEqual("  Line 1\n\n  Line 2");
   });
 });
 
 describe("block", () => {
   test("true", () => {
-    const text = <text block>Test</text>;
-    expect(text).toEqual("Test\n");
+    const string = <text block>Test</text>;
+    expect(string).toEqual("Test\n");
   });
   test("false", () => {
-    const text = <text block={false}>Test</text>;
-    expect(text).toEqual("Test");
+    const string = <text block={false}>Test</text>;
+    expect(string).toEqual("Test");
   });
 });
 
