@@ -200,21 +200,21 @@ namespace Prxmpt {
    *
    * A `Component` that does not have a `children` property by default.
    */
-  export type FC<P = Record<string, never>> = (props: P) => Element;
+  export type FC<P = {}> = (props: P) => Element;
 
   /**
    * **Parent Component**
    *
    * A `Component` with a required `children` property.
    */
-  export interface PC<P = Record<string, never>> extends FC<P & ChildProps> {}
+  export interface PC<P = {}> extends FC<P & ChildProps> {}
 
   /**
    * **Optional Children Component**
    *
    * A `Component` with an optional `children` property.
    */
-  export interface OC<P = Record<string, never>> extends FC<Partial<ChildProps> & P> {}
+  export interface OC<P = {}> extends FC<Partial<ChildProps> & P> {}
 
   export interface IntrinsicElements {
     a: PropsOf<typeof a>;
@@ -325,9 +325,9 @@ export type Component = Prxmpt.Component;
 export type PropsOf<T extends Prxmpt.Component> = Prxmpt.PropsOf<T>;
 export type Children = Prxmpt.Children;
 export type ChildProps = Prxmpt.ChildProps;
-export type FC<P = Record<string, never>> = Prxmpt.FC<P>;
-export type PC<P = Record<string, never>> = Prxmpt.PC<P>;
-export type OC<P = Record<string, never>> = Prxmpt.OC<P>;
+export type FC<P = {}> = Prxmpt.FC<P>;
+export type PC<P = {}> = Prxmpt.PC<P>;
+export type OC<P = {}> = Prxmpt.OC<P>;
 
 // JSX
 
