@@ -1,5 +1,10 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "@jest/globals";
 import Prxmpt from "../../source/index.js";
+
+test("no type", () => {
+  const text = <comment>Test</comment>;
+  expect(text).toEqual("// Test");
+});
 
 describe("slash", () => {
   test("single line", () => {

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "@jest/globals";
 import Prxmpt from "../../source/index.js";
 
 describe("spaced", () => {

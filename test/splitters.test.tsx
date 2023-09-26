@@ -1,5 +1,13 @@
-import { expect, test } from "bun:test";
-import Prxmpt, { chars, commas, lines, paragraphs, words } from "../source/index.js";
+import { expect, test } from "@jest/globals";
+import Prxmpt, { chars, commas, lines, paragraphs, split, words } from "../source/index.js";
+
+test("split none", () => {
+  const test = (
+    <text>This is a test</text>
+  );
+  const result = split(test);
+  expect(result).toEqual(["This is a test"]);
+});
 
 test("chars", () => {
   const test = (

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "@jest/globals";
 import Prxmpt from "../../source/index.js";
 
 describe("q", () => {
@@ -17,6 +17,14 @@ describe("q", () => {
   test("multi line single quote", () => {
     const text = <q type="single">Test<br />Test<br />Test</q>;
     expect(text).toEqual("'''\nTest\nTest\nTest\n'''");
+  });
+  test("single line backtick", () => {
+    const text = <q type="backtick">Test</q>;
+    expect(text).toEqual("`Test`");
+  });
+  test("multi line backtick", () => {
+    const text = <q type="backtick">Test<br />Test<br />Test</q>;
+    expect(text).toEqual("```\nTest\nTest\nTest\n```");
   });
   test("single line html", () => {
     const text = <q html>Test</q>;

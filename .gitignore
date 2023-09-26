@@ -1,5 +1,6 @@
 .auto
 .DS_Store
+coverage
 node_modules
 yarn-error.log
 *.txt

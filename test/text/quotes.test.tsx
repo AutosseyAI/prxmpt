@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "@jest/globals";
 import Prxmpt from "../../source/index.js";
 
 describe("sq", () => {
@@ -17,6 +17,14 @@ describe("dq", () => {
     const text = <dq>Test</dq>;
     expect(text).toEqual('"Test"');
   });
+  test("escape", () => {
+    const text = <dq>Te"st</dq>;
+    expect(text).toEqual('"Te\\"st"');
+  });
+  test("no escape", () => {
+    const text = <dq noEscape>Te"st</dq>;
+    expect(text).toEqual('"Te\"st"');
+  });
   test("multi line", () => {
     const text = <dq>Test<br />Test<br />Test</dq>;
     expect(text).toEqual('"Test\nTest\nTest"');
@@ -27,6 +35,14 @@ describe("bq", () => {
   test("single line", () => {
     const text = <bq>Test</bq>;
     expect(text).toEqual("`Test`");
+  });
+  test("escape", () => {
+    const text = <bq>Te`st</bq>;
+    expect(text).toEqual("`Te\\`st`");
+  });
+  test("no escape", () => {
+    const text = <bq noEscape>Te`st</bq>;
+    expect(text).toEqual("`Te\`st`");
   });
   test("multi line", () => {
     const text = <bq>Test<br />Test<br />Test</bq>;

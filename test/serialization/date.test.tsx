@@ -1,8 +1,15 @@
-import { beforeAll, describe, expect, setSystemTime, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, jest, test } from "@jest/globals";
 import Prxmpt from "../../source/index.js";
 
 beforeAll(() => {
-  setSystemTime(new Date("2020-01-01T00:00:00.000Z"));
+  jest.useFakeTimers({
+    now: new Date("2020-01-01T00:00:00.000Z")
+  });
+  jest.setSystemTime(new Date("2020-01-01T00:00:00.000Z"));
+});
+
+afterAll(() => {
+  jest.useRealTimers();
 });
 
 describe("date", () => {
@@ -11,6 +18,12 @@ describe("date", () => {
       <date />
     );
     expect(string).toEqual("January 1, 2020");
+  });
+  test("custom date", () => {
+    const string = (
+      <date value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("February 2, 2021");
   });
   test("full", () => {
     const string = (
@@ -45,6 +58,12 @@ describe("time", () => {
     );
     expect(string).toEqual("12:00 AM");
   });
+  test("custom date", () => {
+    const string = (
+      <time value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("1:01 AM");
+  });
   test("full", () => {
     const string = (
       <time format="full" />
@@ -76,6 +95,12 @@ describe("datetime", () => {
     const string = <datetime />;
     expect(string).toEqual("January 1, 2020 at 12:00 AM");
   });
+  test("custom date", () => {
+    const string = (
+      <datetime value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("February 2, 2021 at 1:01 AM");
+  });
   test("full", () => {
     const string = <datetime dateFormat="full" timeFormat="full" />;
     expect(string).toEqual("Wednesday, January 1, 2020 at 12:00:00 AM Coordinated Universal Time");
@@ -85,8 +110,9 @@ describe("datetime", () => {
     expect(string).toEqual("January 1, 2020 at 12:00:00 AM UTC");
   });
   test("medium", () => {
-    const string = <datetime dateFormat="medium" timeFormat="medium" />;
-    expect(string).toEqual("Jan 1, 2020 at 12:00:00 AM");
+    const string = Prxmpt.render(<datetime dateFormat="medium" timeFormat="medium" />);
+    // JSC uses "at", while V8 uses ","
+    expect(["Jan 1, 2020, 12:00:00 AM", "Jan 1, 2020 at 12:00:00 AM"].includes(string)).toBe(true);
   });
   test("short", () => {
     const string = <datetime dateFormat="short" timeFormat="short" />;
@@ -100,12 +126,24 @@ describe("year", () => {
     const string = <year />;
     expect(string).toEqual("2020");
   });
+  test("custom date", () => {
+    const string = (
+      <year value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("2021");
+  });
 });
 
 describe("month", () => {
   test("default", () => {
     const string = <month />;
     expect(string).toEqual("0");
+  });
+  test("custom date", () => {
+    const string = (
+      <month value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("1");
   });
   test("long", () => {
     const string = <month format="long" />;
@@ -126,6 +164,12 @@ describe("day", () => {
     const string = <day />;
     expect(string).toEqual("1");
   });
+  test("custom date", () => {
+    const string = (
+      <day value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("2");
+  });
   test("long", () => {
     const string = <day format="long" />;
     expect(string).toEqual("Wednesday");
@@ -145,6 +189,12 @@ describe("hour", () => {
     const string = <hour />;
     expect(string).toEqual("0");
   });
+  test("custom date", () => {
+    const string = (
+      <hour value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("1");
+  });
   test("custom", () => {
     const string = <hour value={new Date("Jan 1, 2020 5:00 PM")} />;
     expect(string).toEqual("5");
@@ -160,12 +210,24 @@ describe("minute", () => {
     const string = <minute />;
     expect(string).toEqual("0");
   });
+  test("custom date", () => {
+    const string = (
+      <minute value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("1");
+  });
 });
 
 describe("second", () => {
   test("default", () => {
     const string = <second />;
     expect(string).toEqual("0");
+  });
+  test("custom date", () => {
+    const string = (
+      <second value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("1");
   });
 });
 
@@ -174,9 +236,23 @@ describe("millisecond", () => {
     const string = <millisecond />;
     expect(string).toEqual("0");
   });
+  test("custom date", () => {
+    const string = (
+      <millisecond value={new Date("2021-02-02T01:01:01.001Z")} />
+    );
+    expect(string).toEqual("1");
+  });
 });
 
 describe("duration", () => {
+  test("custom date", () => {
+    const string = (
+      <duration
+        value={new Date("2021-02-02T01:01:01.001Z")}
+        since={new Date("2019-01-01T00:00:00.000Z")} />
+    );
+    expect(string).toEqual("2 years");
+  });
   test("1 year", () => {
     const string = <duration since={new Date("2019-01-01T00:00:00.000Z")} />;
     expect(string).toEqual("1 year");

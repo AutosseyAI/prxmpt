@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "@jest/globals";
 import { createElement, render } from "../source/index.js";
 
 describe("render", () => {
