@@ -53,6 +53,7 @@
   "devDependencies": {
     "@autossey/eslint-config": "^1.0.0",
     "@autossey/tsconfig": "^1.0.0",
+    "@jest/globals": "^29.7.0",
     "@swc/core": "^1.3.89",
     "@swc/jest": "^0.2.29",
     "bun-types": "^1.0.2",
