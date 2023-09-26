@@ -94,7 +94,7 @@ export const cl: Prxmpt.FC<CBProps> = (props) => {
     if(Prxmpt.isChildren(item)) {
       return `[ ] ${Prxmpt.render(item)}`;
     } else {
-      return `[${item?.checked ? "x" : " "}] ${Prxmpt.render(item?.content)}`;
+      return `[${item.checked ? "x" : " "}] ${Prxmpt.render(item.content)}`;
     }
   });
   return (
