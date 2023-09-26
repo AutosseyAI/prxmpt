@@ -125,12 +125,20 @@ export const millisecond: Prxmpt.FC<DateValuePropsProps> = (props) => {
 // Relative Date Components
 
 export interface DurationProps extends Prxmpt.TextProps {
+  /**
+   * The end of the duration.
+   * @default Date.now()
+   */
+  value?: Date | string | number;
+  /**
+   * The start of the duration.
+   */
   since: Date | string | number;
 }
 
 export const duration: Prxmpt.FC<DurationProps> = (props) => {
   const since = new Date(props.since);
-  const now = Date.now();
+  const now = props.value ? new Date(props.value).getTime() : Date.now();
   const elapsed = now - since.getTime();
   const seconds = elapsed / 1000;
   const minutes = seconds / 60;

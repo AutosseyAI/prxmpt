@@ -1627,8 +1627,19 @@ const string = <millisecond />
 #### Duration
 
 ##### Props
+**value**
+```tsx
+/**
+ * The end of the duration.
+ * @default Date.now()
+ */
+value?: Date | string | number;
+```
 **since**
 ```tsx
+/**
+ * The start of the duration.
+ */
 since: Date | string | number;
 ```
 
