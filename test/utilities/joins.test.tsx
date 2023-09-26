@@ -104,4 +104,14 @@ describe("sectioned", () => {
     );
     expect(string).toEqual("---\none\n---\ntwo\n---\nthree\n---");
   });
+  test("custom divider", () => {
+    const string = (
+      <sectioned divider="***">
+        <text>one</text>
+        <text>two</text>
+        <text>three</text>
+      </sectioned>
+    );
+    expect(string).toEqual("one\n***\ntwo\n***\nthree");
+  });
 });

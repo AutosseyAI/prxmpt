@@ -38,6 +38,30 @@ describe("max", () => {
     );
     expect(text).toEqual("Test 1Test 2");
   });
+  test("block", () => {
+    const text = (
+      <cap max={12} join={"\n"} block>
+        <text>Test 1</text>
+        <text>Test 2</text>
+        <text>Test 3</text>
+        <text>Test 4</text>
+        <text>Test 5</text>
+      </cap>
+    );
+    expect(text).toEqual("Test 1\n");
+  });
+  test("repeat", () => {
+    const text = (
+      <cap max={12} join={"\n"} repeat={2}>
+        <text>Test 1</text>
+        <text>Test 2</text>
+        <text>Test 3</text>
+        <text>Test 4</text>
+        <text>Test 5</text>
+      </cap>
+    );
+    expect(text).toEqual("Test 1Test 1");
+  });
   test("exact w/join", () => {
     const text = (
       <cap max={12} join={"\n"}>
@@ -49,6 +73,21 @@ describe("max", () => {
       </cap>
     );
     expect(text).toEqual("Test 1");
+  });
+});
+
+describe("counter", () => {
+  test("4-char", () => {
+    const text = (
+      <cap join={"\n"} max={4} counter={(string) => string.length / 4}>
+        <text>Test 1</text>
+        <text>Test 2</text>
+        <text>Test 3</text>
+        <text>Test 4</text>
+        <text>Test 5</text>
+      </cap>
+    );
+    expect(text).toEqual("Test 1\nTest 2");
   });
 });
 

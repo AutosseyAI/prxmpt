@@ -1,5 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
-import { createElement, render } from "../source/index.js";
+import { createElement, hasChildren, isChildren, render } from "../source/index.js";
 
 describe("render", () => {
   test("string", () => {
@@ -40,5 +40,36 @@ describe("createElement", () => {
   test("string", () => {
     const result = createElement("text", {}, "Test");
     expect(result).toEqual("Test");
+  });
+  test("invalid", () => {
+    const result = createElement("invalid" as Parameters<typeof createElement>[0], {}, "Test");
+    expect(result).toBeUndefined();
+  });
+});
+
+describe("isChildren", () => {
+  test("string", () => {
+    expect(isChildren("Test")).toEqual(true);
+  });
+  test("boolean", () => {
+    expect(isChildren(true)).toEqual(true);
+  });
+  test("number", () => {
+    expect(isChildren(1)).toEqual(true);
+  });
+  test("string array", () => {
+    expect(isChildren(["a", "b"])).toEqual(true);
+  });
+});
+
+describe("hasChildren", () => {
+  test("yes", () => {
+    expect(hasChildren({ children: "string" })).toEqual(true);
+  });
+  test("no", () => {
+    expect(hasChildren({ children: undefined })).toEqual(false);
+  });
+  test("null props", () => {
+    expect(hasChildren(null)).toEqual(false);
   });
 });
