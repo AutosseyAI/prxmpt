@@ -1984,7 +1984,7 @@ const string = (
 );
 ```
 
-<h3 id="limits"><div align="right"><a href="#elements">🔝</a></div>Limits</h3>
+<h3 id="limiters"><div align="right"><a href="#elements">🔝</a></div>Limiters</h3>
 
 #### Cap
 
