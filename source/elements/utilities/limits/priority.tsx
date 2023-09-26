@@ -20,7 +20,7 @@ export type PriorityItem = {
   content: ((capacity: number) => Prxmpt.Children) | Prxmpt.Children;
 };
 
-export interface PriorityProps extends Prxmpt.TextProps {
+export interface PriorityProps extends Omit<Prxmpt.TextProps, "indent"> {
   /**
    * The maximum "units" to include.
    * @default Infinity
@@ -55,7 +55,6 @@ export const priority: Prxmpt.FC<PriorityProps> = (props) => {
   const blockCount = props.block ? 1 : 0;
   const reserved = prefixCount + suffixCount + blockCount;
   const repeat = props.repeat ?? 1;
-  // TODO: account for indent
   let capacity = Math.floor(((props.max ?? Infinity) - reserved) / repeat);
   let didFilter = false;
   // Sort by priority, keeping track of the original order

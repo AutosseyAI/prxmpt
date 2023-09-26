@@ -5,7 +5,7 @@ import { charCounter } from "./shared.js";
 
 export type CapStrategy = "ordered" | "ordered-no-skip" | "size-asc" | "size-desc";
 
-export interface CapProps extends Prxmpt.TextProps {
+export interface CapProps extends Omit<Prxmpt.TextProps, "indent"> {
   /**
    * The maximum "units" to include.
    * @default Infinity
@@ -52,7 +52,6 @@ export const cap: Prxmpt.PC<CapProps> = (props) => {
   const blockCount = props.block ? 1 : 0;
   const reserved = prefixCount + suffixCount + blockCount;
   const repeat = props.repeat ?? 1;
-  // TODO: account for indent
   const max = Math.floor(((props.max ?? Infinity) - reserved) / repeat);
   let didFilter = false;
   let total = 0;
