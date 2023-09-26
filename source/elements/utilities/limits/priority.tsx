@@ -55,7 +55,7 @@ export const priority: Prxmpt.FC<PriorityProps> = (props) => {
   const blockCount = props.block ? 1 : 0;
   const reserved = prefixCount + suffixCount + blockCount;
   const repeat = props.repeat ?? 1;
-  let capacity = Math.floor(((props.max ?? Infinity) - reserved) / repeat);
+  let capacity = ((props.max ?? Infinity) - reserved) / repeat;
   let didFilter = false;
   // Sort by priority, keeping track of the original order
   const sorted = props.items

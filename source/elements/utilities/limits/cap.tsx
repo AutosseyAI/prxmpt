@@ -48,11 +48,11 @@ export const cap: Prxmpt.PC<CapProps> = (props) => {
   const prefixCount = counter(Prxmpt.render(props.prefix));
   const suffixCount = counter(Prxmpt.render(props.suffix));
   const joinCount = counter(Prxmpt.render(props.join));
-  const ellipsisCount = joinCount + (props.ellipsis ? counter(props.ellipsis) : 0);
+  const ellipsisCount = (props.ellipsis ? joinCount + counter(props.ellipsis) : 0);
   const blockCount = props.block ? 1 : 0;
   const reserved = prefixCount + suffixCount + blockCount;
   const repeat = props.repeat ?? 1;
-  const max = Math.floor(((props.max ?? Infinity) - reserved) / repeat);
+  const max = ((props.max ?? Infinity) - reserved) / repeat;
   let didFilter = false;
   let total = 0;
   // Keep track of indices so we can reorder
