@@ -1,11 +1,15 @@
 <div id="top" align="center">
   <h1>𝕡𝕣𝕩𝕞𝕡𝕥</h1>
+  <a href="https://coveralls.io/github/AutosseyAI/prxmpt">
+    <img alt="Coverage Status" src="https://img.shields.io/coveralls/github/AutosseyAI/prxmpt/badge.svg" />
+  </a>
   <a href="https://npmjs.com/package/@autossey/prxmpt">
     <img alt="NPM" src="https://img.shields.io/npm/v/@autossey/prxmpt.svg">
   </a>
   <a href="https://github.com/AutosseyAI/prxmpt">
     <img alt="TypeScript" src="https://img.shields.io/github/languages/top/AutosseyAI/prxmpt.svg">
   </a>
+
 </div>
 
 <br />
