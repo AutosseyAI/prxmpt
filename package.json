@@ -5,6 +5,20 @@
   "license": "MIT",
   "private": false,
   "author": "Connor White",
+  "homepage": "https://github.com/AutosseyAI/prxmpt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AutosseyAI/prxmpt.git"
+  },
+  "bugs": "https://github.com/AutosseyAI/prxmpt/issues",
+  "keywords": [
+    "prompt",
+    "prxmpt",
+    "autossey",
+    "ai",
+    "openai",
+    "jsx"
+  ],
   "type": "module",
   "main": ".auto/build/index.js",
   "types": ".auto/build/index.d.ts",
