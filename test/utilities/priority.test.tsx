@@ -134,7 +134,7 @@ describe("basics", () => {
     const text = (
       <priority
         max={15}
-        strategy="priority-no-skip"
+        noSkip
         join={"\n"}
         items={[{
           p: 1,
@@ -148,6 +148,62 @@ describe("basics", () => {
         }]} />
     );
     expect(text).toEqual("Test 3");
+  });
+});
+
+describe("strategy", () => {
+  test("size-asc", () => {
+    const string = (
+      <priority
+        max={18}
+        join={"\n"}
+        strategy="size-asc"
+        items={[
+          "Test 1",
+          {
+            content: () => "Test 22"
+          },
+          "Test 333",
+          "Test 4444"
+        ]} />
+    );
+    expect(string).toEqual("Test 1\nTest 22");
+  });
+  test("size-desc", () => {
+    const string = (
+      <priority
+        max={18}
+        join={"\n"}
+        strategy="size-desc"
+        items={[
+          "Test 1",
+          {
+            content: () => "Test 22"
+          },
+          "Test 333",
+          "Test 4444"
+        ]} />
+    );
+    expect(string).toEqual("Test 333\nTest 4444");
+  });
+  test("priority / order-desc", () => {
+    const string = (
+      <priority
+        max={15}
+        join={"\n"}
+        strategy={["priority", "order-desc"]}
+        items={[{
+          p: 1,
+          content: "Test 1"
+        }, {
+          content: "Test 2"
+        }, {
+          content: "Test 3"
+        }, {
+          content: "Test 4"
+        }]} />
+    );
+    expect(string).toEqual("Test 1\nTest 4");
   });
 });
 

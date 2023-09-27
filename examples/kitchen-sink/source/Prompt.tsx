@@ -5,13 +5,17 @@ export default function Prompt() {
       <h1>Prxmpt</h1>
       <h2>Casing</h2>
       <h3>Capital</h3>
-      <text casing="capital">capitalized string</text>
+      <capital>capitalized string</capital>
+      <text casing="capital">capitalized string with text</text>
       <h3>Title</h3>
-      <text casing="title">capitalized string</text>
+      <title>capitalized string</title>
+      <text casing="title">capitalized string with text</text>
       <h3>Upper</h3>
-      <text casing="upper">uppercase string</text>
+      <upper>uppercase string</upper>
+      <text casing="upper">uppercase string with text</text>
       <h3>Lower</h3>
-      <text casing="lower">Lowercase String</text>
+      <lower>Lowercase String</lower>
+      <text casing="lower">Lowercase String with text</text>
       <h2>Elements</h2>
       <h3>Anchor</h3>
       <a href="https://example.com" title="Example Title">Example</a>
@@ -66,7 +70,7 @@ export default function Prompt() {
       <h1>Heading 1</h1>
       <h1 html>HTML Heading 1</h1>
       <h3>Image</h3>
-      <img href="/path/to/image.png">Image</img>
+      <img src="/path/to/image.png">Image</img>
       <h3>Lists</h3>
       <kv key="Ordered List">
         <ol children={["One", "Two", "Three"]} />
@@ -104,9 +108,14 @@ export default function Prompt() {
       <union children={["A", "B", "C"]} />
       <h2>Sets</h2>
       <h3>And</h3>
+      {/** A few different ways to provide children: */}
       <and children={["A"]} />
-      <and children={["A", "B"]} />
-      <and children={["A", "B", "C"]} />
+      <and>{["A", "B"]}</and>
+      <and>
+        A
+        <text>B</text>
+        {"C"}
+      </and>
       <h3>AndOr</h3>
       <andor children={["A"]} />
       <andor children={["A", "B"]} />
@@ -138,17 +147,17 @@ export default function Prompt() {
       <kv key="min"><minute /></kv>
       <kv key="s"><second /></kv>
       <kv key="ms"><millisecond /></kv>
-      <elapsed since={new Date("September 2021")} />
+      <duration since={new Date("September 2021")} />
       <h2>Serialization</h2>
       <h3>JSON</h3>
-      <json data={{ a: 1, b: ["2", "3"]}} pretty />
+      <json data={{ a: 1, b: ["2", "3"] }} pretty />
       <h3>YAML</h3>
-      <yaml data={{ a: 1, b: ["2", "3"]}} />
+      <yaml data={{ a: 1, b: ["2", "3"] }} />
       <h2>Utilities</h2>
       <h3>Trim</h3>
       <text trim>   s p a c e   </text>
       <h3>Truncate</h3>
-      <cap max={12} ellipsis="...">A really long sentence</cap>
+      <cap max={12} ellipsis>A really long sentence</cap>
       <h3>Frame</h3>
       <frame with="!">wrapped</frame>
     </lined>

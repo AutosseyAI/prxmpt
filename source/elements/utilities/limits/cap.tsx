@@ -1,9 +1,8 @@
-import asArray from "as-typed-array";
 import * as Prxmpt from "../../../index.js";
-import type { Counter } from "./shared.js";
-import { charCounter } from "./shared.js";
+import type { SplitterType } from "../../../splitters.js";
+import { splitters } from "../../../splitters.js";
 
-export type CapStrategy = "ordered" | "ordered-no-skip" | "size-asc" | "size-desc";
+export type Splitter = (string: string) => string[];
 
 export interface CapProps extends Omit<Prxmpt.TextProps, "indent"> {
   /**
@@ -12,88 +11,63 @@ export interface CapProps extends Omit<Prxmpt.TextProps, "indent"> {
    */
   max?: number;
   /**
-   * A function that returns the number of "units" in a string.
-   * @default charCounter
+   * A function that splits a string into "units".
+   * @default "chars"
    */
-  counter?: Counter;
-  /**
-   * `"ordered"`:
-   * Children are prioritized by the order provided.
-   * Once the maximum is reached, continue to check if remaining children fit.
-   * 
-   * `"ordered-no-skip"`:
-   * Children are prioritized by order provided. Once the maximum is reached, stop adding children.
-   * 
-   * `"size-asc"`:
-   * Children are prioritized in size order, smallest to largest.
-   * 
-   * `"size-desc"`:
-   * Children are prioritized in size order, largest to smallest.
-   * 
-   * @default "ordered"
-   */
-  strategy?: CapStrategy;
+  splitter?: SplitterType | Splitter;
   /**
    * A string to append to the end if the maximum is reached.
    * This string is included in the maximum count.
+   * If `true`, "..." is used.
    * @default undefined
    */
-  ellipsis?: string;
+  ellipsis?: string | true;
 }
 
+/**
+ * Render a string with a maximum number of "units" as defined by a split function.
+ */
 export const cap: Prxmpt.PC<CapProps> = (props) => {
-  const counter = props.counter ?? charCounter;
-  const childrenArray = asArray(props.children);
-  // Account for length of other text props
-  const prefixCount = counter(Prxmpt.render(props.prefix));
-  const suffixCount = counter(Prxmpt.render(props.suffix));
-  const joinCount = counter(Prxmpt.render(props.join));
-  const ellipsisCount = (props.ellipsis ? joinCount + counter(props.ellipsis) : 0);
-  const blockCount = props.block ? 1 : 0;
-  const reserved = prefixCount + suffixCount + blockCount;
-  const repeat = props.repeat ?? 1;
-  const max = ((props.max ?? Infinity) - reserved) / repeat;
-  let didFilter = false;
-  let total = 0;
-  // Keep track of indices so we can reorder
-  const children = childrenArray
-    .map((child, index) => ({
-      text: Prxmpt.render(child),
-      index
-    }));
-  // Apply Sorting Strategy
-  if(props.strategy === "size-asc" || props.strategy === "size-desc") {
-    children.sort((a, b) => {
-      return props.strategy === "size-asc"
-        ? counter(a.text) - counter(b.text)
-        : counter(b.text) - counter(a.text);
-    });
+  if(props.hide) {
+    return undefined;
   }
-  // Filter Children
-  const filteredChildren = children
-    .filter((child, index, arr) => {
-      const count = counter(child.text);
-      const isLast = index === arr.length-1;
-      const hasRoomForEllipsis = total + count + ellipsisCount <= max;
-      const hasRoomWithoutEllipsis = total + count <= max;
-      const hasRoom = (!isLast && hasRoomForEllipsis) || (isLast && hasRoomWithoutEllipsis);
-      const isStopped = props.strategy === "ordered-no-skip" && didFilter;
-      if(hasRoom && !isStopped) {
-        total += count + joinCount;
-        return true;
-      } else {
-        didFilter = true;
-        return false;
-      }
-    });
-  // Reorder Children
-  if(props.strategy === "size-asc" || props.strategy === "size-desc") {
-    filteredChildren.sort((a, b) => a.index - b.index);
-  }
+  // Render children
+  const rendered = Prxmpt.render(
+    <text
+      filter={props.filter}
+      map={props.map}
+      reverse={props.reverse}
+      join={props.join}
+      repeat={props.repeat}
+      trim={props.trim}
+      casing={props.casing}>
+      {props.children}
+    </text>
+  );
+  // Create Splitter
+  const splitter = props.splitter ?? "chars";
+  const split = typeof splitter === "string"
+    ? (string: string) => splitters[splitter](string, { retainSeparator: true })
+    : splitter;
+  const splits = split(rendered);
+  // Calculate Capacity
+  const prefix = Prxmpt.render(props.prefix ?? "");
+  const prefixSplits = prefix.length === 0 ? [] : split(prefix);
+  const fullSuffix = `${Prxmpt.render(props.suffix ?? "")}${props.block ? "\n" : ""}`;
+  const suffixSplits = fullSuffix.length === 0 ? [] : split(fullSuffix);
+  const ellipsis = props.ellipsis === true ? "..." : props.ellipsis;
+  const ellipsisSplits = ellipsis ? split(ellipsis) : [];
+  const reserved = prefixSplits.length + suffixSplits.length + ellipsisSplits.length;
+  const capacity = (props.max ?? Infinity) - reserved;
+  // Render Final Text
   return (
-    <text {...props}>
-      {filteredChildren.map((child) => child.text)}
-      {didFilter ? props.ellipsis : undefined}
+    <text
+      prefix={props.prefix}
+      suffix={props.suffix}
+      trim={props.trim}
+      block={props.block}>
+      {splits.slice(0, capacity)}
+      {splits.length > capacity ? ellipsis : undefined}
     </text>
   );
 };

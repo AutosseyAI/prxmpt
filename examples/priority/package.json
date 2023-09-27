@@ -1,7 +1,7 @@
 {
-  "name": "prxmpt-example-kitchen-sink",
+  "name": "prxmpt-example-priority",
   "version": "1.0.0",
-  "description": "Prxmpt Kitchen Sink Example",
+  "description": "Example usage of <priority>",
   "license": "MIT",
   "private": true,
   "author": "Connor White",
@@ -14,7 +14,8 @@
     "start": "node build/index.js"
   },
   "dependencies": {
-    "@autossey/prxmpt": "*"
+    "@autossey/prxmpt": "*",
+    "js-tiktoken": "^1.0.7"
   },
   "devDependencies": {
     "swc": "^1.0.11",

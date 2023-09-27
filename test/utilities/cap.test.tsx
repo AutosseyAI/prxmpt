@@ -2,6 +2,18 @@ import { describe, expect, test } from "@jest/globals";
 import Prxmpt from "../../source/index.js";
 
 describe("max", () => {
+  test("hide", () => {
+    const text = (
+      <cap join={"\n"} hide>
+        <text>Test 1</text>
+        <text>Test 2</text>
+        <text>Test 3</text>
+        <text>Test 4</text>
+        <text>Test 5</text>
+      </cap>
+    );
+    expect(text).toBeUndefined();
+  });
   test("undefined", () => {
     const text = (
       <cap join={"\n"}>
@@ -24,7 +36,7 @@ describe("max", () => {
         <text>Test 5</text>
       </cap>
     );
-    expect(text).toEqual("Test 1\nTest 2");
+    expect(text).toEqual("Test 1\nTest 2\nT");
   });
   test("exact", () => {
     const text = (
@@ -38,6 +50,30 @@ describe("max", () => {
     );
     expect(text).toEqual("Test 1Test 2");
   });
+  test("prefix", () => {
+    const text = (
+      <cap max={12} join={"\n"} prefix="-">
+        <text>Test 1</text>
+        <text>Test 2</text>
+        <text>Test 3</text>
+        <text>Test 4</text>
+        <text>Test 5</text>
+      </cap>
+    );
+    expect(text).toEqual("-Test 1\nTest");
+  });
+  test("suffix", () => {
+    const text = (
+      <cap max={12} join={"\n"} suffix="-">
+        <text>Test 1</text>
+        <text>Test 2</text>
+        <text>Test 3</text>
+        <text>Test 4</text>
+        <text>Test 5</text>
+      </cap>
+    );
+    expect(text).toEqual("Test 1\nTest-");
+  });
   test("block", () => {
     const text = (
       <cap max={12} join={"\n"} block>
@@ -48,38 +84,11 @@ describe("max", () => {
         <text>Test 5</text>
       </cap>
     );
-    expect(text).toEqual("Test 1\n");
+    expect(text).toEqual("Test 1\nTest\n");
   });
   test("repeat", () => {
     const text = (
-      <cap max={12} join={"\n"} repeat={2}>
-        <text>Test 1</text>
-        <text>Test 2</text>
-        <text>Test 3</text>
-        <text>Test 4</text>
-        <text>Test 5</text>
-      </cap>
-    );
-    expect(text).toEqual("Test 1Test 1");
-  });
-  test("exact w/join", () => {
-    const text = (
-      <cap max={12} join={"\n"}>
-        <text>Test 1</text>
-        <text>Test 2</text>
-        <text>Test 3</text>
-        <text>Test 4</text>
-        <text>Test 5</text>
-      </cap>
-    );
-    expect(text).toEqual("Test 1");
-  });
-});
-
-describe("counter", () => {
-  test("4-char", () => {
-    const text = (
-      <cap join={"\n"} max={4} counter={(string) => string.length / 4}>
+      <cap max={13} join={"\n"} repeat={2}>
         <text>Test 1</text>
         <text>Test 2</text>
         <text>Test 3</text>
@@ -91,61 +100,37 @@ describe("counter", () => {
   });
 });
 
-describe("strategies", () => {
-  test("ordered", () => {
+describe("splitter", () => {
+  test("spaces", () => {
     const text = (
-      <cap max={5} strategy="ordered">
-        <text>1</text>
-        <text>22</text>
-        <text>333</text>
-        <text>4444</text>
-        <text>5</text>
+      <cap join={" "} max={4} splitter="spaces" trim>
+        <text>Test 1</text>
+        <text>Test 2</text>
+        <text>Test 3</text>
+        <text>Test 4</text>
+        <text>Test 5</text>
       </cap>
     );
-    expect(text).toEqual("1225");
+    expect(text).toEqual("Test 1 Test 2");
   });
-  test("ordered-no-skip", () => {
+  test("custom", () => {
     const text = (
-      <cap max={5} strategy="ordered-no-skip">
-        <text>1</text>
-        <text>22</text>
-        <text>333</text>
-        <text>4444</text>
-        <text>5</text>
+      <cap join={" "} max={4} splitter={(string) => string.split(/(?<=[tT])/g)}>
+        <text>Test 1</text>
+        <text>Test 2</text>
+        <text>Test 3</text>
+        <text>Test 4</text>
+        <text>Test 5</text>
       </cap>
     );
-    expect(text).toEqual("122");
-  });
-  test("size-asc", () => {
-    const text = (
-      <cap max={5} strategy="size-asc">
-        <text>1</text>
-        <text>2222</text>
-        <text>333</text>
-        <text>4444</text>
-        <text>5</text>
-      </cap>
-    );
-    expect(text).toEqual("13335");
-  });
-  test("size-desc", () => {
-    const text = (
-      <cap max={5} strategy="size-desc">
-        <text>1</text>
-        <text>2222</text>
-        <text>333</text>
-        <text>4444</text>
-        <text>5</text>
-      </cap>
-    );
-    expect(text).toEqual("12222");
+    expect(text).toEqual("Test 1 Test");
   });
 });
 
 describe("ellipsis", () => {
   test("no max", () => {
     const text = (
-      <cap ellipsis="...">
+      <cap ellipsis>
         <text>1</text>
         <text>22</text>
         <text>333</text>
@@ -165,7 +150,7 @@ describe("ellipsis", () => {
         <text>55555</text>
       </cap>
     );
-    expect(text).toEqual("122333...");
+    expect(text).toEqual("1223334...");
   });
   test("max exact", () => {
     const text = (
@@ -178,17 +163,5 @@ describe("ellipsis", () => {
       </cap>
     );
     expect(text).toEqual("122333...");
-  });
-  test("add more after filter", () => {
-    const text = (
-      <cap ellipsis="..." max={9}>
-        <text>1</text>
-        <text>22</text>
-        <text>333</text>
-        <text>4444</text>
-        <text>5</text>
-      </cap>
-    );
-    expect(text).toEqual("1223335...");
   });
 });

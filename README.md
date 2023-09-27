@@ -173,7 +173,11 @@ export const MyComponent = () => (
 
 Several examples are provided in the [examples](https://github.com/AutosseyAI/prxmpt/tree/main/examples) directory:
 
+**Element Usage Examples:**
 - [kitchen sink](https://github.com/AutosseyAI/prxmpt/blob/main/examples/kitchen-sink/source/Prompt.tsx) (Showcases many elements)
+- [priority](https://github.com/AutosseyAI/prxmpt/tree/main/examples/priority/) (A few examples of the `<priority>` element)
+
+**Setup Examples:**
 - [bun](https://github.com/AutosseyAI/prxmpt/tree/main/examples/bun/)
 - [bun (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/bun-classic/)
 - [Next.js](https://github.com/AutosseyAI/prxmpt/tree/main/examples/next/)
@@ -307,8 +311,9 @@ The following functions are also exported from Prxmpt:
   - [`paragraphs`](#paragraphs)
   - [`lines`](#lines)
   - [`spaces`](#spaces)
-  - [`chars`](#chars)
+  - [`words`](#words)
   - [`commas`](#commas)
+  - [`chars`](#chars)
 
 <h2 id="text-elements"><div align="right"><a href="#elements">🔝</a></div>Text Elements</h2>
 
@@ -1988,6 +1993,8 @@ const string = (
 
 #### Cap
 
+The `<cap>` element allows you to limit the length of a string by providing a `splitter` function and a `max` number of "units" to allow.
+
 ##### Props
 
 **max**
@@ -1998,37 +2005,23 @@ const string = (
  */
 max?: number;
 ```
-**counter**
+**splitter**
 ```tsx
 /**
- * A function that returns the number of "units" in a string.
- * @default charCounter
+ * A function that splits a string into "units".
+ * @default "chars"
  */
-counter?: (string: string) => number;
-```
-**strategy**
-```tsx
-/**
- * `"ordered"`: Children are prioritized by the order provided. Once the maximum is reached, continue to check if remaining children fit.
- * 
- * `"ordered-no-skip"`: Children are prioritized by order provided. Once the maximum is reached, stop adding children.
- * 
- * `"size-asc"`: Children are prioritized in size order, smallest to largest.
- * 
- * `"size-desc"`: Children are prioritized in size order, largest to smallest.
- * 
- * @default "ordered"
- */
-strategy?: "ordered" | "ordered-no-skip" | "size-asc" | "size-desc";
+splitter?: "paragraphs" | "lines" | "spaces" | "words" | "commas" | "chars" | (string: string) => string[];
 ```
 **ellipsis**
 ```tsx
 /**
  * A string to append to the end if the maximum is reached.
  * This string is included in the maximum count.
+ * If `true`, "..." is used.
  * @default undefined
  */
-ellipsis?: string;
+ellipsis?: string | true;
 ```
 
 ##### Usage
@@ -2040,6 +2033,12 @@ const string = <cap max={5}>Hello, World!</cap>;
 
 #### Priority
 
+The `<priority>` element is like a width-based [CSS media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) for strings.
+
+Instead of providing a list of children, `<priority>` expects a list of items, each of which can have a priority. Higher priorities are rendered first (like `z-index` in CSS), and each item has a default priority of 0. Several strategies are provided as well for fine-tuning how items are prioritiezed.
+
+Priority elements can also be nested, which enable extremely fine-grained control over which content is rendered. Several examples are provided in the [priority example directory](https://github.com/AutosseyAI/prxmpt/tree/main/examples/priority).
+
 ##### Props
 
 **max**
@@ -2050,12 +2049,20 @@ const string = <cap max={5}>Hello, World!</cap>;
  */
 max?: number;
 ```
+**counter**
+```tsx
+/**
+ * A function that returns the number of "units" in a string.
+ * @default charCounter
+ */
+counter?: (string: string) => number;
+```
 **items**
 ```tsx
 /**
  * The items to render, in order of priority.
  */
-items: {
+items: (Prxmpt.Children | {
   /**
    * The priority of this item. Higher priority items are included first.
    * @default 0
@@ -2065,26 +2072,45 @@ items: {
    * The content to render.
    */
   content: ((capacity: number) => Prxmpt.Children) | Prxmpt.Children;
-}[];
-```
-**counter**
-```tsx
-/**
- * A function that returns the number of "units" in a string.
- * @default charCounter
- */
-counter?: (string: string) => number;
+})[];
 ```
 **strategy**
 ```tsx
 /**
- * `"priority"`: Once the maximum is reached, continue to check if remaining children fit.
+ * The strategy to use when prioritizing items.
+ * If multiple strategies are provided, subsequent strategies are tried in order to break ties.
  * 
- * `"priority-no-skip"`: Once the maximum is reached, stop adding children.
+ * `"priority"`:
+ * Prioritize items by the provided priority.
+ * Once the maximum is reached, continue to check if remaining items fit.
+ *
+ * `"order-asc"`:
+ * Prioritize items by the order provided.
+ * Once the maximum is reached, continue to check if remaining items fit.
  * 
- * @default "priority"
+ * `"order-desc"`:
+ * Prioritize items in reverse of the order provided.
+ * Once the maximum is reached, continue to check if remaining items fit.
+ *
+ * `"size-asc"`:
+ * Prioritize items in size order, smallest to largest.
+ * Use if you want to include as many items as possible.
+ * 
+ * `"size-desc"`:
+ * Prioritized items in size order, largest to smallest.
+ * Use if you want to include as few items as possible.
+ * 
+ * @default ["priority", "order-asc"]
  */
-strategy?: "priority" | "priority-no-skip";
+strategy?: PriorityStrategy | PriorityStrategy[];
+```
+**noSkip**
+```tsx
+/**
+  * If `true`, do not skip items after the maximum is reached.
+  * @default false
+  */
+noSkip?: boolean;
 ```
 
 ##### Usage
@@ -2190,15 +2216,19 @@ Split `children` on `"\n"`.
 
 #### `spaces`
 
-Split `children` on `" "`.
+Split `children` on whitespace.
 
-#### `characters`
+#### `words`
 
-Split `children` on `""`.
+Split `children` on word boundaries.
 
 #### `commas`
 
 Split `children` on `","`.
+
+#### `characters`
+
+Split `children` on `""`.
 
 <br />
 
