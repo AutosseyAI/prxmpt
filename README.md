@@ -188,12 +188,18 @@ Several examples are provided in the [examples](https://github.com/AutosseyAI/pr
 - [tsc](https://github.com/AutosseyAI/prxmpt/tree/main/examples/tsc/)
 - [tsc (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/tsc-classic/)
 
-For examples of how to use specific elements, the [tests](https://github.com/AutosseyAI/prxmpt/tree/main/test/) showcase more usecases.
+For examples of how to use specific elements, the [tests](https://github.com/AutosseyAI/prxmpt/tree/main/test/) show more usecases.
 
 <h2 id="elements"><div align="right"><a href="#top">🔝</a></div>Elements</h2>
 
 - [Text Elements](#text-elements)
     - [`<text>`](#text)
+  - [Characters](#characters)
+    - [`<empty>`](#empty)
+    - [`<space>`](#space)
+    - [`<tab>`](#tab)
+    - [`<ellipsis>`](#ellipsis)
+    - [`<na>` (n/a)](#na)
   - [Brackets](#brackets)
     - [`<parens>` (Parenthesis)](#parenthesis)
     - [`<square>` (Square Bracket)](#square-bracket)
@@ -215,12 +221,6 @@ For examples of how to use specific elements, the [tests](https://github.com/Aut
     - [`<state>`](#state)
     - [`<ask>`](#ask)
     - [`<exclaim>`](#exclaim)
-  - [Characters](#characters)
-    - [`<empty>`](#empty)
-    - [`<space>`](#space)
-    - [`<tab>`](#tab)
-    - [`<ellipsis>`](#ellipsis)
-    - [`<na>` (n/a)](#na)
   - [Miscellaneous](#miscellaneous-text)
     - [`<kv>` (Key-Value Pair)](#key-value-pair)
 - [HTML Elements](#html-elements)
@@ -320,23 +320,44 @@ The following functions are also exported from Prxmpt:
 #### Text
 _`<text>`_
 
-Prxmpt elements operate on children, which resolve as an array of strings.
-
-The `<text>` element is the base element in Prxmpt. It returns its children as a string:
+Text is the base Prxmpt element. It returns its children as a string:
 
 
 ```tsx
-// "Hello, World!"
-
 const string = <text>Hello, World!</text>;
 ```
 
-##### Props
+<details open>
+  <summary><i>Result</i></summary>
 
-Since `<text>` is the base of most other elements, these props can be used with most other elements.
+  ```
+  Hello, World!
+  ```
+</details>
 
-**hide**
+Text can also be hidden with the `hide` prop:
 
+```tsx
+const string = <text>Hello<text hide>, World</hide>!</text>;
+```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello!
+  ```
+</details>
+
+<details open>
+  <summary><h5>Props</h5></summary>
+
+Since `<text>` is the base of most other elements, the props it provides can be used with most other elements.
+
+Prxmpt treats children as an array of strings, which means `<text>` can also provide several array functions for mapping, filtering, and joining children.
+
+---
+- **hide**
 ```tsx
 /**
  * Prevent the Element from being rendered.
@@ -344,52 +365,46 @@ Since `<text>` is the base of most other elements, these props can be used with 
  */
 hide?: boolean;
 ```
-
-**filter**
-```
+- **filter**
+```tsx
 /**
  * A function to filter children.
  * @default (node) => true
  */
 filter?: (node: Prxmpt.Children, index: number, arr: Prxmpt.Children[]) => boolean;
 ```
-
-**map**
-```
+- **map**
+```tsx
 /**
  * A function that maps each child to a new Element.
  * @default (node) => Prxmpt.render(node)
  */
 map?: (node: Prxmpt.Children, index: number, arr: Prxmpt.Children[]) => Prxmpt.JSX.Element;
 ```
-
-**reverse**
-```
+- **reverse**
+```tsx
 /**
  * Reverse the order of the children.
  */
 reverse?: boolean;
 ```
-
-**join**
-```
+- **join**
+```tsx
 /**
  * An Element to insert between each child.
  * @default ""
  */
 join?: Prxmpt.Children;
 ```
-
-**repeat**
-```
+- **repeat**
+```tsx
 /**
  * @default 1
  */
 repeat?: number;
 ```
-
-**trim**
-```
+- **trim**
+```tsx
 /**
  * `true`: Trim whitespace from the beginning and end of the Element.
  * 
@@ -401,36 +416,32 @@ repeat?: number;
  */
 trim?: boolean | TrimSide;
 ```
-
-**casing**
-```
+- **casing**
+```tsx
 /**
  * Convert the Element to a given casing.
  * @default undefined
  */
 casing?: Casing;
 ```
-
-**prefix**
-```
+- **prefix**
+```tsx
 /**
  * An Element to prepend to the element.
  * @default ""
  */
 prefix?: Prxmpt.Children;
 ```
-
-**suffix**
-```
+- **suffix**
+```tsx
 /**
  * An Element to append to the element.
  * @default ""
  */
 suffix?: Prxmpt.Children;
 ```
-
-**indent**
-```
+- **indent**
+```tsx
 /**
  * Apply indentation to each line of the Element.
  * 
@@ -444,15 +455,16 @@ suffix?: Prxmpt.Children;
  */
 indent?: boolean | number | "\t";
 ```
-
-**block**
-```
+- **block**
+```tsx
 /**
  * Append a newline to the end of the Element.
  * @default false
  */
 block?: boolean;
 ```
+---
+</details>
 
 <h3 id="characters"><div align="right"><a href="#elements">🔝</a></div>Characters</h3>
 
@@ -463,23 +475,30 @@ The `<empty>` element returns an empty string:
 
 ```tsx
 // ""
-
 const string = <empty />;
 ```
 
 `<empty>` is often useful as a child of elements that join their children on some delimiter.
 
 ```tsx
-// "Line 1\n\nLine 3"
-
 const string = (
   <lined>
     <text>Line 1</text>
     <empty />
-    <text> Line 3</text>
+    <text>Line 3</text>
   </lined>
 );
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Line 1
+
+  Line 2
+  ```
+</details>
 
 #### Space
 _`<space>`_
@@ -488,36 +507,37 @@ The `<space>` element returns a space:
 
 ```tsx
 // " "
-
 const string = <space />;
 ```
 
 #### Tab
 _`<tab>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**width**
+---
+- **literal**
+```tsx
+/**
+  * If true, use a literal tab character. Otherwise, use spaces.
+  * @default false
+  */
+literal?: boolean;
 ```
+- **width**
+```tsx
 /**
   * Number of characters per tab
   * @default 1 if `literal` is true, otherwise 2
   */
 width?: number;
 ```
-**literal**
-```
-/**
-  * @default false
-  */
-literal?: boolean;
-```
-
-##### Usage
+---
+</details>
 
 ```tsx
 // "    "
-
 const string = <tab width={4} />
 ```
 
@@ -525,19 +545,31 @@ const string = <tab width={4} />
 _`<ellipsis>`_
 
 ```tsx
-// "..."
-
 const string = <ellipsis />;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  ...
+  ```
+</details>
 
 #### NA
 _`<na>`_
 
 ```tsx
-// "n/a"
-
 const string = <na />;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  n/a
+  ```
+</details>
 
 <h3 id="brackets"><div align="right"><a href="#elements">🔝</a></div>Brackets</h3>
 
@@ -545,37 +577,62 @@ const string = <na />;
 _`<parens>`_
 
 ```tsx
-// "(Hello, World!)"
-
 const string = <parens>Hello, World!</parens>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  (Hello, World!)
+  ```
+</details>
 
 #### Square Bracket
 _`<square>`_
 
 ```tsx
-// "[Hello, World!]"
-
 const string = <square>Hello, World!</square>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  [Hello, World!]
+  ```
+</details>
+
 
 #### Curly Bracket
 _`<curly>`_
 
 ```tsx
-// "{Hello, World!}"
-
 const string = <curly>Hello, World!</curly>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  {Hello, World!}
+  ```
+</details>
 
 #### Angle Bracket
 _`<angle>`_
 
 ```tsx
-// "<Hello, World!>"
-
 const string = <angle>Hello, World!</angle>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <Hello, World!>
+  ```
+</details>
 
 <h3 id="quotes"><div align="right"><a href="#elements">🔝</a></div>Quotes</h3>
 
@@ -583,55 +640,92 @@ const string = <angle>Hello, World!</angle>;
 _`<sq>`_
 
 ```tsx
-// "'Hello, World!'"
-
 const string = <sq>Hello, World!</sq>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  'Hello, World!'
+  ```
+</details>
 
 #### Double Quote
 _`<dq>`_
 
 ```tsx
-// '"Hello, World!"'
-
 const string = <dq>Hello, World!</dq>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  "Hello, World!"
+  ```
+</details>
 
 #### Back Quote
 _`<bq>`_
 
 ```tsx
-// "`Hello, World!`"
-
 const string = <bq>Hello, World!</bq>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  `Hello, World!`
+  ```
+</details>
 
 #### Triple Single Quote
 _`<tsq>`_
 
 ```tsx
-// "'''\nHello, World!\n'''"
-
 const string = <tsq>Hello, World!</tsq>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  '''
+  Hello, World!
+  '''
+  ```
+</details>
 
 #### Triple Double Quote
 _`<tdq>`_
 
 ```tsx
-// '"""\nHello, World!\n"""'
-
 const string = <tdq>Hello, World!</tdq>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  """
+  Hello, World!
+  """
+  ```
+</details>
 
 #### Triple Back Quote
 _`<tbq>`_
 
 ```tsx
-// "```\nHello, World!\n```"
-
 const tbq = <tbq>Hello, World!</tbq>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+  <pre>```<br/>Hello, World!<br/>```</pre>
+</details>
 
 <h3 id="comments"><div align="right"><a href="#elements">🔝</a></div>Comments</h3>
 
@@ -639,37 +733,61 @@ const tbq = <tbq>Hello, World!</tbq>;
 _`<comment type="slash">`_
 
 ```tsx
-// "// Hello, World!"
-
 const slash = <comment type="slash">Hello, World!</comment>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  // Hello, World!
+  ```
+</details>
 
 #### Hash Comment
 _`<comment type="hash">`_
 
 ```tsx
-// "# Hello, World!"
-
 const hash = <comment type="hash">Hello, World!</comment>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  # Hello, World!
+  ```
+</details>
 
 #### Dash Comment
 _`<comment type="dash">`_
 
 ```tsx
-// "-- Hello, World!"
-
 const dash = <comment type="dash">Hello, World!</comment>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  -- Hello, World!
+  ```
+</details>
 
 #### HTML Comment
 _`<comment type="html">`_
 
 ```tsx
-// "<!-- Hello, World! -->"
-
 const html = <comment type="html">Hello, World!</comment>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <!-- Hello, World! -->
+  ```
+</details>
 
 <h3 id="sentences"><div align="right"><a href="#elements">🔝</a></div>Sentences</h3>
 
@@ -677,37 +795,57 @@ const html = <comment type="html">Hello, World!</comment>;
 _`<state>`_
 
 ```tsx
-// "Hello, World."
-
 const state = <state>Hello, World!</state>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello, World.
+  ```
+</details>
 
 #### Ask
 _`<ask>`_
 
 ```tsx
-// "Hello, World?"
-
 const ask = <ask>Hello, World!</ask>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello, World?
+  ```
+</details>
 
 #### Exclaim
 _`<exclaim>`_
 
 ```tsx
-// "Hello, World!"
-
 const exclaim = <exclaim>Hello, World!</exclaim>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello, World!
+  ```
+</details>
 
 <h3 id="miscellaneous-text"><div align="right"><a href="#elements">🔝</a></div>Miscellaneous</h3>
 
 #### Key-Value Pair
 _`<kv>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**key**
+---
+- **key**
 ```tsx
 /**
   * A key to render.
@@ -715,7 +853,7 @@ _`<kv>`_
 key: Prxmpt.Children;
 ```
 
-**keyCase**
+- **keyCase**
 ```tsx
 /**
   * Case to apply to the key.
@@ -724,7 +862,7 @@ key: Prxmpt.Children;
 keyCase?: "upper" | "lower" | "capital" | "title";
 ```
 
-**wrap**
+- **wrap**
 ```tsx
 /**
  * Override the default behavior for wrapping the value.
@@ -733,7 +871,7 @@ keyCase?: "upper" | "lower" | "capital" | "title";
 wrap?: boolean;
 ```
 
-**noSpace**
+- **noSpace**
 ```tsx
 /**
  * If true, do not add a space between the key and value.
@@ -742,28 +880,48 @@ wrap?: boolean;
  */
 noSpace?: boolean;
 ```
+---
 
-##### Usage
+</details>
 
 ```tsx
-// "Hello: World"
-
-const kv = <kv key="Hello">World</kv>;
+const string = <kv key="Hello">World</kv>;
 ```
 
-```tsx
-// "Hello:\nWorld1\nWorld2\nWorld3"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  Hello: World
+  ```
+</details>
+
+When the children contain multiple lines, the value is rendered starting on a newline by default:
+
+```tsx
 const worlds = (
-  <lined>
+  <tdq join={"\n"}>
     <text>World1</text>
     <text>World2</text>
     <text>World3</text>
-  </lined>
+  </tdq>
 );
 
-const kv = <kv key="Hello">{worlds}</kv>;
+const string = <kv key="Hello">{worlds}</kv>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello:
+  """
+  World1
+  World2
+  World3
+  """
+  ```
+</details>
 
 <h2 id="html-elements"><div align="right"><a href="#elements">🔝</a></div>HTML Elements</h2>
 
@@ -774,45 +932,60 @@ Additionally, custom attributes can be set using the `attributes` prop.
 #### Tag
 _`<tag>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**name**
+---
+- **name**
 ```tsx
 /**
  * Name of the tag.
  */
 name: string;
 ```
-**noIndent**
+- **noIndent**
 ```tsx
 /**
  * @default false
  */
 noIndent?: boolean;
 ```
-**wrap**
+- **wrap**
 ```tsx
 /**
  * Defaults to true if the content contains a newline.
  */
 wrap?: boolean;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "<mytag>Hello, World!</mytag>"
-
 const tag = <tag name="mytag">Hello, World!</tag>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <mytag>Hello, World!</mytag>
+  ```
+</details>
+
 
 If no children are provided, the tag is rendered as a self-closing tag:
 
 ```tsx
-// "<mytag />"
-
 const tag = <tag name="mytag" />;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <mytag />
+  ```
+</details>
 
 <h3 id="breaks"><div align="right"><a href="#elements">🔝</a></div>Breaks</h3>
 
@@ -821,54 +994,79 @@ _`<br />`_
 
 ```tsx
 // "\n"
-
 const br = <br />;
+```
 
-// "<br />"
-
+```tsx
 const br = <br html />;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <br />
+  ```
+</details>
 
 #### Horizontal Rule
 _`<hr />`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**width**
+---
+- **width**
 ```tsx
 /**
  * @default 3
  */
 width?: number;
 ```
-**char**
+- **char**
 ```tsx
 /**
  * @default "-"
  */
 char?: "-" | "_" | "=" | "*";
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "---"
-
-const hr = <hr />;
-
-// "<hr />"
-
 const hr = <hr />;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  ---
+  ```
+</details>
+
+```tsx
+const hr = <hr />;
+```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <hr />
+  ```
+</details>
 
 <h3 id="linking"><div align="right"><a href="#elements">🔝</a></div>Linking</h3>
 
 #### Anchor
 _`<a>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**href**
+---
+- **href**
 
 ```tsx
 /**
@@ -876,57 +1074,87 @@ _`<a>`_
  */
 href: string;
 ```
-**title**
+- **title**
 ```tsx
 /**
  * A title for the link.
  */
 title?: string;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// '[Hello, World!](https://example.com "A Title")'
-
 const string = <a href="https://example.com" title="A Title">Hello, World!</a>;
+```
 
-// '<a href="https://example.com" title="A Title">Hello, World!</a>'
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  [Hello, World!](https://example.com "A Title")
+  ```
+</details>
+
+```tsx
 const string = <a href="https://example.com" title="A Title" html>Hello, World!</a>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <a href="https://example.com" title="A Title">Hello, World!</a>
+  ```
+</details>
 
 #### Image
 _`<img>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**src**
+---
+- **src**
 ```tsx
 /**
  * The URL of the image.
  */
 href: string;
 ```
-**title**
+- **title**
 ```tsx
 /**
  * A title for the image.
  */
 title?: string;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// '![Hello, World!](https://example.com "A Title")'
-
 const string = <img src="https://example.com" title="A Title">Hello, World!</img>;
+```
 
-// '<img src="https://example.com" alt="Hello, World!" title="A Title" />'
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  ![Hello, World!](https://example.com "A Title")
+  ```
+</details>
+
+```tsx
 const string = <img src="https://example.com" title="A Title" html>Hello, World!</img>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <img src="https://example.com" alt="Hello, World!" title="A Title" />
+  ```
+</details>
 
 <h3 id="headings"><div align="right"><a href="#elements">🔝</a></div>Headings</h3>
 
@@ -934,88 +1162,174 @@ const string = <img src="https://example.com" title="A Title" html>Hello, World!
 _`<h1>`_
 
 ```tsx
-// "# Hello, World!"
-
 const string = <h1>Hello, World!</h1>;
+```
 
-// "<h1>Hello, World!</h1>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  # Hello, World!
+  ```
+</details>
+
+```tsx
 const string = <h1 html>Hello, World!</h1>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <h1>Hello, World!</h1>
+  ```
+</details>
 
 #### H2
 _`<h2>`_
 
 ```tsx
-// "## Hello, World!"
-
 const string = <h2>Hello, World!</h2>;
+```
 
-// "<h2>Hello, World!</h2>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  ## Hello, World!
+  ```
+</details>
+
+```tsx
 const string = <h2 html>Hello, World!</h2>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <h2>Hello, World!</h2>
+  ```
+</details>
 
 #### H3
 _`<h3>`_
 
 ```tsx
-// "### Hello, World!"
-
 const string = <h3>Hello, World!</h3>;
+```
 
-// "<h3>Hello, World!</h3>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  ### Hello, World!
+  ```
+</details>
+
+```tsx
 const string = <h3 html>Hello, World!</h3>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <h3>Hello, World!</h3>
+  ```
+</details>
 
 #### H4
 _`<h4>`_
 
 ```tsx
-// "#### Hello, World!"
-
 const string = <h4>Hello, World!</h4>;
+```
 
-// "<h4>Hello, World!</h4>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  #### Hello, World!
+  ```
+</details>
+
+```tsx
 const string = <h4 html>Hello, World!</h4>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <h4>Hello, World!</h4>
+  ```
+</details>
 
 #### H5
 _`<h5>`_
 
 ```tsx
-// "##### Hello, World!"
-
 const string = <h5>Hello, World!</h5>;
+```
 
-// "<h5>Hello, World!</h5>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  ##### Hello, World!
+  ```
+</details>
+
+```tsx
 const string = <h5 html>Hello, World!</h5>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <h5>Hello, World!</h5>
+  ```
+</details>
 
 #### H6
 _`<h6>`_
 
 ```tsx
-// "###### Hello, World!"
-
 const string = <h6>Hello, World!</h6>;
+```
 
-// "<h6>Hello, World!</h6>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  ###### Hello, World!
+  ```
+</details>
+
+```tsx
 const string = <h6 html>Hello, World!</h6>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <h6>Hello, World!</h6>
+  ```
+</details>
 
 <h3 id="lists"><div align="right"><a href="#elements">🔝</a></div>Lists</h3>
 
 #### Ordered List
 _`<ol>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**onlyMarkIfList**
+---
+- **onlyMarkIfList**
 ```tsx
 /**
   * Only include markers if the list contains more than one item.
@@ -1023,12 +1337,10 @@ _`<ol>`_
   */
 onlyMarkIfList?: boolean;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "1. Hello\n2. World"
-
 const string = (
   <ol>
     <text>Hello</text>
@@ -1037,11 +1349,22 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  1. Hello
+  2. World
+  ```
+</details>
+
 #### Unordered List
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**onlyMarkIfList**
+---
+- **onlyMarkIfList**
 ```tsx
 /**
   * Only include markers if the list contains more than one item.
@@ -1049,12 +1372,10 @@ const string = (
   */
 onlyMarkIfList?: boolean;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "- Hello\n- World"
-
 const string = (
   <ul>
     <text>Hello</text>
@@ -1063,12 +1384,23 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  - Hello
+  - World
+  ```
+</details>
+
 #### Checkbox list
 _`<cl>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**items**
+---
+- **items**
 ```tsx
 items: {
   /**
@@ -1081,12 +1413,10 @@ items: {
   content: Prxmpt.Children;
 }[];
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "- [ ] Hello\n- [x] World"
-
 const string = (
   <cl
     items={[
@@ -1097,19 +1427,30 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  - [ ] Hello
+  - [x] World
+  ```
+</details>
+
 #### Definition List
 _`<dl>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**items**
+---
+- **items**
 ```tsx
 /**
  * The items to render.
  */
 items: Record<string, Prxmpt.Children>;
 ```
-**termCase**
+- **termCase**
 ```tsx
 /**
  * Casing to apply to each key.
@@ -1117,7 +1458,7 @@ items: Record<string, Prxmpt.Children>;
  */
 termCase?: "upper" | "lower" | "capital" | "title";
 ```
-**space**
+- **space**
 ```tsx
 /**
  * Number of blank lined to insert between each item.
@@ -1125,7 +1466,7 @@ termCase?: "upper" | "lower" | "capital" | "title";
  */
 space?: number;
 ```
-**wrap**
+- **wrap**
 ```tsx
 /**
  * Override the default behavior for wrapping values.
@@ -1133,12 +1474,10 @@ space?: number;
  */
 wrap?: boolean;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "Hello: World\nFoo: Bar"
-
 const string = (
   <dl
     items={{
@@ -1149,79 +1488,147 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello: World
+  Foo: Bar
+  ```
+</details>
+
 <h3 id="styling"><div align="right"><a href="#elements">🔝</a></div>Styling</h3>
 
 #### Italic
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**char**
+---
+- **char**
 ```tsx
 /**
  * @default "_"
  */
 char?: "*" | "_";
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "_Hello, World!_"
-
 const string = <i>Hello, World!</i>;
+```
 
-// "<i>Hello, World!</i>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  _Hello, World!_
+  ```
+</details>
+
+```tsx
 const string = <i html>Hello, World!</i>;
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <i>Hello, World!</i>
+  ```
+</details>
+
 #### Bold
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**char**
+---
+- **char**
 ```tsx
 /**
  * @default "*"
  */
 char?: "*" | "_";
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "**Hello, World!**"
-
 const string = <b>Hello, World!</b>;
+```
+<details open>
+  <summary><i>Result</i></summary>
 
-// "<b>Hello, World!</b>"
+  ```
+  **Hello, World!**
+  ```
+</details>
 
+```tsx
 const string = <b html>Hello, World!</b>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <b>Hello, World!</b>
+  ```
+</details>
 
 #### Strikethrough
 
 ```tsx
-// "~~Hello, World!~~"
-
 const string = <s>Hello, World!</s>;
+```
 
-// "<s>Hello, World!</s>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  ~~Hello, World!~~
+  ```
+</details>
+
+```tsx
 const string = <s html>Hello, World!</s>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <s>Hello, World!</s>
+  ```
+</details>
 
 #### Code
 
 ```tsx
-// "`Hello, World!`"
-
 const string = <code>Hello, World!</code>;
+```
 
-// "<code>Hello, World!</code>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  `Hello, World!`
+  ```
+</details>
+
+```tsx
 const string = <code html>Hello, World!</code>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <code>Hello, World!</code>
+  ```
+</details>
 
 <h3 id="miscellaneous-html"><div align="right"><a href="#elements">🔝</a></div>Miscellaneous</h3>
 
@@ -1230,34 +1637,61 @@ const string = <code html>Hello, World!</code>;
 Span simply renders its children, unless the `html` prop is provided.
 
 ```tsx
-// "Hello, World!"
-
 const string = <span>Hello, World!</span>;
+```
 
-// "<span>Hello, World!</span>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  Hello, World!
+  ```
+</details>
+
+```tsx
 const string = <span html>Hello, World!</span>;
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <span>Hello, World!</span>
+  ```
+</details>
+
 #### Paragraph
 
-The paragraph tag adds a newline at the end of the element.
+When rendered as text, the paragraph tag adds a newline at the end of the element:
 
 ```tsx
-// "Hello, World!\n"
-
 const string = <p>Hello, World!</p>;
+```
 
-// "<p>Hello, World!</p>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  Hello, World!
+
+  ```
+</details>
+
+```tsx
 const string = <p html>Hello, World!</p>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <p>Hello, World!</p>
+  ```
+</details>
 
 #### Blockquote
 
 ```tsx
-// "> Hello\n>\n> World!"
-
 const string = (
   <blockquote join={"\n"}>
     <text>Hello</text>
@@ -1265,49 +1699,97 @@ const string = (
     <text>World!</text>
   </blockquote>
 );
+```
 
-// "<blockquote>Hello, World!</blockquote>"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  > Hello
+  >
+  > World!
+  ```
+</details>
+
+```tsx
 const string = <blockquote html>Hello, World!</blockquote>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <blockquote>Hello, World!</blockquote>
+  ```
+</details>
 
 #### Quote
 
 The quote element returns a triple quote if the children contain a newline, otherwise it returns a single quote.
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**type**
+---
+- **type**
 ```tsx
 /**
  * @default "double"
  */
 type?: "single" | "double" | "backtick";
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// '"Hello, World!"'
-
 const string = <q>Hello, World!</q>;
+```
 
-// '"""\nHello\nWorld\n"""'
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  "Hello, World!"
+  ```
+</details>
+
+```tsx
 const string = <q>Hello<br />World</q>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  """
+  Hello, World!
+  """
+  ```
+</details>
+
 
 #### Pre
 
 ```tsx
-// "```\nHello, World!\n```"
-
 const string = <pre>Hello, World!</pre>;
+```
 
-// "<pre>Hello, World!</pre>"
+<details open>
+  <summary><i>Result</i></summary>
+  <pre>```<br />Hello, World!<br />```</pre>
+</details>
 
+```tsx
 const string = <pre html>Hello, World!</pre>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <pre>Hello, World!</pre>
+  ```
+</details>
 
 <h2 id="serialization-elements"><div align="right"><a href="#elements">🔝</a></div>Serialization Elements</h2>
 
@@ -1315,324 +1797,485 @@ const string = <pre html>Hello, World!</pre>;
 
 #### Num
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**add**
+---
+- **add**
 ```tsx
 /**
  * Add a value to the number.
  */
 add?: number;
 ```
-**min**
+- **min**
 ```tsx
 /**
  * Minimum value. Applied after `add`.
  */
 min?: number;
 ```
-**max**
+- **max**
 ```tsx
 /**
  * Maximum value. Applied after `add`.
  */
 max?: number;
 ```
-**fixed**
+- **fixed**
 ```tsx
 /**
  * Number of decimal places.
  */
 fixed?: number;
 ```
+---
+</details>
 
-##### Usage
 ```tsx
-// "1.00"
-
 const string = <num fixed={2}>1</num>;
+```
 
-// "1"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  1.00
+  ```
+</details>
+
+```tsx
 const string = <num min={1}>0</num>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  1
+  ```
+</details>
 
 <h3 id="dates"><div align="right"><a href="#elements">🔝</a></div>Dates</h3>
 
 #### Datetime
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**value**
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-**dateFormat**
+- **dateFormat**
 ```tsx
 /**
  * @default "short"
  */
 dateFormat?: "long" | "medium" | "short" | "full";
 ```
-**timeFormat**
+- **timeFormat**
 ```tsx
 /**
  * @default "short"
  */
 timeFormat?: "long" | "medium" | "short" | "full";
 ```
+---
+</details>
 
-##### Usage
 ```tsx
-// "September 23, 2023 at 5:17 PM"
-
 const string = <datetime />;
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  September 23, 2023 at 5:17 PM
+  ```
+</details>
+
 #### Date
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**value**
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-**format**
+- **format**
 ```tsx
 /**
  * @default "short"
  */
 format?: "long" | "medium" | "short" | "full";
 ```
+---
+</details>
 
-##### Usage
 ```tsx
-// "September 23, 2023"
-
 const string = <date />;
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  September 23, 2023
+  ```
+</details>
+
 #### Time
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**value**
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-**format**
+- **format**
 ```tsx
 /**
  * @default "short"
  */
 format?: "long" | "medium" | "short" | "full";
 ```
+---
+</details>
 
-##### Usage
 ```tsx
-// "5:17 PM"
-
 const string = <time />;
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  5:17 PM
+  ```
+</details>
+
 #### Year
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**value**
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "2023"
-
 const string = <year />
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  2023
+  ```
+</details>
+
 #### Month
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**value**
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-**format**
+- **format**
 ```tsx
 /**
  * @default "number"
  */
 format?: "number" | "long" | "short" | "narrow";
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "8"
-
 const string = <month />
+```
+<details open>
+  <summary><i>Result</i></summary>
 
-// "September"
+  ```
+  8
+  ```
+</details>
 
+```tsx
 const string = <month format="long" />
+```
+<details open>
+  <summary><i>Result</i></summary>
 
-// "Sep"
+  ```
+  September
+  ```
+</details>
 
+```tsx
 const string = <month format="short" />
+```
 
-// "S"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  Sep
+  ```
+</details>
+
+```tsx
 const string = <month format="narrow" />
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  S
+  ```
+</details>
+
 #### Day
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**value**
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-**format**
+- **format**
 ```tsx
 /**
  * @default "number"
  */
 format?: "number" | "long" | "short" | "narrow";
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "6"
-
 const string = <day />
+```
 
-// "Saturday"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  6
+  ```
+</details>
+
+```tsx
 const string = <day format="long" />
+```
 
-// "Sat"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  Saturday
+  ```
+</details>
+
+```tsx
 const string = <day format="short" />
+```
 
-// "S"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  Sat
+  ```
+</details>
+
+```tsx
 const string = <day format="narrow" />
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  S
+  ```
+</details>
+
 #### Hour
 
-##### Props
-**value**
+<details>
+  <summary><h5>Props</h5></summary>
+
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-**cycle**
+- **cycle**
 ```tsx
 /**
  * @default "12"
  */
 cycle?: "12" | "24";
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "5"
-
 const string = <hour />
+```
 
-// "17"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  5
+  ```
+</details>
+
+```tsx
 const string = <hour cycle="24">
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  17
+  ```
+</details>
+
 #### Minute
 
-##### Props
-**value**
+<details>
+  <summary><h5>Props</h5></summary>
+
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "42"
-
 const string = <minute />
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  42
+  ```
+</details>
+
 #### Second
 
-##### Props
-**value**
+<details>
+  <summary><h5>Props</h5></summary>
+
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "42"
-
 const string = <second />
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  42
+  ```
+</details>
+
 #### Millisecond
 
-##### Props
-**value**
+<details>
+  <summary><h5>Props</h5></summary>
+
+---
+- **value**
 ```tsx
 /**
  * @default Date.now()
  */
 value?: Date | string | number;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "420"
-
 const string = <millisecond />
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  999
+  ```
+</details>
+
 #### Duration
 
-##### Props
-**value**
+<details>
+  <summary><h5>Props</h5></summary>
+
+---
+- **value**
 ```tsx
 /**
  * The end of the duration.
@@ -1640,82 +2283,109 @@ const string = <millisecond />
  */
 value?: Date | string | number;
 ```
-**since**
+- **since**
 ```tsx
 /**
  * The start of the duration.
  */
 since: Date | string | number;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "2 years"
-
 const string = <duration since={"September 2021"} />
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  2 years
+  ```
+</details>
 
 <h3 id="objects"><div align="right"><a href="#elements">🔝</a></div>Objects</h3>
 
 #### JSON
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**data**
+---
+- **data**
 ```tsx
 /**
  * The data to stringify.
  */
 data: NestedOptionalJSONValue;
 ```
-**pretty**
+- **pretty**
 ```tsx
 /**
  * @default false
  */
 pretty?: boolean;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "{\n  \"Hello\": \"World\"\n}"
-
 const string = <json data={{ Hello: "World" }} pretty />;
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  {
+    "Hello": "World"
+  }
+  ```
+</details>
+
 #### YAML
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**data**
+---
+- **data**
 ```tsx
 /**
  * The data to stringify.
  */
 data: NestedOptionalJSONValue;
 ```
+- **noStartMarker**
 ```tsx
 /**
  * @default false
  */
 noStartMarker?: boolean;
 ```
+- **sequenceIndent**
 ```tsx
 /**
  * @default false
  */
 sequenceIndent?: boolean;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "---\nhello: world"
-
 const string = <yaml data={{ hello: "world" }} />;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  ---
+  hello: world
+  ```
+</details>
 
 <h2 id="utility-elements"><div align="right"><a href="#elements">🔝</a></div>Utility Elements</h2>
 
@@ -1726,40 +2396,64 @@ const string = <yaml data={{ hello: "world" }} />;
 _`<upper>`_
 
 ```tsx
-// "HELLO, WORLD!"
-
 const string = <upper>Hello, World!</upper>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  HELLO, WORLD!
+  ```
+</details>
 
 #### Lower
 
 _`<lower>`_
 
 ```tsx
-// "hello, world!"
-
 const string = <lower>Hello, World!</lower>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  hello, world!
+  ```
+</details>
 
 #### Capital
 
 _`<capital>`_
 
 ```tsx
-// "Hello, world!"
-
 const string = <capital>hello, world!</capital>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello, world!
+  ```
+</details>
 
 #### Title
 
 _`<title>`_
 
 ```tsx
-// "Hello, World!"
-
 const string = <title>hello, world!</title>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello, World!
+  ```
+</details>
 
 <h3 id="affixes"><div align="right"><a href="#elements">🔝</a></div>Affixes</h3>
 
@@ -1767,17 +2461,44 @@ const string = <title>hello, world!</title>;
 
 ```tsx
 // "Hello, World!"
-
 const string = <trim>Hello, World! </trim>;
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello, World!
+  ```
+</details>
+
 #### Frame
 
-```tsx
-// "-- Hello, World! --"
+<details>
+  <summary><h5>Props</h5></summary>
 
-const string = <frame>Hello, World! </frame>;
+---
+- **with**
+```tsx
+/**
+ * A value to apply to both `prefix` and `suffix`.
+ */
+with: Prxmpt.Children;
 ```
+---
+</details>
+
+```tsx
+const string = <frame with="--">Hello, World! </frame>;
+```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  -- Hello, World! --
+  ```
+</details>
 
 <h3 id="joins"><div align="right"><a href="#elements">🔝</a></div>Joins</h3>
 
@@ -1785,8 +2506,6 @@ const string = <frame>Hello, World! </frame>;
 _`<lined>`_
 
 ```tsx
-// "Hello\nWorld!"
-
 const string = (
   <lined>
     <text>Hello</text>
@@ -1795,12 +2514,19 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello
+  World!
+  ```
+</details>
+
 #### Spaced
 _`<spaced>`_
 
 ```tsx
-// "Hello World!"
-
 const string = (
   <spaced>
     <text>Hello</text>
@@ -1809,31 +2535,49 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello World!
+  ```
+</details>
+
 #### Comma-Separated List
 _`<csl>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
+---
+- **noSpace**
 ```tsx
 /**
  * @default false
  */
 noSpace?: boolean;
 ```
+---
+</details>
 
-##### Usage
 ```tsx
-// "hello, world"
-
 const string = (
   <csl>
     <text>hello</text>
     <text>world</text>
   </csl>
 );
+```
 
-// "hello,world"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  hello, world
+  ```
+</details>
+
+```tsx
 const string = (
   <csl noSpace>
     <text>hello</text>
@@ -1842,31 +2586,49 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  hello,world
+  ```
+</details>
+
 #### Union
 _`<union>`_
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
+---
+- **noSpace**
 ```tsx
 /**
  * @default false
  */
 noSpace?: boolean;
 ```
+---
+</details>
 
-##### Usage
 ```tsx
-// "hello | world"
-
 const string = (
   <union>
     <text>hello</text>
     <text>world</text>
   </union>
 );
+```
 
-// "hello|world"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  hello | world
+  ```
+</details>
+
+```tsx
 const string = (
   <union noSpace>
     <text>hello</text>
@@ -1875,18 +2637,29 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  hello|world
+  ```
+</details>
+
+
 #### Sectioned
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**divider**
+---
+- **divider**
 ```tsx
 /**
  * @default "---"
  */
 divider?: string;
 ```
-**frame**
+- **frame**
 ```tsx
 /**
  * Whether add dividers before and after the body.
@@ -1894,12 +2667,10 @@ divider?: string;
  */
 frame?: boolean;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "Hello\n---\nWorld!"
-
 const string = (
   <sectioned>
     <text>Hello</text>
@@ -1907,6 +2678,16 @@ const string = (
   </sectioned>
 );
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello
+  ---
+  World!
+  ```
+</details>
 
 <h3 id="sets"><div align="right"><a href="#elements">🔝</a></div>Sets</h3>
 
@@ -1916,25 +2697,39 @@ Sets automatically adjust the separators used based on the number of children pr
 _`<and>`_
 
 ```tsx
-// "a"
-
 const string = (
   <and>
     <text>a</text>
   </and>
 );
+```
 
-// "a and b"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  a
+  ```
+</details>
+
+```tsx
 const string = (
   <and>
     <text>a</text>
     <text>b</text>
   </and>
 );
+```
 
-// "a, b, and c"
+<details open>
+  <summary><i>Result</i></summary>
 
+  ```
+  a and b
+  ```
+</details>
+
+```tsx
 const string = (
   <and>
     <text>a</text>
@@ -1944,12 +2739,18 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  a, b, and c
+  ```
+</details>
+
 #### And / Or
 _`<andor>`_
 
 ```tsx
-// "a, b, and/or c"
-
 const string = (
   <andor>
     <text>a</text>
@@ -1959,12 +2760,18 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  a, b, and/or c
+  ```
+</details>
+
 #### Or
 _`<or>`_
 
 ```tsx
-// "a, b, or c"
-
 const string = (
   <or>
     <text>a</text>
@@ -1974,12 +2781,18 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  a, b, or c
+  ```
+</details>
+
 #### Nor
 _`<nor>`_
 
 ```tsx
-// "a, b, nor c"
-
 const string = (
   <nor>
     <text>a</text>
@@ -1989,15 +2802,25 @@ const string = (
 );
 ```
 
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  a, b, nor c
+  ```
+</details>
+
 <h3 id="limiters"><div align="right"><a href="#elements">🔝</a></div>Limiters</h3>
 
 #### Cap
 
 The `<cap>` element allows you to limit the length of a string by providing a `splitter` function and a `max` number of "units" to allow.
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**max**
+---
+- **max**
 ```tsx
 /**
  * The maximum "units" to include.
@@ -2005,7 +2828,7 @@ The `<cap>` element allows you to limit the length of a string by providing a `s
  */
 max?: number;
 ```
-**splitter**
+- **splitter**
 ```tsx
 /**
  * A function that splits a string into "units".
@@ -2013,7 +2836,7 @@ max?: number;
  */
 splitter?: "paragraphs" | "lines" | "spaces" | "words" | "commas" | "chars" | (string: string) => string[];
 ```
-**ellipsis**
+- **ellipsis**
 ```tsx
 /**
  * A string to append to the end if the maximum is reached.
@@ -2023,13 +2846,20 @@ splitter?: "paragraphs" | "lines" | "spaces" | "words" | "commas" | "chars" | (s
  */
 ellipsis?: string | true;
 ```
+---
+</details>
 
-##### Usage
 ```tsx
-// "Hello"
-
 const string = <cap max={5}>Hello, World!</cap>;
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello
+  ```
+</details>
 
 #### Priority
 
@@ -2039,9 +2869,11 @@ Instead of providing a list of children, `<priority>` expects a list of items, e
 
 Priority elements can also be nested, which enable extremely fine-grained control over which content is rendered. Several examples are provided in the [priority example directory](https://github.com/AutosseyAI/prxmpt/tree/main/examples/priority).
 
-##### Props
+<details>
+  <summary><h5>Props</h5></summary>
 
-**max**
+---
+- **max**
 ```tsx
 /**
  * The maximum "units" to include.
@@ -2049,7 +2881,7 @@ Priority elements can also be nested, which enable extremely fine-grained contro
  */
 max?: number;
 ```
-**counter**
+- **counter**
 ```tsx
 /**
  * A function that returns the number of "units" in a string.
@@ -2057,7 +2889,7 @@ max?: number;
  */
 counter?: (string: string) => number;
 ```
-**items**
+- **items**
 ```tsx
 /**
  * The items to render, in order of priority.
@@ -2074,7 +2906,7 @@ items: (Prxmpt.Children | {
   content: ((capacity: number) => Prxmpt.Children) | Prxmpt.Children;
 })[];
 ```
-**strategy**
+- **strategy**
 ```tsx
 /**
  * The strategy to use when prioritizing items.
@@ -2104,7 +2936,7 @@ items: (Prxmpt.Children | {
  */
 strategy?: PriorityStrategy | PriorityStrategy[];
 ```
-**noSkip**
+- **noSkip**
 ```tsx
 /**
   * If `true`, do not skip items after the maximum is reached.
@@ -2112,26 +2944,35 @@ strategy?: PriorityStrategy | PriorityStrategy[];
   */
 noSkip?: boolean;
 ```
-
-##### Usage
+---
+</details>
 
 ```tsx
-// "Test 2"
-
 const string = (
   <priority
-    max={6}
+    max={15}
     join={"\n"}
     items={[{
+      p: 2
       content: "Test 1"
     }, {
-      p: 1,
-      content: "Test 2"
+      // p: 0 is the default
+      content: "This is a a super long string that won't fit."
     }, {
+      p: 1,
       content: "Test 3"
     }]} />
 );
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Test 1
+  Test 3
+  ```
+</details>
 
 <h2 id="exports"><div align="right"><a href="#elements">🔝</a></div>Exports</h2>
 
@@ -2142,22 +2983,34 @@ const string = (
 ```tsx
 import { createElement } from "@autossey/prxmpt";
 
-// "Hello, World!"
-
 const string = createElement("text", {}, "Hello, World!");
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello, World!
+  ```
+</details>
 
 #### `render`
 
 ```tsx
 import { render } from "@autossey/prxmpt";
 
-// "Hello, World!"
-
 const string = render(
   <text>Hello, World!</text>
 );
 ```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  Hello, World!
+  ```
+</details>
 
 <h3 id="children"><div align="right"><a href="#elements">🔝</a></div>Children</h3>
 

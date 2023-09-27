@@ -16,14 +16,15 @@ export const space: Prxmpt.FC<Prxmpt.TextProps> = (props) => {
 
 export interface TabProps extends Prxmpt.TextProps {
   /**
+   * If true, use a literal tab character. Otherwise, use spaces.
+   * @default false
+   */
+  literal?: boolean;
+  /**
    * Number of characters per tab
    * @default 1 if `literal` is true, otherwise 2
    */
   width?: number;
-  /**
-   * @default false
-   */
-  literal?: boolean;
 }
 
 export const tab: Prxmpt.FC<TabProps> = (props) => {
