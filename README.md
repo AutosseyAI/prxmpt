@@ -2026,7 +2026,7 @@ ellipsis?: string | true;
 
 ##### Usage
 ```tsx
-// "Hello,"
+// "Hello"
 
 const string = <cap max={5}>Hello, World!</cap>;
 ```

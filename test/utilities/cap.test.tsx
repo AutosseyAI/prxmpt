@@ -2,6 +2,10 @@ import { describe, expect, test } from "@jest/globals";
 import Prxmpt from "../../source/index.js";
 
 describe("max", () => {
+  test("simple", () => {
+    const string = <cap max={5}>Hello, World!</cap>;
+    expect(string).toEqual("Hello");
+  });
   test("hide", () => {
     const text = (
       <cap join={"\n"} hide>
