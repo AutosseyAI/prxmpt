@@ -1,5 +1,5 @@
 <div id="top" align="center">
-  <h1 id="prxmpt">𝕡𝕣𝕩𝕞𝕡𝕥</h1>
+  <h1>𝕡𝕣𝕩𝕞𝕡𝕥</h1>
   <a href="https://npmjs.com/package/@autossey/prxmpt">
     <img alt="NPM" src="https://img.shields.io/npm/v/@autossey/prxmpt.svg">
   </a>
@@ -25,7 +25,7 @@ Prxmpt is _"Tailwind for Prompt Engineering"_. It provides a set of utilities fo
 
 Prxmpt is designed for shaping the input to LLMs, including powerful elements such as [priority](#priority) for managing tokens. However, Prxmpt also includes both Markdown and HTML elements, making it perfect for formatting LLM outputs as well.
 
-<h2 id="why-jsx"><div align="right"><a href="#prxmpt">🔝</a></div>Why JSX?</h2>
+<h2 id="why-jsx"><div align="right"><a href="#top">🔝</a></div>Why JSX?</h2>
 
 1. 📖 **Readability** - JSX gives us more control over whitespace, enabling more readable code.
 2. 🎛️ **Control** - With built-in props such as `hide`, we can easily control the text we display without ternaries.
@@ -50,7 +50,7 @@ Compare this to an equivalent using template literals:
 const text = `This is the first line.${hideLine2 ? "\nHere's a second line." : ""}\n\nThen, we'll add a third line here.`;
 ```
 
-<h2 id="installation"><div align="right"><a href="#prxmpt">🔝</a></div>Installation</h2>
+<h2 id="installation"><div align="right"><a href="#top">🔝</a></div>Installation</h2>
 
 <details open>
   <summary>
@@ -100,7 +100,7 @@ bun add @autossey/prxmpt
 
 </details>
 
-<h2 id="getting-started"><div align="right"><a href="#prxmpt">🔝</a></div>Getting Started</h2>
+<h2 id="getting-started"><div align="right"><a href="#top">🔝</a></div>Getting Started</h2>
 
 <details open>
   <summary><b>Automatic Mode</b></summary>
@@ -169,7 +169,7 @@ export const MyComponent = () => (
 
 </details>
 
-<h2 id="examples"><div align="right"><a href="#prxmpt">🔝</a></div>Examples</h2>
+<h2 id="examples"><div align="right"><a href="#top">🔝</a></div>Examples</h2>
 
 Several examples are provided in the [examples](https://github.com/AutosseyAI/prxmpt/tree/main/examples) directory:
 
@@ -190,7 +190,7 @@ Several examples are provided in the [examples](https://github.com/AutosseyAI/pr
 
 For examples of how to use specific elements, the [tests](https://github.com/AutosseyAI/prxmpt/tree/main/test/) showcase more usecases.
 
-<h2 id="elements"><div align="right"><a href="#prxmpt">🔝</a></div>Elements</h2>
+<h2 id="elements"><div align="right"><a href="#top">🔝</a></div>Elements</h2>
 
 - [Text Elements](#text-elements)
     - [`<text>`](#text)
@@ -296,7 +296,7 @@ For examples of how to use specific elements, the [tests](https://github.com/Aut
     - [`<cap>`](#cap)
     - [`<priority>`](#priority)
 
-<h2 id="exports"><div align="right"><a href="#prxmpt">🔝</a></div>Exports</h2>
+<h2 id="exports"><div align="right"><a href="#top">🔝</a></div>Exports</h2>
 
 The following functions are also exported from Prxmpt:
 
