@@ -3125,6 +3125,7 @@ Split `children` on `""`.
 - [@swc/jest](https://www.npmjs.com/package/@swc/jest): Swc integration for jest
 - [eslint](https://www.npmjs.com/package/eslint): An AST-based pattern checker for JavaScript.
 - [jest](https://www.npmjs.com/package/jest): Delightful JavaScript Testing.
+- [typescript](https://www.npmjs.com/package/typescript): TypeScript is a language for application scale JavaScript development
 
 <br />
 
