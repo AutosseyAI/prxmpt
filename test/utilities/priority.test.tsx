@@ -2,6 +2,22 @@ import { describe, expect, test } from "@jest/globals";
 import Prxmpt from "../../source/index.js";
 
 describe("basics", () => {
+  test("simple", () => {
+    const string = (
+      <priority
+        max={6}
+        join={"\n"}
+        items={[{
+          content: "Test 1"
+        }, {
+          p: 1,
+          content: "Test 2"
+        }, {
+          content: "Test 3"
+        }]} />
+    );
+    expect(string).toEqual("Test 2");
+  });
   test("no max", () => {
     const text = (
       <priority

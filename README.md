@@ -2120,7 +2120,7 @@ noSkip?: boolean;
 
 const string = (
   <priority
-    max={10}
+    max={6}
     join={"\n"}
     items={[{
       content: "Test 1"
