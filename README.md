@@ -34,11 +34,11 @@ Prxmpt is designed for shaping the input to LLMs, and includes powerful elements
 ```tsx
 const text = (
   <lined>
-    <text>This is the first line.</text>
+    <h1>This is the first line.</h1>
     <text hide={hideLine2}>Here's a second line.</text>
     <empty />
     <text>
-      This is a longer line, so we'll wrap the text tag.
+      This is a longer line, so we'll break the text tag.
       We can even start another line here, and a space will be added.
     </text>
   </lined>
@@ -49,10 +49,10 @@ const text = (
   <summary><i>Result (<code>hideLine2=false</code>)</i></summary>
 
   ```
-  This is the first line.
+  # This is the first line.
   Here's a second line.
 
-  This is a long line, so we'll wrap the text tag. We can even start another line here, and a space will be added.
+  This is a long line, so we'llbreak the text tag We can even start another line here, and a space will be added.
   ```
 </details>
 
@@ -60,16 +60,16 @@ const text = (
   <summary><i>Result (<code>hideLine2=true</code>)</i></summary>
 
   ```
-  This is the first line.
+  # This is the first line.
 
-  This is a long line, so we'll wrap the text tag. We can even start another line here, and a space will be added.
+  This is a long line, so we'll break the text tag We can even start another line here, and a space will be added.
   ```
 </details>
 
 Compare this to an equivalent using template literals:
 
 ```ts
-const text = `This is the first line.${hideLine2 ? "\nHere's a second line." : ""}\n\nThis is a longer line, so by this point we're off the page. We can even start another line here, but I wouldn't recommend it.`;
+const text = `# This is the first line.${hideLine2 ? "\nHere's a second line." : ""}\n\nThis is a longer line, so by now we're off the page. We can even start another line here, but I wouldn't recommend it.`;
 ```
 
 <h2 id="installation"><div align="right"><a href="#top">🔝</a></div>Installation</h2>
