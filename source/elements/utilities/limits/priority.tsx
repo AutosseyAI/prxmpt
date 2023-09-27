@@ -9,7 +9,7 @@ function isDefined<T>(value: T): value is Defined<T> {
 
 export type Counter = (string: string) => number;
 
-export function charCounter(str: string) {
+function charCounter(str: string) {
   return str.length;
 }
 
@@ -50,7 +50,7 @@ export interface PriorityProps extends Omit<Prxmpt.TextProps, "indent"> {
   max?: number;
   /**
    * A function that returns the number of "units" in a string.
-   * @default charCounter
+   * @default (string: string) => string.length
    */
   counter?: Counter;
   /**

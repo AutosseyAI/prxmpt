@@ -21,9 +21,9 @@
 <br />
 <br />
 
-Prxmpt is _"Tailwind for Prompt Engineering"_. It provides a set of utilities for composing strings with JSX.
+Prxmpt is like _"Tailwind for Prompt Engineering"_. It provides a set of utilities for formatting strings with JSX.
 
-Prxmpt is designed for shaping the input to LLMs, including powerful elements such as [priority](#priority) for managing tokens. However, Prxmpt also includes both Markdown and HTML elements, making it perfect for formatting LLM outputs as well.
+Prxmpt is designed for shaping the input to LLMs, and includes powerful elements such as [\<priority\>](#priority) for managing tokens. However, Prxmpt also provides both Markdown and HTML elements, making it perfect for formatting LLM outputs for end users as well.
 
 <h2 id="why-jsx"><div align="right"><a href="#top">🔝</a></div>Why JSX?</h2>
 
@@ -39,15 +39,37 @@ const text = (
     <empty />
     <text>
       This is a longer line, so we'll wrap the text tag.
+      We can even start another line here, and a space will be added.
     </text>
   </lined>
 );
 ```
 
+<details>
+  <summary><i>Result (<code>hideLine2=false</code>)</i></summary>
+
+  ```
+  This is the first line.
+  Here's a second line.
+
+  This is a long line, so we'll wrap the text tag. We can even start another line here, and a space will be added.
+  ```
+</details>
+
+<details>
+  <summary><i>Result (<code>hideLine2=true</code>)</i></summary>
+
+  ```
+  This is the first line.
+
+  This is a long line, so we'll wrap the text tag. We can even start another line here, and a space will be added.
+  ```
+</details>
+
 Compare this to an equivalent using template literals:
 
 ```ts
-const text = `This is the first line.${hideLine2 ? "\nHere's a second line." : ""}\n\nThen, we'll add a third line here.`;
+const text = `This is the first line.${hideLine2 ? "\nHere's a second line." : ""}\n\nThis is a longer line, so by this point we're off the page. We can even start another line here, but I wouldn't recommend it.`;
 ```
 
 <h2 id="installation"><div align="right"><a href="#top">🔝</a></div>Installation</h2>
@@ -2885,7 +2907,7 @@ max?: number;
 ```tsx
 /**
  * A function that returns the number of "units" in a string.
- * @default charCounter
+ * @default (string: string) => string.length
  */
 counter?: (string: string) => number;
 ```
@@ -2907,31 +2929,30 @@ items: (Prxmpt.Children | {
 })[];
 ```
 - **strategy**
+
+> The strategy to use when prioritizing items.<br />If multiple strategies are provided, subsequent strategies are tried in order to break ties.
+
+`"priority"`:
+
+_Prioritize items by the provided priority.<br />Once the maximum is reached, continue to check if remaining items fit._
+
+`"order-asc"`:
+
+_Prioritize items by the order provided.<br />Once the maximum is reached, continue to check if remaining items fit._
+
+`"order-desc"`:
+
+_Prioritize items in reverse of the order provided.<br />Once the maximum is reached, continue to check if remaining items fit._
+
+`"size-asc"`:
+
+_Prioritize items in size order, smallest to largest.<br />Use if you want to include as many items as possible._
+
+`"size-desc"`:
+
+_Prioritized items in size order, largest to smallest.<br />Use if you want to include as few items as possible._
 ```tsx
 /**
- * The strategy to use when prioritizing items.
- * If multiple strategies are provided, subsequent strategies are tried in order to break ties.
- * 
- * `"priority"`:
- * Prioritize items by the provided priority.
- * Once the maximum is reached, continue to check if remaining items fit.
- *
- * `"order-asc"`:
- * Prioritize items by the order provided.
- * Once the maximum is reached, continue to check if remaining items fit.
- * 
- * `"order-desc"`:
- * Prioritize items in reverse of the order provided.
- * Once the maximum is reached, continue to check if remaining items fit.
- *
- * `"size-asc"`:
- * Prioritize items in size order, smallest to largest.
- * Use if you want to include as many items as possible.
- * 
- * `"size-desc"`:
- * Prioritized items in size order, largest to smallest.
- * Use if you want to include as few items as possible.
- * 
  * @default ["priority", "order-asc"]
  */
 strategy?: PriorityStrategy | PriorityStrategy[];
@@ -3093,8 +3114,13 @@ Split `children` on `""`.
 
 <h3 id="dev-dependencies">Dev Dependencies</h3>
 
-- [@autosoft/tsconfig](https://www.npmjs.com/package/@autosoft/tsconfig): A base for TypeScript projects.
-- [ts-node](https://www.npmjs.com/package/@types/node): TypeScript execution environment and REPL for node.js, with source map support
+- [@autossey/eslint-config](https://www.npmjs.com/package/@autosoft/eslint-config): A base for projects that use ESLint.
+- [@autosoft/tsconfig](https://www.npmjs.com/package/@autosoft/tsconfig): A collection of base TSConfigs for various types of projects.
+- [@jest/globals](https://www.npmjs.com/package/@jest/globals)
+- [@swc/core](https://www.npmjs.com/package/@swc/core): Super-fast alternative for babel
+- [@swc/jest](https://www.npmjs.com/package/@swc/jest): Swc integration for jest
+- [eslint](https://www.npmjs.com/package/eslint): An AST-based pattern checker for JavaScript.
+- [jest](https://www.npmjs.com/package/jest): Delightful JavaScript Testing.
 
 <br />
 
