@@ -376,7 +376,7 @@ const string = <text>Hello<text hide>, World</hide>!</text>;
 </details>
 
 <details open>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 Since `<text>` is the base of most other elements, the props it provides can be used with most other elements.
 
@@ -540,7 +540,7 @@ const string = <space />;
 _`<tab>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **literal**
@@ -868,7 +868,7 @@ const exclaim = <exclaim>Hello, World!</exclaim>;
 _`<kv>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **key**
@@ -959,7 +959,7 @@ Additionally, custom attributes can be set using the `attributes` prop.
 _`<tag>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **name**
@@ -1039,7 +1039,7 @@ const br = <br html />;
 _`<hr />`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **width**
@@ -1089,7 +1089,7 @@ const hr = <hr />;
 _`<a>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **href**
@@ -1138,7 +1138,7 @@ const string = <a href="https://example.com" title="A Title" html>Hello, World!<
 _`<img>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **src**
@@ -1352,7 +1352,7 @@ const string = <h6 html>Hello, World!</h6>;
 _`<ol>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **onlyMarkIfList**
@@ -1387,7 +1387,7 @@ const string = (
 #### Unordered List
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **onlyMarkIfList**
@@ -1423,7 +1423,7 @@ const string = (
 _`<cl>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **items**
@@ -1466,7 +1466,7 @@ const string = (
 _`<dl>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **items**
@@ -1528,7 +1528,7 @@ const string = (
 #### Italic
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **char**
@@ -1568,7 +1568,7 @@ const string = <i html>Hello, World!</i>;
 #### Bold
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **char**
@@ -1754,7 +1754,7 @@ const string = <blockquote html>Hello, World!</blockquote>;
 The quote element returns a triple quote if the children contain a newline, otherwise it returns a single quote.
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **type**
@@ -1824,7 +1824,7 @@ const string = <pre html>Hello, World!</pre>;
 #### Num
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **add**
@@ -1887,7 +1887,7 @@ const string = <num min={1}>0</num>;
 #### Datetime
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -1929,7 +1929,7 @@ const string = <datetime />;
 #### Date
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -1964,7 +1964,7 @@ const string = <date />;
 #### Time
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -1999,7 +1999,7 @@ const string = <time />;
 #### Year
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -2027,7 +2027,7 @@ const string = <year />
 #### Month
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -2096,7 +2096,7 @@ const string = <month format="narrow" />
 #### Day
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -2167,7 +2167,7 @@ const string = <day format="narrow" />
 #### Hour
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -2214,7 +2214,7 @@ const string = <hour cycle="24">
 #### Minute
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -2242,7 +2242,7 @@ const string = <minute />
 #### Second
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -2270,7 +2270,7 @@ const string = <second />
 #### Millisecond
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -2298,7 +2298,7 @@ const string = <millisecond />
 #### Duration
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **value**
@@ -2336,7 +2336,7 @@ const string = <duration since={"September 2021"} />
 #### JSON
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **data**
@@ -2373,7 +2373,7 @@ const string = <json data={{ Hello: "World" }} pretty />;
 #### YAML
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **data**
@@ -2501,7 +2501,7 @@ const string = <trim>Hello, World! </trim>;
 #### Frame
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **with**
@@ -2573,7 +2573,7 @@ const string = (
 _`<csl>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **noSpace**
@@ -2624,7 +2624,7 @@ const string = (
 _`<union>`_
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **noSpace**
@@ -2675,7 +2675,7 @@ const string = (
 #### Sectioned
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **divider**
@@ -2843,7 +2843,7 @@ const string = (
 The `<cap>` element allows you to limit the length of a string by providing a `splitter` function and a `max` number of "units" to allow.
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **max**
@@ -2896,7 +2896,7 @@ Instead of providing a list of children, `<priority>` expects a list of items, e
 Priority elements can also be nested, which enable extremely fine-grained control over which content is rendered. Several examples are provided in the [priority example directory](https://github.com/AutosseyAI/prxmpt/tree/main/examples/priority).
 
 <details>
-  <summary><h5>Props</h5></summary>
+  <summary><b>Props</b></summary>
 
 ---
 - **max**
