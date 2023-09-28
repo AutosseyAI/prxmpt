@@ -135,9 +135,11 @@ Prxmpt provides a base `tsconfig.json` that you can extend:
 
 ```json
 {
-  "extends": "@autossey/prxmpt"
+  "extends": "@autossey/prxmpt/tsconfig.json"
 }
 ```
+
+> NOTE: Bun doesn't seem to detect Prxmpt correctly when using the "extends" method.
 
 Alternatively, you can simply add the following fields to your `tsconfig.json`:
 
@@ -145,7 +147,8 @@ Alternatively, you can simply add the following fields to your `tsconfig.json`:
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "@autossey/prxmpt"
+    "jsxImportSource": "@autossey/prxmpt",
+    "module": "NodeNext"
   }
 }
 ```
