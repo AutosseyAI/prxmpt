@@ -3118,8 +3118,8 @@ Split `children` on `""`.
 
 <h3 id="dev-dependencies">Dev Dependencies</h3>
 
-- [@autossey/eslint-config](https://www.npmjs.com/package/@autosoft/eslint-config): A base for projects that use ESLint.
-- [@autosoft/tsconfig](https://www.npmjs.com/package/@autosoft/tsconfig): A collection of base TSConfigs for various types of projects.
+- [@autossey/eslint-config](https://www.npmjs.com/package/@autossey/eslint-config): A base for projects that use ESLint.
+- [@autossey/tsconfig](https://www.npmjs.com/package/@autossey/tsconfig): A collection of base TSConfigs for various types of projects.
 - [@jest/globals](https://www.npmjs.com/package/@jest/globals)
 - [@swc/core](https://www.npmjs.com/package/@swc/core): Super-fast alternative for babel
 - [@swc/jest](https://www.npmjs.com/package/@swc/jest): Swc integration for jest
