@@ -12,7 +12,7 @@ This directory contains examples of using `Prxmpt` in various situations.
 - [kitchen sink](./examples/kitchen-sink/source/Prompt.tsx) (Showcases many elements)
 - [priority](./examples/priority/) (A few examples of the `<priority>` element)
 
-**Setup Examples:**
+**Setup Examples (TypeScript):**
 - [bun](./examples/bun/)
 - [bun (classic mode)](./examples/bun-classic/)
 - [Next.js](./examples/next/)
@@ -22,3 +22,7 @@ This directory contains examples of using `Prxmpt` in various situations.
 - [ts-node (classic mode)](./examples/ts-node-classic/)
 - [tsc](./examples/tsc/)
 - [tsc (classic mode)](./examples/tsc-classic/)
+
+**Setup Examples (JavaScript):**
+- [swc](./examples/swc-js/)
+- [swc (classic mode)](./examples/swc-js-classic/)

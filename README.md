@@ -206,16 +206,20 @@ Several examples are provided in the [examples](https://github.com/AutosseyAI/pr
 - [kitchen sink](https://github.com/AutosseyAI/prxmpt/blob/main/examples/kitchen-sink/source/Prompt.tsx) (Showcases many elements)
 - [priority](https://github.com/AutosseyAI/prxmpt/tree/main/examples/priority/) (A few examples of the `<priority>` element)
 
-**Setup Examples:**
-- [bun](https://github.com/AutosseyAI/prxmpt/tree/main/examples/bun/)
-- [bun (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/bun-classic/)
-- [Next.js](https://github.com/AutosseyAI/prxmpt/tree/main/examples/next/)
-- [swc](https://github.com/AutosseyAI/prxmpt/tree/main/examples/swc/)
-- [swc (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/swc-classic/)
-- [ts-node](https://github.com/AutosseyAI/prxmpt/tree/main/examples/ts-node/)
-- [ts-node (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/ts-node-classic/)
-- [tsc](https://github.com/AutosseyAI/prxmpt/tree/main/examples/tsc/)
-- [tsc (classic mode)](https://github.com/AutosseyAI/prxmpt/tree/main/examples/tsc-classic/)
+**Setup Examples (TypeScript):**
+- [bun](./examples/bun/)
+- [bun (classic mode)](./examples/bun-classic/)
+- [Next.js](./examples/next/)
+- [swc](./examples/swc/)
+- [swc (classic mode)](./examples/swc-classic/)
+- [ts-node](./examples/ts-node/)
+- [ts-node (classic mode)](./examples/ts-node-classic/)
+- [tsc](./examples/tsc/)
+- [tsc (classic mode)](./examples/tsc-classic/)
+
+**Setup Examples (JavaScript):**
+- [swc](./examples/swc-js/)
+- [swc (classic mode)](./examples/swc-js-classic/)
 
 For examples of how to use specific elements, the [tests](https://github.com/AutosseyAI/prxmpt/tree/main/test/) show more usecases.
 
