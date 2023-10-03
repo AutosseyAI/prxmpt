@@ -5,6 +5,7 @@
     "jsx": "react",
     "jsxFactory": "Prxmpt.createElement",
     "jsxFragmentFactory": "Prxmpt.Fragment",
+    // Prevent conflicts with @types/react
     "types": []
   }
 }

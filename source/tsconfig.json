@@ -1,3 +1,14 @@
 {
-  "extends": "../tsconfig.base.json"
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../.auto/build",
+    "rootDirs": [
+      "."
+    ]
+  },
+  "files": [
+    "./index.tsx",
+    "./jsx-runtime.ts"
+  ]
 }
