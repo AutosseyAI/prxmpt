@@ -28,10 +28,10 @@ describe("q", () => {
   });
   test("single line html", () => {
     const text = <q html>Test</q>;
-    expect(text).toEqual('<q>Test</q>');
+    expect(text).toEqual("<q>Test</q>");
   });
   test("multi line html", () => {
     const text = <q html>Test<br />Test<br />Test</q>;
-    expect(text).toEqual('<q>\n  Test\n  Test\n  Test\n</q>');
+    expect(text).toEqual("<q>\n  Test\n  Test\n  Test\n</q>");
   });
 });

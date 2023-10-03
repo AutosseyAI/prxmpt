@@ -23,7 +23,7 @@ describe("dq", () => {
   });
   test("no escape", () => {
     const text = <dq noEscape>Te"st</dq>;
-    expect(text).toEqual('"Te\"st"');
+    expect(text).toEqual('"Te"st"');
   });
   test("multi line", () => {
     const text = <dq>Test<br />Test<br />Test</dq>;
@@ -42,7 +42,7 @@ describe("bq", () => {
   });
   test("no escape", () => {
     const text = <bq noEscape>Te`st</bq>;
-    expect(text).toEqual("`Te\`st`");
+    expect(text).toEqual("`Te`st`");
   });
   test("multi line", () => {
     const text = <bq>Test<br />Test<br />Test</bq>;
@@ -55,13 +55,13 @@ describe("tq", () => {
     const string = (
       <tq noStartingNewline>Test</tq>
     );
-    expect(string).toEqual('"""Test\n"""')
+    expect(string).toEqual('"""Test\n"""');
   });
   test("noEndingNewline", () => {
     const string = (
       <tq noEndingNewline>Test</tq>
     );
-    expect(string).toEqual('"""\nTest"""')
+    expect(string).toEqual('"""\nTest"""');
   });
 });
 

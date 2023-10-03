@@ -57,7 +57,7 @@ test("cl", () => {
       items={[
         "one",
         { content: "two", checked: true },
-        { content: "three", checked: false },
+        { content: "three", checked: false }
       ]} />
   );
   expect(text).toEqual("- [ ] one\n- [x] two\n- [ ] three");
