@@ -1195,6 +1195,8 @@ const string = <img src="https://example.com" title="A Title" html>Hello, World!
 #### H1
 _`<h1>`_
 
+##### Standard:
+
 ```tsx
 const string = <h1>Hello, World!</h1>;
 ```
@@ -1206,6 +1208,8 @@ const string = <h1>Hello, World!</h1>;
   # Hello, World!
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <h1 html>Hello, World!</h1>;
@@ -1222,6 +1226,8 @@ const string = <h1 html>Hello, World!</h1>;
 #### H2
 _`<h2>`_
 
+##### Standard:
+
 ```tsx
 const string = <h2>Hello, World!</h2>;
 ```
@@ -1233,6 +1239,8 @@ const string = <h2>Hello, World!</h2>;
   ## Hello, World!
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <h2 html>Hello, World!</h2>;
@@ -1249,6 +1257,8 @@ const string = <h2 html>Hello, World!</h2>;
 #### H3
 _`<h3>`_
 
+##### Standard:
+
 ```tsx
 const string = <h3>Hello, World!</h3>;
 ```
@@ -1260,6 +1270,8 @@ const string = <h3>Hello, World!</h3>;
   ### Hello, World!
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <h3 html>Hello, World!</h3>;
@@ -1276,6 +1288,8 @@ const string = <h3 html>Hello, World!</h3>;
 #### H4
 _`<h4>`_
 
+##### Standard:
+
 ```tsx
 const string = <h4>Hello, World!</h4>;
 ```
@@ -1287,6 +1301,8 @@ const string = <h4>Hello, World!</h4>;
   #### Hello, World!
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <h4 html>Hello, World!</h4>;
@@ -1303,6 +1319,8 @@ const string = <h4 html>Hello, World!</h4>;
 #### H5
 _`<h5>`_
 
+##### Standard:
+
 ```tsx
 const string = <h5>Hello, World!</h5>;
 ```
@@ -1314,6 +1332,8 @@ const string = <h5>Hello, World!</h5>;
   ##### Hello, World!
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <h5 html>Hello, World!</h5>;
@@ -1330,6 +1350,8 @@ const string = <h5 html>Hello, World!</h5>;
 #### H6
 _`<h6>`_
 
+##### Standard:
+
 ```tsx
 const string = <h6>Hello, World!</h6>;
 ```
@@ -1341,6 +1363,8 @@ const string = <h6>Hello, World!</h6>;
   ###### Hello, World!
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <h6 html>Hello, World!</h6>;
@@ -1393,6 +1417,7 @@ const string = (
 </details>
 
 #### Unordered List
+_`<ul>`_
 
 <details>
   <summary><b>Props</b></summary>
@@ -1534,6 +1559,7 @@ const string = (
 <h3 id="styling"><div align="right"><a href="#elements">🔝</a></div>Styling</h3>
 
 #### Italic
+_`<i>`_
 
 <details>
   <summary><b>Props</b></summary>
@@ -1549,6 +1575,8 @@ char?: "*" | "_";
 ---
 </details>
 
+##### Standard:
+
 ```tsx
 const string = <i>Hello, World!</i>;
 ```
@@ -1560,6 +1588,8 @@ const string = <i>Hello, World!</i>;
   _Hello, World!_
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <i html>Hello, World!</i>;
@@ -1574,6 +1604,7 @@ const string = <i html>Hello, World!</i>;
 </details>
 
 #### Bold
+_`<b>`_
 
 <details>
   <summary><b>Props</b></summary>
@@ -1589,6 +1620,8 @@ char?: "*" | "_";
 ---
 </details>
 
+##### Standard:
+
 ```tsx
 const string = <b>Hello, World!</b>;
 ```
@@ -1599,6 +1632,8 @@ const string = <b>Hello, World!</b>;
   **Hello, World!**
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <b html>Hello, World!</b>;
@@ -1613,6 +1648,9 @@ const string = <b html>Hello, World!</b>;
 </details>
 
 #### Strikethrough
+_`<s>`_
+
+##### Standard:
 
 ```tsx
 const string = <s>Hello, World!</s>;
@@ -1625,6 +1663,8 @@ const string = <s>Hello, World!</s>;
   ~~Hello, World!~~
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <s html>Hello, World!</s>;
@@ -1639,6 +1679,9 @@ const string = <s html>Hello, World!</s>;
 </details>
 
 #### Code
+_`<code>`_
+
+##### Standard:
 
 ```tsx
 const string = <code>Hello, World!</code>;
@@ -1651,6 +1694,8 @@ const string = <code>Hello, World!</code>;
   `Hello, World!`
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <code html>Hello, World!</code>;
@@ -1667,8 +1712,11 @@ const string = <code html>Hello, World!</code>;
 <h3 id="miscellaneous-html"><div align="right"><a href="#elements">🔝</a></div>Miscellaneous</h3>
 
 #### Span
+_`<span>`_
 
-Span simply renders its children, unless the `html` prop is provided.
+##### Standard:
+
+When rendered as text, `<span>` simply renders its children like `<text>`:
 
 ```tsx
 const string = <span>Hello, World!</span>;
@@ -1681,6 +1729,8 @@ const string = <span>Hello, World!</span>;
   Hello, World!
   ```
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <span html>Hello, World!</span>;
@@ -1695,6 +1745,9 @@ const string = <span html>Hello, World!</span>;
 </details>
 
 #### Paragraph
+_`<p>`_
+
+##### Standard:
 
 When rendered as text, the paragraph tag adds a newline at the end of the element:
 
@@ -1711,6 +1764,8 @@ const string = <p>Hello, World!</p>;
   ```
 </details>
 
+##### HTML:
+
 ```tsx
 const string = <p html>Hello, World!</p>;
 ```
@@ -1724,6 +1779,9 @@ const string = <p html>Hello, World!</p>;
 </details>
 
 #### Blockquote
+_`<blockquote>`_
+
+##### Standard:
 
 ```tsx
 const string = (
@@ -1745,6 +1803,8 @@ const string = (
   ```
 </details>
 
+##### HTML:
+
 ```tsx
 const string = <blockquote html>Hello, World!</blockquote>;
 ```
@@ -1758,8 +1818,7 @@ const string = <blockquote html>Hello, World!</blockquote>;
 </details>
 
 #### Quote
-
-The quote element returns a triple quote if the children contain a newline, otherwise it returns a single quote.
+_`<q>`_
 
 <details>
   <summary><b>Props</b></summary>
@@ -1775,6 +1834,12 @@ type?: "single" | "double" | "backtick";
 ---
 </details>
 
+##### Standard:
+
+The quote element returns a triple quote if the children contain a newline, otherwise it returns a single quote.
+
+###### Single Line
+
 ```tsx
 const string = <q>Hello, World!</q>;
 ```
@@ -1786,6 +1851,8 @@ const string = <q>Hello, World!</q>;
   "Hello, World!"
   ```
 </details>
+
+###### Multi Line
 
 ```tsx
 const string = <q>Hello<br />World</q>;
@@ -1801,8 +1868,24 @@ const string = <q>Hello<br />World</q>;
   ```
 </details>
 
+##### HTML:
+
+```tsx
+const string = <q html>Hello, World!</q>;
+```
+
+<details open>
+  <summary><i>Result</i></summary>
+
+  ```
+  <q>Hello, World!</q>
+  ```
+</details>
 
 #### Pre
+_`<pre>`_
+
+##### Standard:
 
 ```tsx
 const string = <pre>Hello, World!</pre>;
@@ -1812,6 +1895,8 @@ const string = <pre>Hello, World!</pre>;
   <summary><i>Result</i></summary>
   <pre>```<br />Hello, World!<br />```</pre>
 </details>
+
+##### HTML:
 
 ```tsx
 const string = <pre html>Hello, World!</pre>;
@@ -1830,6 +1915,7 @@ const string = <pre html>Hello, World!</pre>;
 <h3 id="primitives"><div align="right"><a href="#elements">🔝</a></div>Primitives</h3>
 
 #### Num
+_`<num>`_
 
 <details>
   <summary><b>Props</b></summary>
@@ -3120,6 +3206,7 @@ Split `children` on `""`.
 
 <h2 id="dependencies">Dependencies<a href="https://www.npmjs.com/package/clee?activeTab=dependencies"><img align="right" alt="dependencies" src="https://img.shields.io/librariesio/release/npm/clee.svg"></a></h2>
 
+- [@swc/core](https://www.npmjs.com/package/@swc/core): Super-fast alternative for babel
 - [as-typed-array](https://www.npmjs.com/package/as-typed-array): Make any value an array
 - [types-json](https://www.npmjs.com/package/types-json): Type checking for JSON objects
 - [yaml](https://www.npmjs.com/package/yaml): JavaScript parser and stringifier for YAML
@@ -3129,8 +3216,8 @@ Split `children` on `""`.
 - [@autossey/eslint-config](https://www.npmjs.com/package/@autossey/eslint-config): A base for projects that use ESLint.
 - [@autossey/tsconfig](https://www.npmjs.com/package/@autossey/tsconfig): A collection of base TSConfigs for various types of projects.
 - [@jest/globals](https://www.npmjs.com/package/@jest/globals)
-- [@swc/core](https://www.npmjs.com/package/@swc/core): Super-fast alternative for babel
 - [@swc/jest](https://www.npmjs.com/package/@swc/jest): Swc integration for jest
+- [@types/node](https://www.npmjs.com/package/@types/node): TypeScript definitions for Node.js
 - [eslint](https://www.npmjs.com/package/eslint): An AST-based pattern checker for JavaScript.
 - [jest](https://www.npmjs.com/package/jest): Delightful JavaScript Testing.
 - [typescript](https://www.npmjs.com/package/typescript): TypeScript is a language for application scale JavaScript development
