@@ -5,10 +5,14 @@
     "outDir": "../.auto/build",
     "rootDirs": [
       "."
+    ],
+    "types": [
+      "node"
     ]
   },
   "files": [
     "./index.tsx",
-    "./jsx-runtime.ts"
+    "./jsx-runtime.ts",
+    "./loader.ts"
   ]
 }

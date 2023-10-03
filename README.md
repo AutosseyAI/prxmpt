@@ -218,6 +218,7 @@ Several examples are provided in the [examples](https://github.com/AutosseyAI/pr
 - [tsc (classic mode)](./examples/tsc-classic/)
 
 **Setup Examples (JavaScript):**
+- [node --loader @autossey/prxmpt](./examples/node-loader/)
 - [swc](./examples/swc-js/)
 - [swc (classic mode)](./examples/swc-js-classic/)
 

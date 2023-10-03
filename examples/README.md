@@ -24,5 +24,6 @@ This directory contains examples of using `Prxmpt` in various situations.
 - [tsc (classic mode)](./examples/tsc-classic/)
 
 **Setup Examples (JavaScript):**
+- [node --loader @autossey/prxmpt](./examples/node-loader/)
 - [swc](./examples/swc-js/)
 - [swc (classic mode)](./examples/swc-js-classic/)

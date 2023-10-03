@@ -1,0 +1,16 @@
+{
+  "name": "prxmpt-example-node-loader",
+  "version": "1.0.0",
+  "description": "Prxmpt Node Loader Example",
+  "license": "MIT",
+  "private": true,
+  "author": "Connor White",
+  "type": "module",
+  "main": "./build/index.js",
+  "scripts": {
+    "start": "node --loader @autossey/prxmpt/loader source/index.js"
+  },
+  "dependencies": {
+    "@autossey/prxmpt": "*"
+  }
+}
