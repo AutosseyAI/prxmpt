@@ -19,6 +19,8 @@
 <div align="center">
   <a href="https://www.npmjs.com/package/@autossey/prxmpt">npm</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://github.com/AutosseyAI/prxmpt">GitHub</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/AutosseyAI/prxmpt/issues/new">Issues</a>
 </div>
 
