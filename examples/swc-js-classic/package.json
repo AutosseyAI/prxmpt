@@ -7,7 +7,6 @@
   "author": "Connor White",
   "type": "module",
   "main": "./build/index.js",
-  "types": "./build/index.d.ts",
   "scripts": {
     "build": "swc source --config-file .swcrc --copy-files --delete-dir-on-start --out-dir build",
     "start": "node build/index.js"
