@@ -9,21 +9,21 @@ This directory contains examples of using `Prxmpt` in various situations.
 ---
 
 **Element Usage Examples:**
-- [kitchen sink](./examples/kitchen-sink/source/Prompt.tsx) (Showcases many elements)
-- [priority](./examples/priority/) (A few examples of the `<priority>` element)
+- [kitchen sink](./kitchen-sink/source/Prompt.tsx) (Showcases many elements)
+- [priority](./priority/) (A few examples of the `<priority>` element)
 
 **Setup Examples (TypeScript):**
-- [bun](./examples/bun/)
-- [bun (classic mode)](./examples/bun-classic/)
-- [Next.js](./examples/next/)
-- [swc](./examples/swc/)
-- [swc (classic mode)](./examples/swc-classic/)
-- [ts-node](./examples/ts-node/)
-- [ts-node (classic mode)](./examples/ts-node-classic/)
-- [tsc](./examples/tsc/)
-- [tsc (classic mode)](./examples/tsc-classic/)
+- [bun](./bun/)
+- [bun (classic mode)](./bun-classic/)
+- [Next.js](./next/)
+- [swc](./swc/)
+- [swc (classic mode)](./swc-classic/)
+- [ts-node](./ts-node/)
+- [ts-node (classic mode)](./ts-node-classic/)
+- [tsc](./tsc/)
+- [tsc (classic mode)](./tsc-classic/)
 
 **Setup Examples (JavaScript):**
-- [node --loader @autossey/prxmpt](./examples/node-loader/)
-- [swc](./examples/swc-js/)
-- [swc (classic mode)](./examples/swc-js-classic/)
+- [node --loader @autossey/prxmpt](./node-loader/)
+- [swc](./swc-js/)
+- [swc (classic mode)](./swc-js-classic/)
